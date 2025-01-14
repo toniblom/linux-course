@@ -4,5 +4,5 @@ The first task in the course
 Example website http://TeroKarvinen.com
 
 Here's some code:
-  $ ls
-  hello-toni.md
+    $ ls
+    hello-toni.md
