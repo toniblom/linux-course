@@ -70,7 +70,7 @@ Kello 15:23
 ### Debian ISO-kuvan käyttäminen virtuaalisena CDROMina
 
 Kello 15:30
-* Valitsin luomani DebianToniBlom -virtuaalikoneen => valitsin Settings => Storage-tab => Controller IDE => CDROM Empty
+* Valitsin luomani virtuaalikoneen => valitsin Settings => Storage-tab => Controller IDE => CDROM Empty
   * Attributes -kohdasta valitsin Choose/Create a Virtual Optical Disk
 * Avautui Optical Disk Selector -kohta => valitsin lataamani debian-live ISO-kuvan => painoin Choose
 * Tässä vaiheessa näkymä oli seuraavanlainen:
