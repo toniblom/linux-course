@@ -141,7 +141,7 @@ Komennon tuloksena näkyy neljä saraketta, mm. kunkin komponentin luokka ja lyh
 
 [3] Blom, T. h01 Oma Linux -raportti. https://github.com/toniblom/linux-course/blob/main/h01-oma-linux.md. Luettu 2025-01-27.
 
-[4] LinuxLinks. 100 Great and Must-Have CLI Linux Applications. 100 Great and Must-Have CLI Linux Applications. Luettu 2025-01-27.
+[4] LinuxLinks. 100 Great and Must-Have CLI Linux Applications. https://www.linuxlinks.com/100-great-must-have-cli-linux-applications/. Luettu 2025-01-27.
 
 [5] Keith Kissel, CC BY 2.0 <https://creativecommons.org/licenses/by/2.0>, via Wikimedia Commons. https://commons.wikimedia.org/wiki/File:June_odd-eyed-cat_cropped.jpg. Katsottu 2025-01-27.
 
