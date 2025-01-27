@@ -3,6 +3,12 @@ Tekijä: Toni Blom
 
 Tein tämän raportin Linux-palvelimet -kurssin tehtävään h02 liittyen. Tehtävien tekopäivämäärä oli 27.1.2025. Tehtävänanto löytyi osoitteesta https://terokarvinen.com/linux-palvelimet/.
 
+Tein tehtävän seuraavalla kone- ja ohjelmistokokoonpanolla:
+* Tietokone: Lenovo Yoga Slim 7 Pro 14ACH5 -kannettava tietokone
+* Prosessori: AMD Ryzen 7 5800H with Radeon Graphics 3.20 GHz
+* Isäntäkäyttöjärjestelmä: Windows 10 Home, versio versio 22H2, OS build 19045.5131
+* Oracle VM VirtualBox versio 7.1.4.
+
 ## x) Komentokehotteen perusteita
 
 Tiivistin seuraavan komentokokoelman osoitteesta https://terokarvinen.com/2020/command-line-basics-revisited/ löytyvään artikkeliin perustuen. [2]
