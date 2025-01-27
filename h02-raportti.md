@@ -149,4 +149,4 @@ Komennon tuloksena näkyy neljä saraketta, mm. kunkin komponentin luokka ja lyh
 
 [7] Hira, Z. Grep Command in Linux – Usage, Options, and Syntax Examples. https://www.freecodecamp.org/news/grep-command-in-linux-usage-options-and-syntax-examples/. Luettu 2025-01-27.
 
-[8] Stack Exchange Inc. How do I recursively grep all directories and subdirectories?. How do I recursively grep all directories and subdirectories?. Luettu 2025-01-27.
+[8] Stack Exchange Inc. How do I recursively grep all directories and subdirectories?. https://stackoverflow.com/questions/1987926/how-do-i-recursively-grep-all-directories-and-subdirectories. Luettu 2025-01-27.
