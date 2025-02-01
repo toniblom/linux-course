@@ -19,7 +19,7 @@ Tein tämän raportin Linux-palvelimet -kurssin tehtävään h3 liittyen. Tehtä
 
 2025-02-01, klo 20:15 - 20:20
 
-Olin asentanut Apache HTTP-palvelimen virtuaalikoneelleni jo aikaisemmin edellä kuvattuja konfiguraatioita ja yksinkertaisen html-sivun. Avasin internetselaimella osoitteen http://localhost/, jolloin tekemäni sivu tuli näkyviin.
+Olin asentanut Apache HTTP-palvelimen virtuaalikoneelleni jo aikaisemmin ja tehnyt edellä kuvattuja konfiguraatioita ja yksinkertaisen html-sivun. Avasin internetselaimella osoitteen http://localhost/, jolloin tekemäni sivu tuli näkyviin.
 
 ![image](https://github.com/user-attachments/assets/f41bb18b-e0a8-4cc0-804e-1d47222d1da4)
 
