@@ -6,11 +6,34 @@ Tein tämän raportin Linux-palvelimet -kurssin tehtävään h3 liittyen. Tehtä
 ## x) Name-based Virtual Host
 
 * *Name-based virtual hosting* mahdollistaa sen, että useammalla virtuaalipalvelimella on sama IP-osoite. [2]
+
 * Name-based virtual hosting säästää IP-osoitteiden määrää verrattuna *IP-based virtual hosting* -ratkaisuun, jossa jokaisella virtuaalipalvelimella on oma IP-osoite. [2]
-* Apache HTTP-serverin voi asentaa esimerkiksi Debianissa komennolla `sudo apt-get install apache2`. [3]
-* Apache HTTP-serverillä jokainen name-based virtual host tarvitsee .conf-konfiguraatiotiedostossa `<VirtualHost>` -blokin, jonka sisälle on sijoitettu ainakin `DocumentRoot` ja yleensä vähintään myös `ServerName` -direktiivi [2]. 
+
+* Apache HTTP-palvelimen voi asentaa esimerkiksi Debianissa komennolla `sudo apt-get install apache2`. Konfiguraatiotiedostojen sijainti on `/etc/apache2/sites-available/` -kansiossa. [3]
+
+* Apache HTTP-palvelimella jokainen name-based virtual host tarvitsee .conf-konfiguraatiotiedostossa `<VirtualHost>` -blokin, jonka sisälle on sijoitettu ainakin `DocumentRoot` ja yleensä vähintään myös `ServerName` -direktiivi [2].
+
 * Kun konfiguraatiotiedosto on valmis, seuraavat askeleet ovat virtual hostin käynnistäminen `sudo a2ensite example.com` -komennolla, Apache-serverin käynnistäminen uudelleen `sudo systemctl restart apache2` -komennolla ja itse sivuston luominen konfiguraatiotiedoston `DocumentRoot`-kohdassa määritettyyn sijaintiin. [4]
 
+## a) localhost
+
+2025-02-01, klo 20:15 - 20:20
+
+Olin asentanut Apache HTTP-palvelimen virtuaalikoneelleni jo aikaisemmin edellä kuvattuja konfiguraatioita ja yksinkertaisen html-sivun. Avasin internetselaimella osoitteen http://localhost/, jolloin tekemäni sivu tuli näkyviin.
+
+![image](https://github.com/user-attachments/assets/f41bb18b-e0a8-4cc0-804e-1d47222d1da4)
+
+## b) Lokit
+
+2025-02-01, klo 20:20 - 20:35
+
+Suoritin terminaalissa komennot `sudo tail /var/log/apache2/access.log` ja `sudo tail /var/log/apache2/error.log`.
+
+![image](https://github.com/user-attachments/assets/cb6ccd68-9545-4cc7-aaee-af5014bfbf04)
+
+![image](https://github.com/user-attachments/assets/257ab9e2-eeb1-453a-8604-352708489dc2)
+
+Suoritin `sudo tail -f /var/log/apache2/access.log` -komennon ja päivitin http://localhost/ -sivun internetselaimesta, lokitiedostoon ei kuitenkaan ilmestynyt mitään uutta.
 
 ## Lähteet
 
