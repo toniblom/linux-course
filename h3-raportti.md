@@ -31,13 +31,38 @@ Suoritin terminaalissa komennot `sudo tail /var/log/apache2/access.log` ja `sudo
 
 ![image](https://github.com/user-attachments/assets/cb6ccd68-9545-4cc7-aaee-af5014bfbf04)
 
+Analysoidaan error.log -tiedoston viimeistä riviä:
+* **[Sat Feb 01 20:16:20.020103 2025]** on lokikirjauksen päivämäärä ja kellonaika.
+* **[core:notice]** tarkoittaa virheilmoituksen tuottanutta moduulia (core) ja ilmoituksen "vakavuusastetta" (notice).
+* **[pid 675:tid 675]** ovat process ID ja thread ID prosessille, joka kohtasi lokikirjauksen tilanteen.
+* Loppuosa on kuvaus ilmoituksesta/virheestä. [5]
+
 ![image](https://github.com/user-attachments/assets/257ab9e2-eeb1-453a-8604-352708489dc2)
 
-Suoritin `sudo tail -f /var/log/apache2/access.log` -komennon ja päivitin http://localhost/ -sivun internetselaimesta, lokitiedostoon ei kuitenkaan ilmestynyt mitään uutta.
+Analysoidaan access.log -tiedoston ensimmäistä riviä:
+* **127.0.0.1** on asiakkaan IP-osoite, joka teki pyynnön palvelimelle.
+* **"-"** tarkoittaa, että pyydettyä tietoa ei ollut saatavilla.
+  * Ensimmäinen "-" on asiakkaan RFC 1413 -identiteetti. Tätä tietoa ei yleensä lokissa käytetä.
+  * Toinen "-" on pyynnön tekijän userid. Jos dokumenttia ei ole suojattu salasanalla, se on "-".
+* **[28/Jan/2025: 19:48:34 +0200]** on pyynnön saapumisaika.
+* **"GET /favicon.ico HTTP/1.1"** on asiakkaan tekemä pyyntö, jossa HTTP/1.1 on käytetty protokolla.
+* **404** on palvelimen asiakkaalle lähettämä statuskoodi. 4-alkuinen koodi tarkoittaa asiakkaan aiheuttamaa virhettä.
+* **487** on asiakkaalle palautetun objektin koko.
+* **"http://localhost/"** on sivu, jolta on linkki /favicon.ico -sijaintiin. Englanniksi tästä käytetään sanaa Referer.
+* **"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0"** on asiakkaan selaimen antamaa tietoa itsestään. [5]
+
+access.log -tiedostossa näkyi lähinnä vanhempia lokitapahtumia. Suoritin `sudo tail -f /var/log/apache2/access.log` -komennon ja päivitin http://localhost/ -sivun painamalla Shift-näppäintä ja reload-nappia internetselaimesta, lokitiedostoon ei kuitenkaan ilmestynyt mitään uutta.
+
+## c)
+
+2025-02-02, klo 17:37 - 
+
+
+
 
 ## Lähteet
 
-[1] Karvinen, Tero. Linux Palvelimet 2025 alkukevät. https://terokarvinen.com/linux-palvelimet/. Luettu 2025-01-25.
+[1] Karvinen, Tero. Linux Palvelimet 2025 alkukevät. https://terokarvinen.com/linux-palvelimet/. Luettu 2025-02-01.
 
 [2] The Apache Software Foundation. Name-based Virtual Host Support. https://httpd.apache.org/docs/2.4/vhosts/name-based.html. Luettu 2025-01-30.
 
@@ -45,3 +70,6 @@ Suoritin `sudo tail -f /var/log/apache2/access.log` -komennon ja päivitin http:
 
 [4] Karvinen, Tero. Name Based Virtual Hosts on Apache – Multiple Websites to Single IP Address. https://terokarvinen.com/2018/04/10/name-based-virtual-hosts-on-apache-multiple-websites-to-single-ip-address/. Luettu 2025-01-30.
 
+[5] The Apache Software Foundation. Log Files. https://httpd.apache.org/docs/2.4/logs.html. Luettu 2025-02-02.
+
+[6] 
