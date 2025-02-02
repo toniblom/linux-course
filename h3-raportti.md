@@ -112,15 +112,17 @@ Kokeilin `curl http://localhost/` -komentoa, jolloin näkyviin tuli aiemmin teke
 
 ![image](https://github.com/user-attachments/assets/8612c2fe-5375-4bd1-937f-42d5e3ed42ff)
 
-Etsin vielä tietoa termistä "response header", joka on HTTP-otsake (HTTP header), jota voidaan käyttää HTTP-vastauksessa antamaan lisätietoja vastauksen kontekstista. Esimerkkejä response headereista ovat esim. Age, Location ja Server. [9]
+Etsin vielä tietoa termistä "response header", joka on HTTP-otsake (HTTP header), jota voidaan käyttää HTTP-vastauksessa antamaan lisätietoja vastauksen kontekstista. Esimerkkejä response headereista ovat esim. Age, Location ja Server. Puheessa kaikista HTTP headereista puhutaan usein response headereina, vaikka määritelmällisesti näin ei ole. [9]
 
-Kokeilin `curl -l http://localhost/` -komentoa, jolloin näkyviin tuli sama tulos kuin komennolla ilman `-l` optiota.
+Kokeilin `curl -l http://localhost/` -komentoa, jolloin näkyviin tuli sama tulos kuin komennolla ilman `-l` optiota. Response headereita ei tullut näkyviin.
 
-Kokeilin `curl -l google.com` -komentoa, jolloin tulos oli seuraavanlainen:
+2025-02-02, klo 20:20 - 20:38
 
-![image](https://github.com/user-attachments/assets/45bd0b8f-a72e-4865-a1a0-d220aca9813d)
+`curl`-komennon man-sivulta löysin, että `-L` -optioon liitettäessä `-i` optio näyttää otsakkeet. [8]
 
-Tälläkään komennolla ei tulkintani mukaan tullut esiin response headereita.
+![image](https://github.com/user-attachments/assets/4c7be9ea-a17d-44ec-b754-9287c2a26b90)
+
+`curl -L -i http://localhost/` -komennolla näkyi otsakkeita, kuten päivämäärä ja kellonaika, Apache-palvelimen versio ja viimeisin muokkausajankohta.
 
 ## Lähteet
 
