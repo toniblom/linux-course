@@ -3,6 +3,12 @@ Tekijä: Toni Blom
 
 Tein tämän raportin Linux-palvelimet -kurssin tehtävään h3 liittyen. Tehtävänanto löytyi osoitteesta https://terokarvinen.com/linux-palvelimet/ [1].
 
+Tein tehtävän seuraavalla kone- ja ohjelmistokokoonpanolla:
+* Tietokone: Lenovo Yoga Slim 7 Pro 14ACH5 -kannettava tietokone
+* Prosessori: AMD Ryzen 7 5800H with Radeon Graphics 3.20 GHz
+* Isäntäkäyttöjärjestelmä: Windows 10 Home, versio versio 22H2, OS build 19045.5131
+* Oracle VM VirtualBox versio 7.1.4.
+
 ## x) Name-based Virtual Host
 
 * *Name-based virtual hosting* mahdollistaa sen, että useammalla virtuaalipalvelimella on sama IP-osoite. [2]
