@@ -53,9 +53,11 @@ Analysoidaan access.log -tiedoston ensimmäistä riviä:
 
 access.log -tiedostossa näkyi lähinnä vanhempia lokitapahtumia. Suoritin `sudo tail -f /var/log/apache2/access.log` -komennon ja päivitin http://localhost/ -sivun painamalla Shift-näppäintä ja reload-nappia internetselaimesta, lokitiedostoon ei kuitenkaan ilmestynyt mitään uutta.
 
-## c)
+## c) Uusi name-based virtual host
 
-2025-02-02, klo 17:37 - 
+2025-02-02, klo 17:37 - 18:10
+
+Loin lähteitä ([3], [4]) apuna käyttäen uuden name-based virtual hostin.
 
 Suoritin komennon `sudoedit /etc/apache2/sites-available/hattu.example.com.conf`.
 
@@ -74,7 +76,7 @@ Suoritin komennon ´sudo a2ensite hattu.example.com.conf´, joka onnistui ongelm
 
 ![image](https://github.com/user-attachments/assets/da0c8a4e-72d4-43c0-b4c8-997f890d45b0)
 
-Katsoin `/etc/apache2/sites-enabled/` kansion sisältöä, jossa oli kaksi tiedostoa, joten deaktivoin ylimääräisen komennolla `sudo a2dissite .conf`.
+Katsoin `/etc/apache2/sites-enabled/` kansion sisältöä, jossa oli kaksi tiedostoa, joten deaktivoin ylimääräisen komennolla `sudo a2dissite toni.example.com.conf`.
 
 ![image](https://github.com/user-attachments/assets/2067257b-9b9e-4a58-9662-4ba442e5d30f)
 
@@ -82,9 +84,46 @@ Suoritin komennon `sudo systemctl restart apache2`.
 
 Loin hakemistoon /home/toni/publicsites/ uuden hattu.example.com -kansion ja sen sisään index.html -tiedoston.
 
+![image](https://github.com/user-attachments/assets/e079cb76-1ce0-4ef1-8094-b959d528eb4f)
+
 Latasin internetselaimella http://localhost/ -osoitteen. Uusi sivu näkyi selaimessa.
 
 ![image](https://github.com/user-attachments/assets/145584b9-ae7f-42e7-b0ec-504e4019d201)
+
+## e) Validi HTML5 sivu
+
+2025-02-02, klo 18:13 - 18:30
+
+Muokkasin hattu.example.com -kansioni index.html -tiedostoa sivulta https://terokarvinen.com/2012/short-html5-page/ löytyvää mallia hyväksi käyttäen. Käytin sivua https://validator.w3.org/#validate_by_input HTML:n validoimiseen.
+
+![image](https://github.com/user-attachments/assets/b0ed58a9-e4d7-4e80-870a-84fc65869a20)
+
+doctype-kohdassa oli ylimääräinen väli, joten poistin tämän. Latasin sivuni internetselaimessa.
+
+![image](https://github.com/user-attachments/assets/d16d4804-dd13-4586-ba37-2e46b6c780e4)
+
+## f) curl-komento
+
+2025-02-02, klo 18:35 - 19:18
+
+Katsoin ensin `man curl` -komennolla mitä `curl` -komento ja sen `-l` -asetus tekevät. `curl` -komento siirtää dataa palvelimelta tai palvelimelle ja käyttää useita eri protokollia. `curl -l` -komento pakottaa tuloksessa näkyvään vain nimet. Manuaalissa `-l` optiosta oli esimerkkejä FTP- ja POP3-protokolliin liittyen, joten `-l` option käyttö esim. HTTP-protokollan kanssa tai yhteys tehtävänantoon ei vielä selvinnyt. [8]
+
+Kokeilin `curl http://localhost/` -komentoa, jolloin näkyviin tuli aiemmin tekemäni sivun html-tiedoston sisältö.
+
+![image](https://github.com/user-attachments/assets/8612c2fe-5375-4bd1-937f-42d5e3ed42ff)
+
+Etsin vielä tietoa termistä "response header", joka on HTTP-otsake (HTTP header), jota voidaan käyttää HTTP-vastauksessa antamaan lisätietoja vastauksen kontekstista. Esimerkkejä response headereista ovat esim. Age, Location ja Server. [9]
+
+Kokeilin `curl -l http://localhost/` -komentoa, jolloin näkyviin tuli sama tulos kuin komennolla ilman `-l` optiota.
+
+Kokeilin `curl -l google.com` -komentoa, jolloin tulos oli seuraavanlainen:
+
+![image](https://github.com/user-attachments/assets/45bd0b8f-a72e-4865-a1a0-d220aca9813d)
+
+Tälläkään komennolla ei tulkintani mukaan tullut esiin response headereita.
+
+## 
+
 
 
 ## Lähteet
@@ -95,8 +134,14 @@ Latasin internetselaimella http://localhost/ -osoitteen. Uusi sivu näkyi selaim
 
 [3] Karvinen, Tero: Oppitunnit 2015-01-28, Linux palvelimet -kurssi (https://terokarvinen.com/linux-palvelimet/). 
 
-[4] Karvinen, Tero. Name Based Virtual Hosts on Apache – Multiple Websites to Single IP Address. https://terokarvinen.com/2018/04/10/name-based-virtual-hosts-on-apache-multiple-websites-to-single-ip-address/. Luettu 2025-01-30.
+[4] Karvinen, Tero. Name Based Virtual Hosts on Apache – Multiple Websites to Single IP Address. https://terokarvinen.com/2018/04/10/name-based-virtual-hosts-on-apache-multiple-websites-to-single-ip-address/. Luettu 2025-02-02.
 
 [5] The Apache Software Foundation. Log Files. https://httpd.apache.org/docs/2.4/logs.html. Luettu 2025-02-02.
 
-[6] 
+[6] Karvinen, Tero. Short HTML5 page. https://terokarvinen.com/2012/short-html5-page/. Luettu 2025-02-02.
+
+[7] World Wide Web Consortium. W3C®. Markup Validation Service. https://validator.w3.org/#validate_by_input. Luettu 2025-02-02.
+
+[8] Stenberg, D. et al. curl man page. https://curl.se/docs/manpage.html. Luettu 2025-02-02.
+
+[9] Mozilla Corporation. Response header. https://developer.mozilla.org/en-US/docs/Glossary/Response_header. Luettu 2025-02-02.
