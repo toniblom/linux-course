@@ -72,7 +72,7 @@ Kirjoitin konfiguraatiotiedostoon seuraavaa:
  </Directory>
 </VirtualHost>
 ```
-Suoritin komennon ´sudo a2ensite hattu.example.com.conf´, joka onnistui ongelmitta.
+Suoritin komennon `sudo a2ensite hattu.example.com.conf`, joka onnistui ongelmitta.
 
 ![image](https://github.com/user-attachments/assets/da0c8a4e-72d4-43c0-b4c8-997f890d45b0)
 
@@ -98,7 +98,7 @@ Muokkasin hattu.example.com -kansioni index.html -tiedostoa sivulta https://tero
 
 ![image](https://github.com/user-attachments/assets/b0ed58a9-e4d7-4e80-870a-84fc65869a20)
 
-doctype-kohdassa oli ylimääräinen väli, joten poistin tämän. Latasin sivuni internetselaimessa.
+doctype-kohdassa oli ylimääräinen väli, joten poistin tämän, jolloin virheilmoitukset poistuivat (varoitusta lukuun ottamatta). Latasin sivuni internetselaimessa.
 
 ![image](https://github.com/user-attachments/assets/d16d4804-dd13-4586-ba37-2e46b6c780e4)
 
@@ -121,10 +121,6 @@ Kokeilin `curl -l google.com` -komentoa, jolloin tulos oli seuraavanlainen:
 ![image](https://github.com/user-attachments/assets/45bd0b8f-a72e-4865-a1a0-d220aca9813d)
 
 Tälläkään komennolla ei tulkintani mukaan tullut esiin response headereita.
-
-## 
-
-
 
 ## Lähteet
 
