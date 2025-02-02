@@ -57,7 +57,34 @@ access.log -tiedostossa näkyi lähinnä vanhempia lokitapahtumia. Suoritin `sud
 
 2025-02-02, klo 17:37 - 
 
+Suoritin komennon `sudoedit /etc/apache2/sites-available/hattu.example.com.conf`.
 
+Kirjoitin konfiguraatiotiedostoon seuraavaa:
+```
+<VirtualHost *:80>
+ ServerName hattu.example.com
+ ServerAlias www.hattu.example.com
+ DocumentRoot /home/toni/publicsites/hattu.example.com
+ <Directory /home/toni/publicsites/hattu.example.com>
+   Require all granted
+ </Directory>
+</VirtualHost>
+```
+Suoritin komennon ´sudo a2ensite hattu.example.com.conf´, joka onnistui ongelmitta.
+
+![image](https://github.com/user-attachments/assets/da0c8a4e-72d4-43c0-b4c8-997f890d45b0)
+
+Katsoin `/etc/apache2/sites-enabled/` kansion sisältöä, jossa oli kaksi tiedostoa, joten deaktivoin ylimääräisen komennolla `sudo a2dissite .conf`.
+
+![image](https://github.com/user-attachments/assets/2067257b-9b9e-4a58-9662-4ba442e5d30f)
+
+Suoritin komennon `sudo systemctl restart apache2`.
+
+Loin hakemistoon /home/toni/publicsites/ uuden hattu.example.com -kansion ja sen sisään index.html -tiedoston.
+
+Latasin internetselaimella http://localhost/ -osoitteen. Uusi sivu näkyi selaimessa.
+
+![image](https://github.com/user-attachments/assets/145584b9-ae7f-42e7-b0ec-504e4019d201)
 
 
 ## Lähteet
