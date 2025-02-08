@@ -54,16 +54,138 @@ Virtuaalipalvelimen (virtual private server) käyttöönotossa tehdään seuraav
 
 ## a) Virtuaalipalvelimen vuokraaminen
 
+2025-02-08, klo 20:03 - 20.45
+
+* Menin osoitteeseen education.github.com/pack, ja painoin kohdasta "Get access by connecting your GitHub account on DigitalOcean".
+
+![image](https://github.com/user-attachments/assets/44d999c7-4680-45b8-ab1b-33c3a7db50a3)
+
+* Valitsin DigitalOceanin sivulta kohdan "Sign In with GitHub" => "Autrhorize digitalocean" => "An unknown error has occurred." => En ollut rekisteröitynyt käyttäjäksi.
+* Valitsin kohdan Sign up => Sign Up with GitHub => Vastailin erilaisiin kysymyksiin => täytin pankkikorttini ja muut tiedot => Save => Tapahtui käsittelyvirhe => Sign Out
+* En osaa sanoa mistä ongelma johtui.
+* Kokeilen UpCloudia => upcloud.com => sign up => Tilin luominen onnistui
+* Verify account => Korttitietoni hyväksyttiin
+* Päätin laittaa tililleni vielä kaksivaihetunnistuksen => Activate 2FA
+* Painoin kohdasta Server List => Deploy server
+
+![image](https://github.com/user-attachments/assets/d3ac9802-11b0-498f-96bf-10d3316ee1cb)
+
+* Valitsin Location = FI-HEL1
+* Plan =  Developer
+
+![image](https://github.com/user-attachments/assets/f51f3a1b-6a1e-43c8-a0f0-17f84aebc4e7)
+
+* Storage kohta => en tehnyt muutoksia
+* Automated backups => en laittanut päälle
+* Operating system => Degian GNU/Linux 12 (Bookworm)
+* Network -kohta => En tehnyt muutoksia
+* Optionals => En valinnut mitään
+* Login Method => SSH keys => Tässä vaiheessa siirryin virtuaalikoneelleni
+
+* Save the SSH key
+* Initialization script => En laittanut mitään
+* Server configuration => vaihdoin nimen => muistelin että tunnilla sanottiin, että olisi parempi jos nimessä ei viitata esim. palvelinsalin sijaintiin
+* deploy
+
+![image](https://github.com/user-attachments/assets/89ef3aaa-4526-4b6f-bad2-87e4c9c599f0)
 
 
-## b) Alkutoimet virtuaalipalvelimella
 
+##  b) Alkutoimet virtuaalipalvelimella
+
+20.50 - 21:15
+
+Palomuuri
+* Yhteys serveriin: ssh root@94.237.39.223
+* sudo apt-get update
+* sudo apt-get install ufw
+* sudo ufw allow 22/tcp
+* sudo ufw enable
+* sudo ufw allow 80/tcp
+
+Rootin sulku
+* sudo adduser toni => salasana
+* sudo adduser toni sudo
+
+![image](https://github.com/user-attachments/assets/97dc9efd-08f6-4715-a65a-972e6d1743bc)
+
+kopioi rootin asetukset
+* sudo cp -rvn /root/.ssh /home/toni/
+* sudo chown -R toni:toni /home/toni/
+* exit
+* ssh toni@94.237.39.223
+
+Näytti toimivan
+
+![image](https://github.com/user-attachments/assets/8793a354-c828-4110-9d00-9042eb1b229a)
+
+
+* sudo usermod --lock root # => annoin tonin salasanan
+* sudo mv -nv /root/.ssh /root/DISABLED-ssh/
+
+![image](https://github.com/user-attachments/assets/6457734e-5fe4-4beb-a2b1-8ce7d1353221)
+
+sudo apt-get update
+sudo apt-get dist-upgrade
+sudo systemctl reboot
 
 ## c) Apache-webpalvelimen asennus virtuaalipalvelimelle
+
+21:16 - 21:22
+
+* ssh toni@94.237.39.223 => salasanaa ei tarvittu
+* sudo apt-get install apache2
+* echo Hello world! |sudo tee /var/www/html/index.html
+* menin selaimella virtuaalipalvelimen IP-osoitteeseen => vaihdettu teksti näkyi!
+
+![image](https://github.com/user-attachments/assets/9fab1614-ba03-4d3f-b399-a548f1857731)
+
+
 
 
 
 ## d) Name-based virtual host virtuaalipalvelimelle
+
+21.22 - 
+
+* sudoedit /etc/apache2/sites-available/toni.example.com.conf
+
+Asetustiedostoon kirjataan:
+<VirtualHost *:80>
+	ServerName jurpo.example.com
+	DocumentRoot /home/tero/public_sites/jurpo.example.com
+	<Directory /home/tero/public_sites/jurpo.example.com>
+		Require all granted
+	</Directory>
+</VirtualHost>
+
+![image](https://github.com/user-attachments/assets/c26911a3-3dd0-476b-abba-fd49e2f56511)
+
+
+* sudo a2ensite toni.example.com.conf
+* ls /etc/apache2/sites-enabled => sudo a2dissite 000-default.conf
+
+![image](https://github.com/user-attachments/assets/a16483e1-e306-4948-9d7a-21d8739bced7)
+
+* luo /home/toni/public_sites/toni.example.com
+* asentelin micron samalla
+* sudo apt-get -y install micro bash-completion wget curl
+
+![image](https://github.com/user-attachments/assets/449b4f58-8300-4651-8521-5326adedb4a1)
+
+* loin sinne index.html => malli tero karvisen artikkelista => tarkistin w3-validaattorilla
+* kokeillaan nettiselaimella => mitään ei ollut muuttunut, näin hello worldin
+* sudo systemctl restart apache2 => taas nettiselaimeen
+
+![image](https://github.com/user-attachments/assets/4d3093cf-06ff-4a2e-8a3d-81dd8e6ebf2d)
+
+* Katsotaan lokeja
+* sudo tail /var/log/apache2/error.log =>
+
+![image](https://github.com/user-attachments/assets/c1ece6e0-ef3f-4edd-b984-03bab4f0a042)
+
+* Permissions are missing on a component of the path
+  
 
 
 ## Lähteet
