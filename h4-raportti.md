@@ -184,8 +184,24 @@ Asetustiedostoon kirjataan:
 
 ![image](https://github.com/user-attachments/assets/c1ece6e0-ef3f-4edd-b984-03bab4f0a042)
 
-* Permissions are missing on a component of the path
-  
+* Permissions are missing on a component of the path => en ymmärtänyt viestiä
+* Etsin errorkoodilla AH00035 => https://serverfault.com/questions/1041060/solving-apache-search-permissions-are-missing-on-a-component-of-the-path-issue
+* puuttuuko jostain kansiosta -x lupa => toni-kansiossa luvat 700
+
+![image](https://github.com/user-attachments/assets/74355e48-0288-44a0-8ef7-e1907120e5d9)
+
+* Apachen .conf tiedostossa require all granted => mielestäni on, en huomannut kirjoitusvirhettä
+* SElinux-ongelma => en osaa ratkaista
+
+* Kokeillaan muokata toni-kansion lupia
+* chmod 755 /home/toni
+* sudo systemctl restart apache2
+* Tämä näytti ratkaisseen ongelman => nyt nettisivu näkyi
+
+![image](https://github.com/user-attachments/assets/986e6df2-a7cc-4f2c-aa3b-54cbde6b3a50)
+
+* Kokeilin vielä puhelimen nettiselaimella => näkyi!
+
 
 
 ## Lähteet
