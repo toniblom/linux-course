@@ -146,7 +146,7 @@ sudo systemctl reboot
 
 ## d) Name-based virtual host virtuaalipalvelimelle
 
-21.22 - 
+21.22 - 22.38
 
 * sudoedit /etc/apache2/sites-available/toni.example.com.conf
 
