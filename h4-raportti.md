@@ -7,7 +7,7 @@ Tein tämän raportin Linux-palvelimet -kurssin tehtävään h4 liittyen. Tehtä
 Tein tehtävän seuraavalla kone- ja ohjelmistokokoonpanolla:
 * Tietokone: Lenovo Yoga Slim 7 Pro 14ACH5 -kannettava tietokone
 * Prosessori: AMD Ryzen 7 5800H with Radeon Graphics 3.20 GHz
-* Isäntäkäyttöjärjestelmä: Windows 10 Home, versio versio 22H2, OS build 19045.5131
+* Isäntäkäyttöjärjestelmä: Windows 10 Home, versio versio 22H2, OS build 19045.5371
 * Oracle VM VirtualBox versio 7.1.4.
 * Virtuaalikoneen käyttöjärjestelmä: Debian 12.9.0
 
@@ -62,7 +62,7 @@ Kokeilin ensin käyttää GitHubin Student Pack -krediittejä vuokratakseni palv
 ![image](https://github.com/user-attachments/assets/44d999c7-4680-45b8-ab1b-33c3a7db50a3)
 
 * Valitsin DigitalOceanin sivulta kohdan "Sign In with GitHub" ja "Authorize digitalocean". Tässä kohtaa tuli virheilmoitus "An unknown error has occurred." Tämä johtui siitä, etten ollut vielä rekisteröitynyt DigitalOceaniin.
-* Valitsin kohdan "Sign Up with GitHub", vastailin muutamaan kysymykseen ja täytin pankkikorttini sekä muut tiedot tarvittavat tiedot. Painoin "Save", jonka jälkeen tuli viesti "Tapahtui käsittelyvirhe". Ongelma liittyi ilmeisesti jollain tavalla pankkikorttiini, tarkkaa syytä en lähtenyt selvittämään.
+* Valitsin kohdan "Sign Up with GitHub", vastailin muutamaan kysymykseen ja täytin pankkikorttini sekä muut tarvittavat tiedot. Painoin "Save", jonka jälkeen tuli viesti "Tapahtui käsittelyvirhe". Ongelma liittyi ilmeisesti jollain tavalla pankkikorttiini, tarkkaa syytä en lähtenyt selvittämään.
 
 Päätin kokeilla vuokrata palvelimen UpCloudista, joka oli ollut esimerkkinä myös oppitunnilla. [4]
 * Menin osoitteeseen upcloud.com ja valitsin "sign up". Tilin luominen onnistui ja pankkikorttinikin hyväksyttiin. Päätin laittaa tililleni vielä kaksivaihetunnistuksen kohdasta "Activate 2FA".
@@ -70,14 +70,14 @@ Päätin kokeilla vuokrata palvelimen UpCloudista, joka oli ollut esimerkkinä m
 
 ![image](https://github.com/user-attachments/assets/d3ac9802-11b0-498f-96bf-10d3316ee1cb)
 
-* Valitsin **Location**-kohtaan FI-HEL1 (kuvassa oli valittuna toinen sijainti).
+* Valitsin **Location**-kohtaan FI-HEL1 (kuvassa on valittuna toinen sijainti).
 * **Plan**-kohtaan valitsin Developer-tabin alta halvimman vaihtoehdon.
 
 ![image](https://github.com/user-attachments/assets/f51f3a1b-6a1e-43c8-a0f0-17f84aebc4e7)
 
 * **Storage**-kohdassa jätin oletusasetuksen.
-* **Automated backups** -kohdassa jätin oletusasetuksen, eli en laittanut tätä toiminta päälle.
-* **Operating system** -kohdassa valitsin Degian GNU/Linux 12 (Bookworm).
+* **Automated backups** -kohdassa jätin oletusasetuksen, eli en laittanut tätä toimintoa päälle.
+* **Operating system** -kohdassa valitsin Debian GNU/Linux 12 (Bookworm).
 * **Network**-kohtaan jätin oletusasetuksen.
 * **Optionals**-kohdassa en valinnut mitään lisäpalveluita.
 * **Login Method** -kohdassa valitsin "SSH keys" ja tässä vaiheessa siirryin virtuaalikoneeni Terminal Emulatoriin luomaan SSH-avaimet. Tässä seurasin tehtävänannossa annettua ohjetta.
@@ -104,9 +104,9 @@ Palomuurin asentamiseksi käytin seuraaavia komentoja [1][2][3]:
 ssh root@94.237.39.223		# Otin SSH-yhteyden virtuaalipalvelimeeni root-käyttäjänä
 sudo apt-get update		# Päivitin paketinhallinnan
 sudo apt-get install ufw	# Asensin ufw-palomuurin
-sudo ufw allow 22/tcp		# Tein "reiän" palomuurin porttiin 22
+sudo ufw allow 22/tcp		# Tein "reiän" palomuuriin porttiin 22
 sudo ufw enable			# Kytkin palomuurin päälle
-sudo ufw allow 80/tcp		# Tein "reiän" palomuurin porttiin 80
+sudo ufw allow 80/tcp		# Tein "reiän" palomuuriin porttiin 80
 ```
 
 ### root-käyttäjän sulkeminen
@@ -210,11 +210,11 @@ Suoritin komennon `sudo systemctl restart apache2` ja päivitin taas internetsel
 
 ![image](https://github.com/user-attachments/assets/4d3093cf-06ff-4a2e-8a3d-81dd8e6ebf2d)
 
-Katsoin asiaa tarkemmin lokeista. Suoritin komennon ´sudo tail /var/log/apache2/error.log´.
+Katsoin asiaa tarkemmin lokeista. Suoritin komennon `sudo tail /var/log/apache2/error.log`.
 
 ![image](https://github.com/user-attachments/assets/c1ece6e0-ef3f-4edd-b984-03bab4f0a042)
 
-Virheilmoitus kertoi seuraaavaa: "Permissions are missing on a component of the path". En ymmärtänyt tällaisenaan mistä virhe johtui, joten etsin hakukoneella lokin virhekoodilla AH00035. Löysin erään selityksen (https://serverfault.com/questions/1041060/solving-apache-search-permissions-are-missing-on-a-component-of-the-path-issue) ongelmaan, jonka mukaan virhekoodi esiintyy mm. seuraavissa tilanteissa:
+Virheilmoitus kertoi jotakuinkin seuraaavaa: "search permissions are missing on a component of the path". En ymmärtänyt tällaisenaan mistä virhe johtui, joten etsin hakukoneella lokin virhekoodilla AH00035. Löysin erään selityksen (https://serverfault.com/questions/1041060/solving-apache-search-permissions-are-missing-on-a-component-of-the-path-issue) ongelmaan, jonka mukaan virhekoodi esiintyy mm. seuraavissa tilanteissa:
 * Jostakin tiedostopolun kansioista puuttuu -x lupa.
 * Apachen .conf-tiedostossa ei ole tarvittavia lupia.
 * SELinux-ongelmat. [7]
@@ -230,7 +230,7 @@ chmod 755 /home/toni
 sudo systemctl restart apache2
 ```
 
-Tämä vaikutti ratkaisseen ongelman, koska kun päivitin nettiselameni, tekemäni sivu näkyi.
+Tämä vaikutti ratkaisseen ongelman, koska kun päivitin internetselameni, tekemäni sivu näkyi.
 
 ![image](https://github.com/user-attachments/assets/986e6df2-a7cc-4f2c-aa3b-54cbde6b3a50)
 
@@ -244,9 +244,9 @@ Kokeilin vielä virtuaalipalvelimeni IP-osoitetta puhelimen nettiselaimella ja s
 
 [3] Karvinen, T. 2017-09-19. First Steps on a New Virtual Private Server – an Example on DigitalOcean and Ubuntu 16.04 LTS. https://terokarvinen.com/2017/first-steps-on-a-new-virtual-private-server-an-example-on-digitalocean/. Luettu 2025-02-08.
 
-[4] Karvinen, Tero: Oppitunnit 2015-02-04, Linux palvelimet -kurssi (https://terokarvinen.com/linux-palvelimet/).
+[4] Karvinen, T: Oppitunnit 2015-02-04, Linux palvelimet -kurssi (https://terokarvinen.com/linux-palvelimet/).
 
-[5] Karvinen, Tero. Short HTML5 page. https://terokarvinen.com/2012/short-html5-page/. Luettu 2025-02-08.
+[5] Karvinen, T. 2012-02-12. Short HTML5 page. https://terokarvinen.com/2012/short-html5-page/. Luettu 2025-02-08.
 
 [6] World Wide Web Consortium. W3C®. Markup Validation Service. https://validator.w3.org/#validate_by_input. Luettu 2025-02-08.
 
