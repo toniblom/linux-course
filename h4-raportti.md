@@ -80,14 +80,14 @@ Päätin kokeilla vuokrata palvelimen UpCloudista, joka oli ollut esimerkkinä m
 * **Operating system** -kohdassa valitsin Degian GNU/Linux 12 (Bookworm).
 * **Network**-kohtaan jätin oletusasetuksen.
 * **Optionals**-kohdassa en valinnut mitään lisäpalveluita.
-* **Login Method** -kohdassa valitsin "SSH keys" ja tässä vaiheessa siirryin virtuaalikoneeni Terminal Emulatoriin luomaan SSH-avaimet. Tässä seurasin tehtävänannossa annettua ohjetta. [1]
- 	* Ajoin ensin komennot `sudo apt-get update` ja `sudo apt-get -y install openssh-client`. Openssh-client asentui onnistuneesti.
-  	* Generoin SSH-avaimet komennolla `ssh-keygen` ja painoin kolme kertaa Enteriä eli tallensin avaimet oletussijaintiin ilman salasanaa.
-	* Avasin julkisen avaimen `micro $HOME/.ssh/id_rsa.pub` -komennolla ja kopioin sen sisällön.
+* **Login Method** -kohdassa valitsin "SSH keys" ja tässä vaiheessa siirryin virtuaalikoneeni Terminal Emulatoriin luomaan SSH-avaimet. Tässä seurasin tehtävänannossa annettua ohjetta.
+ 	* Ajoin ensin komennot `sudo apt-get update` ja `sudo apt-get -y install openssh-client`. Openssh-client asentui onnistuneesti. [1]
+  	* Generoin SSH-avaimet komennolla `ssh-keygen` ja painoin kolme kertaa Enteriä eli tallensin avaimet oletussijaintiin ilman salasanaa. [1]
+	* Avasin julkisen avaimen `micro $HOME/.ssh/id_rsa.pub` -komennolla ja kopioin sen sisällön. [1]
 * Tässä vaiheessa palasin takaisin UpCloudin palveluun ja kopioin julkisen avaimen kenttään ja painoin "Save the SSH key".
 * **Initialization script** -kohtaan en laittanut mitään
 * **Server configuration** -kohdassa vaihdoin sekä palvelin-, että host-nimen, koska muistelin, että oppitunnilla sanottiin, että olisi parempi jos nimessä ei viitata esim. palvelinsalin sijaintiin.
-* Lopuksi painoin "Deploy". Hetken kuluttua virtuaalipalvelimeni oli valmis.
+* Lopuksi painoin "Deploy". Hetken kuluttua virtuaalipalvelimeni oli valmis. [4]
 
 ![image](https://github.com/user-attachments/assets/89ef3aaa-4526-4b6f-bad2-87e4c9c599f0)
 
@@ -98,7 +98,7 @@ Päätin kokeilla vuokrata palvelimen UpCloudista, joka oli ollut esimerkkinä m
 
 ### Palomuurin asentaminen
 
-Palomuurin asentamiseksi käytin seuraaavia komentoja:
+Palomuurin asentamiseksi käytin seuraaavia komentoja [1][2][3]:
 
 ```
 ssh root@94.237.39.223		# Otin SSH-yhteyden virtuaalipalvelimeeni root-käyttäjänä
@@ -111,7 +111,7 @@ sudo ufw allow 80/tcp		# Tein "reiän" palomuurin porttiin 80
 
 ### root-käyttäjän sulkeminen
 
-Loin ensin uuden käyttäjän nimelläni ja lisäsin käyttäjän sudo-ryhmään.
+Loin ensin uuden käyttäjän nimelläni ja lisäsin käyttäjän sudo-ryhmään [1].
 
 ```
 sudo adduser toni 	# Loin käyttäjän ja annoin hyvän salasanan
@@ -120,7 +120,7 @@ sudo adduser toni sudo	# Lisäsin käyttäjän sudo-ryhmään
 
 ![image](https://github.com/user-attachments/assets/97dc9efd-08f6-4715-a65a-972e6d1743bc)
 
-Seuraavaksi kopioin root-käyttäjän SSH-asetukset luomalleni uudelle toni-käyttäjälle ja kokeilin ottaa SSH-yhteyden virtuaalipalvelimeen toni-käyttäjänä.
+Seuraavaksi kopioin root-käyttäjän SSH-asetukset luomalleni uudelle toni-käyttäjälle ja kokeilin ottaa SSH-yhteyden virtuaalipalvelimeen toni-käyttäjänä [1].
 
 ```
 sudo cp -rvn /root/.ssh /home/toni/	# Kopioin root-käyttäjän .ssh -kansion toni-käyttäjän kotihakemistoon
@@ -133,7 +133,7 @@ SSH-yhteys toni-käyttäjänä virtuaalipalvelimelle onnistui.
 
 ![image](https://github.com/user-attachments/assets/8793a354-c828-4110-9d00-9042eb1b229a)
 
-Varmistuttuani uuden käyttäjänimen toimivuudesta suljin root-käyttäjän pääsyn virtuaalipalvelimelle.
+Varmistuttuani uuden käyttäjänimen toimivuudesta suljin root-käyttäjän pääsyn virtuaalipalvelimelle [1].
 
 ```
 sudo usermod --lock root 			# Lukitsin root-käyttäjätilin
@@ -152,7 +152,7 @@ _Raportti jatkuu alla._
 
 ### Ohjelmien päivittäminen
 
-Päivitin vielä virtuaalipalvelimen seuraavilla komennoilla:
+Päivitin vielä virtuaalipalvelimen seuraavilla komennoilla [1]:
 
 ```
 sudo apt-get update
@@ -164,7 +164,7 @@ sudo systemctl reboot
 
 2025-02-08, klo 21:16 - 21:22
 
-Asensin Apache web-palvelimen virtuaalikoneelle ja korvasin oletussivun:
+Asensin Apache web-palvelimen virtuaalikoneelle ja korvasin oletussivun [2]:
 
 ```
 ssh toni@94.237.39.223 					# Otin SSH-yhteyden virtuaalipalvelimeen, salasanaa ei tarvittu
@@ -180,20 +180,11 @@ Menin internetselaimella virtuaalipalvelimen IP-osoitteeseen ja vaihdettu teksti
 
 2025-02-08, klo 21:22 - 22:38
 
-Loin ensin esimerkkisivulleni .conf-tiedoston ja kirjoitin siihen alla olevan sisällön.
+Loin ensin esimerkkisivulleni .conf-tiedoston ja kirjoitin siihen kuvassa olevan sisällön.
 
 ```
 sudoedit /etc/apache2/sites-available/toni.example.com.conf
 ```
-
-Asetustiedostoon kirjataan:
-<VirtualHost *:80>
-	ServerName jurpo.example.com
-	DocumentRoot /home/tero/public_sites/jurpo.example.com
-	<Directory /home/tero/public_sites/jurpo.example.com>
-		Require all granted
-	</Directory>
-</VirtualHost>
 
 ![image](https://github.com/user-attachments/assets/c26911a3-3dd0-476b-abba-fd49e2f56511)
 
@@ -226,13 +217,13 @@ Katsoin asiaa tarkemmin lokeista. Suoritin komennon ´sudo tail /var/log/apache2
 Virheilmoitus kertoi seuraaavaa: "Permissions are missing on a component of the path". En ymmärtänyt tällaisenaan mistä virhe johtui, joten etsin hakukoneella lokin virhekoodilla AH00035. Löysin erään selityksen (https://serverfault.com/questions/1041060/solving-apache-search-permissions-are-missing-on-a-component-of-the-path-issue) ongelmaan, jonka mukaan virhekoodi esiintyy mm. seuraavissa tilanteissa:
 * Jostakin tiedostopolun kansioista puuttuu -x lupa.
 * Apachen .conf-tiedostossa ei ole tarvittavia lupia.
-* SELinux-ongelmat.
+* SELinux-ongelmat. [7]
 
 Huomasin, että toni-käyttäjäni kotihakemistossa luvat olivat muotoa `drwx------` eli toni-käyttäjän lisäksi muilla ei ollut mitään oikeuksia hakemistoon. 
 
 ![image](https://github.com/user-attachments/assets/74355e48-0288-44a0-8ef7-e1907120e5d9)
 
-Kokeilin muokata toni-hakemiston lupia löytämäni toisen ehdotuksen mukaisesti (https://askubuntu.com/questions/451922/apache-access-denied-because-search-permissions-are-missing) ja käynnistin Apachen uudelleen.
+Kokeilin muokata toni-hakemiston lupia löytämäni toisen ehdotuksen mukaisesti (https://askubuntu.com/questions/451922/apache-access-denied-because-search-permissions-are-missing) ja käynnistin Apachen uudelleen. [8]
 
 ```
 chmod 755 /home/toni
