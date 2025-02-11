@@ -237,7 +237,8 @@ Kokeilin muokata toni-hakemiston lupia löytämäni toisen ehdotuksen mukaisesti
 chmod 755 /home/toni
 sudo systemctl restart apache2
 ```
-****
+
+**HUOM! Virheellinen ratkaisu päättyy tähän.**
 
 _Lisäys 2025-02-11_
 
