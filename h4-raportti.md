@@ -246,7 +246,7 @@ Muokkasin /home/toni -kansion lupia komennolla:
 
 `chmod u=rwx,g=x,o=x /home/toni` [9]
 
-![image](https://github.com/user-attachments/assets/58717e60-0a88-4174-80ba-0637d9250407)
+![image](https://github.com/user-attachments/assets/1505b5ba-75e1-4ea2-b787-0321bf132190)
 
 _Lisäys päättyy tähän._
 
