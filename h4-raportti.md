@@ -229,7 +229,7 @@ Huomasin, että toni-käyttäjäni kotihakemistossa luvat olivat muotoa `drwx---
 
 ![image](https://github.com/user-attachments/assets/74355e48-0288-44a0-8ef7-e1907120e5d9)
 
-**HUOM! Seuraavassa esitetty ei ole tietoturvan kannalta hyvä ratkaisu, koska write-luvan lisääminen `chmod 755` -komennolla kansioon mahdollistaa uusien tiedostojen ja kansioiden luomisen kaikille käyttäjille. Ainoa tarvittava lupa on -x eli execute, joka mahdollistaa kansioon siirtymisen**
+**HUOM! Seuraavassa esitetty ei ole tietoturvan kannalta hyvä ratkaisu, koska write-luvan lisääminen `chmod 755` -komennolla kansioon mahdollistaa uusien tiedostojen ja kansioiden luomisen kaikille käyttäjille. Ainoa tarvittava lupa on -x eli execute, joka mahdollistaa kansioon siirtymisen.**
 
 Kokeilin muokata toni-hakemiston lupia löytämäni toisen ehdotuksen mukaisesti (https://askubuntu.com/questions/451922/apache-access-denied-because-search-permissions-are-missing) ja käynnistin Apachen uudelleen. [8]
 
@@ -240,7 +240,7 @@ sudo systemctl restart apache2
 
 **HUOM! Virheellinen ratkaisu päättyy tähän.**
 
-_Lisäys 2025-02-11_
+_Päivitys 2025-02-11._
 
 Muokkasin /home/toni -kansion lupia komennolla:
 
@@ -248,7 +248,7 @@ Muokkasin /home/toni -kansion lupia komennolla:
 
 ![image](https://github.com/user-attachments/assets/1505b5ba-75e1-4ea2-b787-0321bf132190)
 
-_Lisäys päättyy tähän._
+_Raportti jatkuu alla._
 
 Tämä vaikutti ratkaisseen ongelman, koska kun päivitin internetselameni, tekemäni sivu näkyi.
 
