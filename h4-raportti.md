@@ -229,12 +229,25 @@ Huomasin, että toni-käyttäjäni kotihakemistossa luvat olivat muotoa `drwx---
 
 ![image](https://github.com/user-attachments/assets/74355e48-0288-44a0-8ef7-e1907120e5d9)
 
+**HUOM! Seuraavassa esitetty ei ole tietoturvan kannalta hyvä ratkaisu, koska write-luvan lisääminen `chmod 755` -komennolla kansioon mahdollistaa uusien tiedostojen ja kansioiden luomisen kaikille käyttäjille. Ainoa tarvittava lupa on -x eli execute, joka mahdollistaa kansioon siirtymisen**
+
 Kokeilin muokata toni-hakemiston lupia löytämäni toisen ehdotuksen mukaisesti (https://askubuntu.com/questions/451922/apache-access-denied-because-search-permissions-are-missing) ja käynnistin Apachen uudelleen. [8]
 
 ```
 chmod 755 /home/toni
 sudo systemctl restart apache2
 ```
+****
+
+_Lisäys 2025-02-11_
+
+Muokkasin /home/toni -kansion lupia komennolla:
+
+`chmod u=rwx,g=x,o=x /home/toni` [9]
+
+![image](https://github.com/user-attachments/assets/58717e60-0a88-4174-80ba-0637d9250407)
+
+_Lisäys päättyy tähän._
 
 Tämä vaikutti ratkaisseen ongelman, koska kun päivitin internetselameni, tekemäni sivu näkyi.
 
@@ -259,3 +272,5 @@ Kokeilin vielä virtuaalipalvelimeni IP-osoitetta puhelimen nettiselaimella ja s
 [7] Stack Exchange Inc. / käyttäjänimi sastorsl 2024-08-04. Solving Apache "search permissions are missing on a component of the path" issue. https://serverfault.com/questions/1041060/solving-apache-search-permissions-are-missing-on-a-component-of-the-path-issue. Luettu 2025-02-08.
 
 [8] Stack Exchange Inc. / käyttäjänimet Peter (2014-07-30) ja Cyrille (2022-12-03). Apache: access denied because search permissions are missing. https://askubuntu.com/questions/451922/apache-access-denied-because-search-permissions-are-missing. Luettu 2025-02-08.
+
+[9] Karvinen, T: Oppitunnit 2015-02-11, Linux palvelimet -kurssi (https://terokarvinen.com/linux-palvelimet/).
