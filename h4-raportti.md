@@ -160,6 +160,12 @@ sudo apt-get dist-upgrade
 sudo systemctl reboot
 ```
 
+_Päivitys 2025-02-11 klo 18:20_
+
+Laitoin automaattiset päivitykset virtuaalipalvelimelle komennolla `sudo apt-get install unattended-upgrades`.
+
+_Raportti jatkuu alla._
+
 ## c) Apache-webpalvelimen asennus virtuaalipalvelimelle
 
 2025-02-08, klo 21:16 - 21:22
