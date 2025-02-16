@@ -71,22 +71,86 @@ Tein tehtävän seuraavalla kone- ja ohjelmistokokoonpanolla:
 
 * Tässä vaiheessa odottelin, ettei väärät tiedot jää selaimen välimuistiin
 
-* klo : kokeilin toniblom.me -osoitetta => 
+* klo 14:08 : kokeilin toniblom.me -osoitetta => aiemmin tekemäni sivu näkyi!
+
+![image](https://github.com/user-attachments/assets/e1f3990f-77c9-4749-ae1d-2a4b3483fdcd)
+
 
 ## b) name based virtual host uudessa nimessäni
-
+14:00 - 15:20
 
 
 * Luodaan .conf tiedosto => sudoedit /etc/apache2/sites-available/toniblom.me.conf
+![image](https://github.com/user-attachments/assets/b7be6eb7-dffd-4330-8ffc-750ab0fb9a67)
+
+
 ```
-sudo a2ensite toniblom.me.conf # konfiguraatiotiedosto aktiiviseksi
+sudo a2ensite toniblom.me.conf      # konfiguraatiotiedosto aktiiviseksi
 ls /etc/apache2/sites-enabled       # katsotaan onko muita .conf tiedostoja aktiivisena
 sudo a2dissite 000-default.conf     # deaktivoidaan muut kuin haluttu, itse asiassa tätä ei tarvitse tehdä
 ```
+![image](https://github.com/user-attachments/assets/4c151f12-5a7d-418d-a3c8-34ec7b5f7e27)
+
 * luodaan kansio käyttäjän kotihakemistoon `mkdir -p /home/toni/public_sites/toniblom.me`
 * Tänne luomani html-tiedostot => tässä vaiheessa random riittää
 * `sudo systemctl restart apache2`
-* Kokeillaan toniblom.me => näkyykö tekemäni sivu
+
+![image](https://github.com/user-attachments/assets/22a0e83f-df7d-45b6-a150-3fbd064cf697)
+
+![image](https://github.com/user-attachments/assets/98e487a7-6bc7-472b-8457-cdb411459026)
+
+![image](https://github.com/user-attachments/assets/65d54144-5fff-4c32-9e1a-2db87cfee456)
+
+![image](https://github.com/user-attachments/assets/b01d99fa-ac41-417b-a8a2-3b0a1d201dd4)
+
+![image](https://github.com/user-attachments/assets/6f32217d-2025-46e2-ae08-be7e8c7c8a7a)
+
+https://www.geeksforgeeks.org/how-to-start-stop-or-restart-apache-server-on-ubuntu/
+
+![image](https://github.com/user-attachments/assets/c2108c60-28d5-4612-93cb-6ab94fa9ccc4)
+
+![image](https://github.com/user-attachments/assets/799e377d-dbc5-4539-b026-cd78b65d3973)
+
+* En onnistunut löytämään ratkaisua tähän ongelmaan => päätin asentaa apachen uudelleen
+* sudo apt-get purge apache2
+* sudo apt-get install apache2
+* echo Hello world! |sudo tee /var/www/html/index.html
+![image](https://github.com/user-attachments/assets/b9e79016-8cf2-40fd-94de-c7862beee4ab)
+![image](https://github.com/user-attachments/assets/8048be69-c3eb-4e1c-a2e9-308f2f147676)
+
+
+* sudoedit /etc/apache2/sites-available/toniblom.me.conf => tiedostoni olikin edelleen olemassa
+  ![image](https://github.com/user-attachments/assets/274cfec5-2a07-48a8-a774-c01700cac65a)
+
+![image](https://github.com/user-attachments/assets/f7b7a108-1b55-465b-85ed-2420e495c58b)
+
+![image](https://github.com/user-attachments/assets/35c6122c-d407-46b9-a2d4-0f35450020cc)
+
+* sudo systemctl restart apache2
+
+![image](https://github.com/user-attachments/assets/6fde8fea-b908-4b6c-8033-e626670bc0a9)
+
+![image](https://github.com/user-attachments/assets/d2ac43c2-fef8-4c60-ad6b-a7dc8feabcac)
+
+sudo adduser toni adm
+
+![image](https://github.com/user-attachments/assets/7d02227e-f370-4665-aa62-3b704ac049d2)
+
+![image](https://github.com/user-attachments/assets/ffdbc4ec-4725-441a-a128-b91908866f0a)
+
+* huomasin .conf -tiedostossani virheen, ylimääräinen /
+
+![image](https://github.com/user-attachments/assets/3a8d79d2-4637-49b2-b66b-55225c7d077c)
+
+
+* sudo systemctl restart apache2 => komento onnistui => sivu näkyi!
+
+![image](https://github.com/user-attachments/assets/aaff846f-6766-4dee-81ce-4dffe52c3419)
+
+
+
+ 
+
 
 
 ## c)
