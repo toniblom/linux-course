@@ -155,15 +155,72 @@ sudo adduser toni adm
 
 ## c)
 
+18:25 - 18:40
+
 * Tein sivut index.html, blog.html, projects.html kaikki linkittämään toisiinsa
 * w3-validaattorin käyttäminen sivuihin
 * sivujen kopiointi palvelimelle `scp -r kansio/tero@example.com:public_html/`
 
-## d)
+olin jo nimennyt palvelimelle tekemäni kansion toniblom.me => vaihdoin sen nimen
 
+![image](https://github.com/user-attachments/assets/1c21f37e-3f57-45e9-b1b8-31885afe46a9)
+
+=> kansio ei ollut ilmestynyt
+
+scp -r toniblom.me/ toni@toniblom.me:public_sites/
+* aiemmassa komennossa ei ollut väliä
+
+![image](https://github.com/user-attachments/assets/fed578b2-8df6-4cd8-bcdb-caeaed3410ef)
+
+* Tekemäni sivu näkyi toniblom.me -osoitteessa
+
+![image](https://github.com/user-attachments/assets/68eb8e21-ea45-4cf0-90d5-01b19cab3706)
+
+
+
+
+## d) Alidomainit
+
+18:40 - 18:54
+
+* Olin jo aiemmin tehnyt www-alidomainin A-tietueella, testataan, että se toimii => kyllä toimi
+
+![image](https://github.com/user-attachments/assets/eceb3b40-7ae1-406f-a71c-480791b3a69e)
+
+* menin takaisin namecheapiin => Advanced DNS
+* Add new record
+* => CNAME record => host: home => target: toniblom.me => TTL 5 min
+
+![image](https://github.com/user-attachments/assets/85846594-f82a-4785-8521-f6701f75b1c7)
+
+* kokeilin home.toniblom.me => toimi
+
+![image](https://github.com/user-attachments/assets/db165b6c-9f5e-44f2-900c-10f05f66d585)
 
 
 ## e)
+
+18:54
+
+![image](https://github.com/user-attachments/assets/c7ab118d-0e01-4137-bf85-d4519e8ed893)
+
+![image](https://github.com/user-attachments/assets/b2640074-7c6f-4877-9aa7-494e3ac618cf)
+
+* email-serverit ja MX liittyvät github diiliin, näitä voi näköjään muokata, mutta ei poistaa
+
+![image](https://github.com/user-attachments/assets/2f12c333-cb01-4f6b-a57a-17941d213887)
+
+![image](https://github.com/user-attachments/assets/eff0c2a2-ba06-4f2f-b763-a13d2dca7b96)
+
+![image](https://github.com/user-attachments/assets/80b0dda7-cd84-4b26-be8a-8b56e8daa8d2)
+
+* näyttää varsin samalta kuin omat sivuni
+
+![image](https://github.com/user-attachments/assets/da14c921-321d-4a6c-8790-d31caf405f96)
+
+![image](https://github.com/user-attachments/assets/449e2768-53c3-4237-a6f9-6b94f9d8cede)
+
+* googlella näkyy IPv6 ja paljon erilaisia tietuita, mm. TXT
 
 
 ## Lähteet
