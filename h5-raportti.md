@@ -10,7 +10,10 @@ Tein tehtävän seuraavalla kone- ja ohjelmistokokoonpanolla:
 * Oracle VM VirtualBox versio 7.1.4.
 * Virtuaalikoneen käyttöjärjestelmä: Debian 12.9.0
 
-## a)
+## a) Domain-nimen hankkiminen
+
+2025-16-02 klo 12:55 - 13:30
+
 
 * https://education.github.com/pack => Get access by connecting your GitHub account on Namecheap
 
@@ -54,15 +57,43 @@ Tein tehtävän seuraavalla kone- ja ohjelmistokokoonpanolla:
 ![image](https://github.com/user-attachments/assets/ed1b3369-497b-460e-bbd9-b384ef2402d4)
 
 * Add new record
-  * A record => value: IP-osoite => TTL 5 => vihreä check-merkki
+  * A record => host: @ => value: IP-osoite => TTL 5 => => save changes =>  vihreä check-merkki
+  * A record => host: www => value: IP-osoite => TTL 5 => vihreä check-merkki
 
-## b)
+![image](https://github.com/user-attachments/assets/bd093d96-330a-48db-aea7-bc333d3ee486)
 
+* muut tietueet eivät poistuneet itsestään, joten poistin ne
+
+![image](https://github.com/user-attachments/assets/881b8d7c-57f5-4c8a-aa14-ecd54ced1cf7)
+
+![image](https://github.com/user-attachments/assets/22a2af1f-2ff1-46dc-9562-116b946108a8)
+
+
+* Tässä vaiheessa odottelin, ettei väärät tiedot jää selaimen välimuistiin
+
+* klo : kokeilin toniblom.me -osoitetta => 
+
+## b) name based virtual host uudessa nimessäni
+
+
+
+* Luodaan .conf tiedosto => sudoedit /etc/apache2/sites-available/toniblom.me.conf
+```
+sudo a2ensite toniblom.me.conf # konfiguraatiotiedosto aktiiviseksi
+ls /etc/apache2/sites-enabled       # katsotaan onko muita .conf tiedostoja aktiivisena
+sudo a2dissite 000-default.conf     # deaktivoidaan muut kuin haluttu, itse asiassa tätä ei tarvitse tehdä
+```
+* luodaan kansio käyttäjän kotihakemistoon `mkdir -p /home/toni/public_sites/toniblom.me`
+* Tänne luomani html-tiedostot => tässä vaiheessa random riittää
+* `sudo systemctl restart apache2`
+* Kokeillaan toniblom.me => näkyykö tekemäni sivu
 
 
 ## c)
 
-
+* Tein sivut index.html, blog.html, projects.html kaikki linkittämään toisiinsa
+* w3-validaattorin käyttäminen sivuihin
+* sivujen kopiointi palvelimelle `scp -r kansio/tero@example.com:public_html/`
 
 ## d)
 
