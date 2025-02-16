@@ -200,7 +200,7 @@ scp -r toniblom.me/ toni@toniblom.me:public_sites/
 
 ## e)
 
-18:54
+18:54 - 19:07
 
 ![image](https://github.com/user-attachments/assets/c7ab118d-0e01-4137-bf85-d4519e8ed893)
 
