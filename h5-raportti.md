@@ -216,7 +216,7 @@ Sekä dig että host -komento soveltuvat DNS-tietojen kyselyihin nimipalvelimilt
 
 2025-02-26 klo 18:54 - 19:07
 
-host-komennolla omalla domain-nimelläni tuli näkyviin IP-osoite ja sähköpostiin liittyviä asioita. dig-komennolla näkyi A-, NS-, MX- ja SOA-tietueita. Käytin dig-komennossa ANY -parametriä, jolloin kaikki tietueet näkyivät. Ilman ANY -parametriä näkyisi vain A-tietue.
+host-komennolla omalla domain-nimelläni tuli näkyviin IPv4-osoite ja sähköpostipalvelimien tietoja, jotka näyttivät samoilta kuin dig-komennon MX-tietueissa mainitut. dig-komennolla näkyi A-, NS-, MX- ja SOA-tietueita. Käytin dig-komennossa ANY -parametriä, jolloin kaikki tietueet näkyivät. Esim. aiemmin tekemääni CNAME-tietuetta ei kuitenkaan näkynyt tuloksissa.
 ```
 host toniblom.me
 dig toniblom.me ANY
@@ -226,13 +226,23 @@ dig toniblom.me ANY
 
 ![image](https://github.com/user-attachments/assets/b2640074-7c6f-4877-9aa7-494e3ac618cf)
 
-Kokeilin samoja komentoja pienen yrityksen nettisivuilla, tulokset olivat varsin samanlaisia kuin omalla sivullani.
+dig-komennon tuloksissa alussa oli tietoja DNS-pyyntöön liittyen, mm. tehtyjen kyselyiden (eli 1) ja saatujen vastauksien (eli 9) määrä. OPT PSEUDOSECTION -osiossa näkyi mm. EDNS, joka tarkoittaa DNS:n laajennuksen versiota. QUESTION SECTION -osiossa näkyi tekemäni kysely. [9]
+
+ANSWER SECTION-osiossa viimeisellä rivillä näkyi seuraavaa:
+* **toniblom.me**: Domain-nimi, johon kysely kohdistui.
+* **366**: TTL eli Time to Live kertoo kuinka kauan tietuetta säilytetään välimuistissa.
+* **IN**: Kyselyn luokka, IN tarkoittaa internetkyselyä.
+* **NS**: Tietuetyyppi, jota kysyttiin. [9]
+
+dig-komennon lopussa oli vielä tilastoja kyselyyn liittyen [9].
+
+Kokeilin samoja komentoja pienen yrityksen internetsivuilla, tulokset vaikuttivat monilta osin samanlaisilta kuin omalla sivullani. host-komennolla näkyi IPv4-osoite ja sähköpostipalvelimien tietoja. dig-komennon vastausosiossa näkyi A-, MX- ja SOA-tietueita, NS-tietueita sen sijaan ei tullut näkyviin. Sekä omalla domainillani että yrityksen domainilla MX-tietueiden TTL-arvo vaikutti olevan korkeampi verrattuna esim. A-tietueisiin, mikä tarkoittanee, että MX-tietueita päivitetään yleensä harvemmin kuin A-tietueita. Yrityksen sähköpostipalvelimet vaikuttivat MX-tietueiden mukaan olevan pitkälti Googlella.
 
 ![image](https://github.com/user-attachments/assets/eff0c2a2-ba06-4f2f-b763-a13d2dca7b96)
 
 ![image](https://github.com/user-attachments/assets/80b0dda7-cd84-4b26-be8a-8b56e8daa8d2)
 
-Kokeilin samoja komentoja Googlen sivuilla. Host-komennossa näkyi nyt myös IPv6-osoite. dig-komennolla näkyi paljon enemmän erilaisia tietueita; AAAA-, HTTPS- ja paljon TXT-tietueita.
+Kokeilin samoja komentoja vielä Googlen sivuilla. host-komennossa näkyi nyt myös IPv6-osoite. dig-komennolla näkyi paljon enemmän erilaisia tietueita; myös AAAA-, HTTPS- ja paljon TXT-tietueita. HTTPS-tietue kertoo, että google.com -osoitteeseen voi ottaa salatun yhteyden [10].
 
 ![image](https://github.com/user-attachments/assets/da14c921-321d-4a6c-8790-d31caf405f96)
 
@@ -243,7 +253,7 @@ Kokeilin samoja komentoja Googlen sivuilla. Host-komennossa näkyi nyt myös IPv
 
 [1] Karvinen, T. Linux Palvelimet 2025 alkukevät. https://terokarvinen.com/linux-palvelimet/. Luettu 2025-02-16.
 
-[2] GeeksforGeeks. How to Start, Stop, or Restart Apache Server on Ubuntu?. https://www.geeksforgeeks.org/how-to-start-stop-or-restart-apache-server-on-ubuntu/. Luettu 2025-02-16.
+[2] GeeksforGeeks. 2024-06-06. How to Start, Stop, or Restart Apache Server on Ubuntu?. https://www.geeksforgeeks.org/how-to-start-stop-or-restart-apache-server-on-ubuntu/. Luettu 2025-02-16.
 
 [3] World Wide Web Consortium. W3C®. Markup Validation Service. https://validator.w3.org/#validate_by_input. Luettu 2025-02-16.
 
@@ -258,3 +268,5 @@ Kokeilin samoja komentoja Googlen sivuilla. Host-komennossa näkyi nyt myös IPv
 [8] Canonical Ltd. 2019. https://manpages.ubuntu.com/manpages/noble/man1/dig.1.html. Luettu 2025-02-16.
 
 [9] McKay, D. 2024-02-05. How to Use the dig Command on Linux. https://www.howtogeek.com/663056/how-to-use-the-dig-command-on-linux/. Luettu 2025-02-16.
+
+[10] Ghedini, A. 2020-09-30. Speeding up HTTPS and HTTP/3 negotiation with... DNS. https://blog.cloudflare.com/speeding-up-https-and-http-3-negotiation-with-dns/. Luettu 2025-02-16.
