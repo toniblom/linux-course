@@ -28,7 +28,7 @@ Kirjauduttuani Namecheapiin näin, että tilaamani domain-nimi oli aktiivinen. L
 
 ![image](https://github.com/user-attachments/assets/c3023c5f-0adc-457b-8887-afdca994855f)
 
-Seuraavaksi muutin domain-nimeni tietueita siten, että ne osoittavat aiemmin vuokraamaani virtuaalipalvelimeen. Tämä tapahtui siirtymällä vasemman palkin "Dashboard" -kohtaan ja painamalla talokuvaketta domain-nimeni vieressä ja kohtaa "Advanced DNS".
+Seuraavaksi muutin domain-nimeni tietueita siten, että ne osoittavat aiemmin vuokraamaani virtuaalipalvelimeen. Tämä tapahtui siirtymällä vasemman palkin "Dashboard" -kohtaan ja painamalla talokuvaketta domain-nimeni vieressä ja kohtaa "Advanced DNS". [4]
 
 ![image](https://github.com/user-attachments/assets/bacda192-2a6a-41e4-a635-0d9c68524dc0)
 
@@ -41,17 +41,20 @@ Lisäsin kaksi uutta A-tietuetta seuraavin tiedoin.
   * Record Type: A record / Host: @ / IP Address: virtuaalipalvelimeni IP-osoite / TTL: 5
   * Record Type: A record / Host: www / IP Address: virtuaalipalvelimeni IP-osoite / TTL: 5
 
- Muut valmiina olleet tietueet eivät poistuneet itsestään, joten poistin ne.
+ Muut valmiina olleet tietueet eivät poistuneet itsestään, joten poistin ne. [4]
 
 ![image](https://github.com/user-attachments/assets/22a2af1f-2ff1-46dc-9562-116b946108a8)
 
-Tässä vaiheessa odottelin hetken, että tietuetiedot ehtisivät päivittyä ja selaimen välimuistiin jäisivät muokkaamani tiedot. Kokeilin toniblom.me -osoitetta ja aiemmin tekemäni sivu näkyi.
+Tässä vaiheessa odottelin hetken, että tietuetiedot ehtisivät päivittyä ja selaimen välimuistiin jäisivät muokkaamani tiedot. Kokeilin toniblom.me -osoitetta ja aiemmin tekemäni sivu näkyi. [4]
 
 ![image](https://github.com/user-attachments/assets/e1f3990f-77c9-4749-ae1d-2a4b3483fdcd)
 
 
 ## b) Name-based virtual host uudella domain-nimelläni
+
 2025-02-16 klo 14:00 - 15:20
+
+Olin jo asentanut Apache-serverin virtuaalipalvelimelleni, tätä on kuvattu edelliseessä raportissani. Etenin myös name-based virtual hostin konfiguroinnissa [edellisen raportin](https://github.com/toniblom/linux-course/blob/main/h4-raportti.md) vaiheita noudattaen. [5]
 
 Loin uuden .conf -tiedoston Apacheen toniblom.me -domain-nimeä varten. Kirjasin siihen tarvittavat tiedot kuvan mukaisesti.
 ```
@@ -176,6 +179,19 @@ Tarkistin selaimella, että tekemäni sivut näkyivät domain-nimelläni.
 
 ![image](https://github.com/user-attachments/assets/68eb8e21-ea45-4cf0-90d5-01b19cab3706)
 
+## DNS-tietueiden teoriaa
+
+Domain Name System (DNS) on ikään kuin internetin puhelinluettelo; se yhdistää helposti luettavat domain-nimet IP-osoitteiden (numero)merkkisarjoihin. **DNS-tietueet** sisältävät tietoja ja ohjeita, joiden perusteella DNS-palvelimet käsittelevät DNS-pyyntöjä. DNS-tietueet on kirjattu vyöhyketiedostoihin (zone files).
+
+Yleisiä DNS-tietueita ovat mm. seuraavat:
+* **A-tietue**: Yhdistää domain-nimen ja IPv4-osoitteen.
+* **AAAA-tietue**: Yhdistää domain-nimen ja IPv6-osoitteen.
+* **CNAME-tietue** (canonical name records): Linkittää alidomaineja A- tai AAAA-tietueisiin.
+* **MX-tietue** (mail exchange records): Nämä tietueet yhdessä sähköpostipalvelimen kanssa mahdollistavat domain-nimeen linkittyneiden sähköpostitilien luomisen (esim. user@example.com -sähköpostiosoite example.com -domainista).
+* **NS-tietue** (name server records): Kertoo domain-nimen auktoritatiivisen nimipalvelimen.
+* **SOA-tietue** (start of authority records): Sisältää domainin hallinnollisia tietoja, mm. domainista vastaavan sähköpostiosoitteen.
+* **TXT-tietue** (text records): Tekstimuotoista tietoa liittyen domainiin ja alidomaineihin. SPF-tietueet ja DMARC-tietueet tallennetaan TXT-tietueisiin. [6]
+
 ## d) Alidomainien tekeminen
 
 2025-02-16 klo 18:40 - 18:54
@@ -192,7 +208,11 @@ Hetken kuluttua kokeilin internetselaimella osoitetta home.toniblom.me, ja sivus
 ![image](https://github.com/user-attachments/assets/db165b6c-9f5e-44f2-900c-10f05f66d585)
 
 
-## e) dig ja host -komennot
+## dig ja host -komentojen teoriaa
+
+Sekä dig että host -komento soveltuvat DNS-tietojen kyselyihin nimipalvelimilta [7][8]. host on yksinkertainen komento, jota yleensä käytetään selvittämään IP-osoite domain-nimen perusteella tai päinvastoin [7]. dig-komennolla on paljon erilaisia toiminnallisuuksia. Ilman parametrejä dig-komento näyttää vain A-tietueet, kaikkia tietueita voi kysellä antamalla komennolle ANY-parametrin. [8][9] Sekä dig että host-komennolle voi antaa argumenttina tietyn nimipalvelimen nimen tai IP-osoitteen, jolloin kysely kohdistuu tähän nimipalvelimeen. Muutoin komennot kohdistavat kyselyt `/etc/resolv.conf` -tiedostossa listattuihin palvelimiin. [7][8]
+
+## e) dig ja host -komentojen testaaminen
 
 2025-02-26 klo 18:54 - 19:07
 
@@ -226,3 +246,15 @@ Kokeilin samoja komentoja Googlen sivuilla. Host-komennossa näkyi nyt myös IPv
 [2] GeeksforGeeks. How to Start, Stop, or Restart Apache Server on Ubuntu?. https://www.geeksforgeeks.org/how-to-start-stop-or-restart-apache-server-on-ubuntu/. Luettu 2025-02-16.
 
 [3] World Wide Web Consortium. W3C®. Markup Validation Service. https://validator.w3.org/#validate_by_input. Luettu 2025-02-16.
+
+[4] Karvinen, T: Oppitunnit 2015-02-11, Linux palvelimet -kurssi (https://terokarvinen.com/linux-palvelimet/).
+
+[5] Blom, T. h4 Maailma kuulee -raportti. https://github.com/toniblom/linux-course/blob/main/h4-raportti.md. Luettu 2025-02-16.
+
+[6] Quiroz-Vázquez, C. Goodwin, M. 2024-01-22. What are DNS records? https://www.ibm.com/think/topics/dns-records. Luettu 2025-02-16.
+
+[7] Canonical Ltd. 2019. https://manpages.ubuntu.com/manpages/noble/man1/host.1.html. Luettu 2025-02-16.
+
+[8] Canonical Ltd. 2019. https://manpages.ubuntu.com/manpages/noble/man1/dig.1.html. Luettu 2025-02-16.
+
+[9] McKay, D. 2024-02-05. How to Use the dig Command on Linux. https://www.howtogeek.com/663056/how-to-use-the-dig-command-on-linux/. Luettu 2025-02-16.
