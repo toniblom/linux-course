@@ -168,7 +168,7 @@ Ongelma johtui siis ilmeisesti kirjoitusvirheestä konfiguraatiotiedostossani. S
 
 Tein virtuaalikoneellani sivut index.html, blog.html, projects.html ja laitoin kaikki linkittämään toisiinsa. Käytin validaattoria sivujen html:n tarkistamiseen [3].
 
-Käytin sivujen kopiointiin palvelimelle scp-komentoa. Sekä kopioitavan virtuaalikoneellani olevan kansion, että virtuaalipalvelimella kohteessa olevan kansion nimi oli tässä vaiheessa toniblom.me, vaihdoin virtuaalipalvelimella olevan kansion nimeä, jotta tästä ei seuraisi komentoa ajaessa ongelmia. Komennon suoritus onnistui.
+Käytin sivujen kopiointiin palvelimelle scp-komentoa [1]. Sekä kopioitavan virtuaalikoneellani olevan kansion, että virtuaalipalvelimella kohteessa olevan kansion nimi oli tässä vaiheessa toniblom.me, vaihdoin virtuaalipalvelimella olevan kansion nimeä, jotta tästä ei seuraisi komentoa ajaessa ongelmia. Komennon suoritus onnistui.
 ```
 ~publicsites$ scp -r toniblom.me/ toni@toniblom.me:public_sites/
 ```
