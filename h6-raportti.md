@@ -55,7 +55,7 @@ Listen 443
 
 ## a)
 
-2025-03-01 klo 19:11 - 
+2025-03-01 klo 19:11 - 19:55
 
 - Kokeile, että webbisivu toimii => toniblom.me => totea ettei näy lukon kuvaa eli salausta ei ole
 
@@ -140,7 +140,7 @@ sudoedit /etc/apache2/sites-available/toniblom.me.conf
 
 ![image](https://github.com/user-attachments/assets/ff29d35d-99aa-426d-bb4e-bc60753100e1)
  
- => Lukon kuva näkyi!
+ => Lukon kuva näkyi! hiiren päälle laittaessa siinä luki verified by Let's Encrypt 
 
 Testaan vielä isäntäkoneelta Chrome-selaimella => ei herjoja, ohjasi https-sivulle vaikka kirjoitinkin kenttään http://
 => yhteys on turvallinen!
@@ -150,6 +150,31 @@ Testaan vielä isäntäkoneelta Chrome-selaimella => ei herjoja, ohjasi https-si
 
 ## b)
 
+2025-03-01 klo 19:55 - 20:10
+
+https://www.ssllabs.com/ssltest/
+
+![image](https://github.com/user-attachments/assets/d64b1d8c-2f11-46f8-a9dc-e8ee1db9497c)
+
+
+Tulokset
+
+![image](https://github.com/user-attachments/assets/ec20cebc-a62f-48b8-970e-04c37d78158d)
+
+DNS CAA oranssina => https://blog.qualys.com/product-tech/2017/03/13/caa-mandated-by-cabrowser-forum?_ga=2.2053747.399624477.1740846347-27975123.1740846347
+
+* CAA creates a DNS mechanism that enables domain name owners to whitelist CAs that are allowed to issue certificates for their hostnames. It operates via a new DNS resource record (RR) called CAA (type 257).
+* => en ollut tehnyt mitään tällaista whitelistausta, mistä tuo oranssi väri kertoili
+
+![image](https://github.com/user-attachments/assets/f537e42a-88cd-4fe0-9e2c-103f0ce28582)
+
+![image](https://github.com/user-attachments/assets/e2eeeed4-4592-42d2-abfd-38363a52672b)
+
+![image](https://github.com/user-attachments/assets/750cf97a-980b-44e6-916e-3940b1fefab9)
+
+![image](https://github.com/user-attachments/assets/618f5d92-e6f5-41ea-8450-b271d61c8ff7)
+
+![image](https://github.com/user-attachments/assets/a92cc02e-aa43-4e16-b1af-d385530d0da0)
 
 
 
