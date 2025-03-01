@@ -37,7 +37,7 @@ Tein tehtävän seuraavalla kone- ja ohjelmistokokoonpanolla:
 
 ### Apache: Minimaalisen SSL/TLS-salauksen konfiguraatio
 
-* Apachen SSL-konfiguraation pitää minimissään sisältää seuraavat:
+* Otettaessa sertifikaattia käyttöön Apachen SSL-konfiguraation pitää minimissään sisältää seuraavat:
 
 ```
 LoadModule ssl_module modules/mod_ssl.so
@@ -58,6 +58,7 @@ Listen 443
 
 
 ## b)
+
 
 
 
