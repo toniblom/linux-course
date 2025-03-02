@@ -29,7 +29,7 @@ Tein tehtävän seuraavalla kone- ja ohjelmistokokoonpanolla:
 
 ### lego: Käyttö olemassa olevan web-serverin kanssa
 
-* lego on Let's Encrypt client, jota voi käyttää Linuxin komentokehotteessa.
+* lego on Let's Encrypt client, jota voi käyttää Linuxin komentokehotteessa [5].
 * Jos olemassa oleva web-palvelin toimii jo portissa 80, lego-komennolle voi antaa --http-webroot -argumentin sekä web-palvelimen tiedostopolun.
 * Tällöin lego ei aloita uutta palvelinta, vaan kirjoittaa CA:n antaman http-01-haasteen tiedot annettuun tiedostopolkuun.
 
@@ -53,128 +53,134 @@ Listen 443
 
 (https://httpd.apache.org/docs/2.4/ssl/ssl_howto.html#configexample) [4]
 
-## a)
+## a) TLS-sertifikaatin hankkiminen Let's Encryptiltä
 
 2025-03-01 klo 19:11 - 19:55
 
-- Kokeile, että webbisivu toimii => toniblom.me => totea ettei näy lukon kuvaa eli salausta ei ole
+### Alkutoimet
+
+Aluksi kokeilin, että aiemmin tekemäni webbisivu toimii. Menin osoitteeseen http://toniblom.me Firefox-selaimella. Tekemäni sivu tuli näkyviin, ja Firefoxissa lukon kuva oli ruksattu yli, eli TLS-salausta ei ollut käytössä.
 
 ![image](https://github.com/user-attachments/assets/484b37f5-6db5-450c-ab20-f5cc60750df6)
 
-- Aloitustoimet: ssh toni@toniblom.me, sudo apt-get update, sudo systemctl restart apache2
-- Asenna lego => sudo apt-get install lego
-=> nämä ilman virheilmoituksia onnistuneesti
+Kirjauduin virtuaalipalvelimelleni `ssh`-komennolla, päivitin paketinhallinnan `sudo apt-get update` -komennolla ja käynnistin Apache-webserverin uudelleen `sudo systemctl restart apache2` -komennolla. Asensin lego-ohjelman, joka on terminaalissa toimiva Let's Encrypt -klientti (https://go-acme.github.io/lego/ [5]), `sudo apt-get install lego` -komennolla. Nämä komennot suorittuivat ilman virheilmoituksia onnistuneesti.
 
-- lets encrypt staging environment -nettisivu (https://letsencrypt.org/docs/staging-environment/), täältä löytyy tarvittava komennon --server -kohtaan
+### Sertifikaatin hankkiminen Staging Environmentissa
 
-https://acme-staging-v02.api.letsencrypt.org/directory
+Seuraavaksi ajoin lego-komennon Let's Encryptin Staging Environmentissa terminaalissa luennolla käydyn ja kurssin sivulla olleiden ohjeiden mukaisesti [1][6]. Staging Environmentia voi käyttää Let's Encryptin palvelun testaamiseen. Tämä on hyödyllistä, koska Let's Encrypt rajoittaa tehtävien sertifikaattipyyntöjen ja auktorisointiyritysten määrää, ja rajojen ylittyessä seuraa karenssia uusien pyyntöjen tekemiseen (https://letsencrypt.org/docs/rate-limits/) [7]. Tarkistin vielä Let's Encrypting sivuilta Staging Environmentin palvelimen osoitteen (https://letsencrypt.org/docs/staging-environment/ [8]), jota tarvitaan lego-komennossa.
 
+```
 lego
---server=https://acme-staging-v02.api.letsencrypt.org/directory
---accept-tos
---email="bgx054@myy.haaga-helia.fi"
---domains="toniblom.me" --domains="www.toniblom.me"
---http --http.webroot="/home/toni/public_sites/toniblom.me/"
---path="/home/toni/lego/certificates/"
---pem
+--server=https://acme-staging-v02.api.letsencrypt.org/directory   # Staging Environmentin palvelin
+--accept-tos                                                      # Hyväksytään käyttöehdot
+--email="bgx054@myy.haaga-helia.fi"                               # Sähköpostiosoite
+--domains="toniblom.me" --domains="www.toniblom.me"               # Sertifioitavat domainit
+--http --http.webroot="/home/toni/public_sites/toniblom.me/"      # Portissa 80 toimivan webpalvelimeni tiedostopolku
+--path="/home/toni/lego/certificates/"                            # Luotavien sertifikaattien tiedostopolku
+--pem                                                             # Luo .pem-tiedoston, jossa yhdistetty .key ja .crt
 run
+```
 
-   => selitä tämä komento
+Komennon lippujen selitykset: (https://go-acme.github.io/lego/usage/cli/options/index.html) [9]
 
-- Hae sertifikaatti legolla, ensin testipalvelimella => 
-   - path ei saa olla samassa kansiossa kuin webroot, koska webroot on julkinen, certificate pitää pitää salassa (oppitunti)
-   - Testi tarvitaan, koska virheellisistä pyynnöistä tulee oikealle palvelimelle bannia
+Komennossa on hyvä huomata, että `--http.webroot` ja `--path` tiedostopolkujen ei tulisi olla samoja, koska webroot on julkisesti näkyvä sijainti ja sertifikaatit tulisi pitää salassa (Karvinen T., oppitunti) [6].
 
- => tuli server responded with a certificate!
+Suoritin komennon ja sain ilmoituksen "Server responded with a certificate."
 
  ![image](https://github.com/user-attachments/assets/e6ead68c-5fd6-4a6a-a017-d4cd51d62a45)
 
-* ls -lR /home/toni/lego/certificates => näkyi .crt tiedosto
+Tarkistin vielä tiedostopolusta `/home/toni/lego/certificates/certificates/`, että .crt ja .key -tiedostot olivat olemassa.
 
 ![image](https://github.com/user-attachments/assets/36de9833-7d61-40f0-89aa-7d97b8ef19f4)
 
+Komento siis onnistui Staging Environmentissa, joten siirryin seuraavaassa vaiheessa tekemään komennon, jolla saisin varsinaisen sertifikaatin. Siirsin ensin Staging Environmentin sertifikaatiotiedostot toiseen kansioon.
 
-- Kun toimii, poista/disabloi testipalvelimen --path kansio
-   - mv -n /home/toni/lego/certificates/ /home/toni/lego/DISABLEDcertificates/
-   - mkdir /home/toni/lego/certificates/ # tee kansio varsinaisia sertifikaatteja varten # tätä steppiä ei itse asiassa varmaankaan tarvitisi tehdä
+`mv -n /home/toni/lego/certificates/ /home/toni/lego/DISABLEDcertificates/`
+
+Loin uuden `/home/toni/lego/certificates/` -kansion varsinaisia sertifikaatteja varten. Komento näytti tosin Staging Environmentissa toimineen ilman kansion etukäteen luomistakin.
+
+`mkdir /home/toni/lego/certificates/`
 
 ![image](https://github.com/user-attachments/assets/c74b70c2-d568-45c2-946f-a97d2333909b)
 
+### Varsinaisen sertifikaatin hankkiminen
 
-- Hae oikea sertifikaatti, sama komento ilman --server= -argumenttia
+Hain varsinaisen sertifikaatin domainilleni suorittamalla muutoin saman komennon kuin Staging Environmentissa, mutta ilman `--server`-optiota.
 
-![image](https://github.com/user-attachments/assets/513121bf-60c2-4a0c-ba02-0ca7fc98cb33)
-
-=> server responded with a certificate => ilmeisesti onnistui
+Sain jälleen ilmoituksen "Server responded with a certificate." Komennon suorittaminen siis onnistui.
 
 ![image](https://github.com/user-attachments/assets/13a06359-3ce4-435a-a375-437037cd92ac)
 
+### Sertifikaatin käyttöönotto name-based virtual hostin asetuksissa
 
-- Ota sertifikaatti käyttöön name based virtual host -asetuksissa => kirjaa tarvittavat .conf -tiedostoon
-   - sudoedit example.com.conf
-   - sudo a2enmod ssl # miksi tämä tehdään? => laittaa ssl:n käyttöön
-   - sudo systemctl restart apache2
-   - sudo apache2ctl configtest # miksi tämä tehdään? => tarkistaa syntaksin
-
-sudoedit /etc/apache2/sites-available/toniblom.me.conf
+Tarkistin, että saamani sertifikaattitiedostot olivat olemassa ja katsoin samalla .crt ja .key -tiedostojen tiedostopolut, sillä näitä tarvittiin name-based virtual hostin asetuksissa.
 
 ![image](https://github.com/user-attachments/assets/d0ecac2f-d6f2-4017-897a-0cb077f873ac)
 
-/home/toni/lego/certificates/certificates/toniblom.m.crt
-/home/toni/lego/certificates/certificates/toniblom.m.key
+Muokkasin name-based virtual hostin konfiguraatiotiedostoa komennolla `sudoedit /etc/apache2/sites-available/toniblom.me.conf` oppitunnin ja kurssin sivujen mukaisesti [1][6]. Tiedostoon lisättiin name-based virtual host porttiin 443. Erona portin 80 konfiguraatioihin oli, että konfiguraatioon lisättiin kohdat SSL:n päälle kytkemisestä ja tiedostopolut sertifikaatin ja sertifikaattiavaimen tiedostoihin.
 
 ![image](https://github.com/user-attachments/assets/2fdfdf60-2115-416e-9e73-36a44bf3ac45)
 
+Suoritin komennon `sudo a2enmod ssl`, joka kytki Apachessa ssl-toiminnot päälle. Käynnistin Apachen uudelleen `sudo systemctl restart apache2` -komennolla.
+
 ![image](https://github.com/user-attachments/assets/db5fcfa6-742f-419b-a4e5-df771ef575fa)
+
+Suoritin komennon `sudo apache2ctl configtest`, joka tarkistaa konfiguraation syntaksin.
 
 ![image](https://github.com/user-attachments/assets/8f1c2419-3f90-4cad-b34d-62e9d7845208)
 
- => could not reliably determine the server's fully qualified domain name => onko tällä merkitystä?
+Sain ilmoituksen "Syntax OK" sekä ilmoituksen "Could not reliably determine the server's fully qualified domain name". En tiennyt oliko ilmoituksella tässä kohtaa merkitystä, joten päätin palata asiaan tarvittaessa.
 
-- Tee reikä palomuuriin, sudo ufw allow 443/tcp
+Lisäsin vielä ufw-palomuuriin säännön, että yhteydenotot porttin 443 sallitaan.
 
 ![image](https://github.com/user-attachments/assets/dcecf68b-67ca-4f43-b34a-3c264dc167d9)
 
-
-- testaa toniblom.me, myös eri koneelta
+Testasin toniblom.me webbisivuani uudelleen.
 
 ![image](https://github.com/user-attachments/assets/ff29d35d-99aa-426d-bb4e-bc60753100e1)
- 
- => Lukon kuva näkyi! hiiren päälle laittaessa siinä luki verified by Let's Encrypt 
 
-Testaan vielä isäntäkoneelta Chrome-selaimella => ei herjoja, ohjasi https-sivulle vaikka kirjoitinkin kenttään http://
-=> yhteys on turvallinen!
+Nyt URL-kentän vieressä näkyi lukon kuva ja laittaessani hiiren kursorin lukon kuvan päälle tuli näkyviin teksti "Verified by Let's Encrypt." 
+
+Testasin vielä isäntäkoneeni Chrome-selaimella webbisivuani. Selaimesta näkyi, että yhteys on turvallinen ja varmenne on voimassa.
 
 ![image](https://github.com/user-attachments/assets/56e8297b-0b8a-4ce7-a41f-99d9a0ac25ae)
 
 
-## b)
+## b) Sivun testaaminen SSLLabsissa
 
 2025-03-01 klo 19:55 - 20:10
 
-https://www.ssllabs.com/ssltest/
+Menin sivustolle https://www.ssllabs.com/ssltest/ ja kirjoitin domainnimeni tekstikenttään ja painoin "Submit".
 
-![image](https://github.com/user-attachments/assets/d64b1d8c-2f11-46f8-a9dc-e8ee1db9497c)
-
-
-Tulokset
+Hetken kuluttua sain tuloksia palvelimeni SSL-tiedoista. Kokonaisluokitus sivustollani oli A, mikä vaikutti oikein hyvältä tässä vaiheessa.
 
 ![image](https://github.com/user-attachments/assets/ec20cebc-a62f-48b8-970e-04c37d78158d)
 
-DNS CAA oranssina => https://blog.qualys.com/product-tech/2017/03/13/caa-mandated-by-cabrowser-forum?_ga=2.2053747.399624477.1740846347-27975123.1740846347
-
-* CAA creates a DNS mechanism that enables domain name owners to whitelist CAs that are allowed to issue certificates for their hostnames. It operates via a new DNS resource record (RR) called CAA (type 257).
-* => en ollut tehnyt mitään tällaista whitelistausta, mistä tuo oranssi väri kertoili
+Raportissa oli eritelty varsin kattavasti palvelimeni tietoja ja tehtyjä testejä. Muutamia poimintoja tästä:
+* Sertifikaattini on voimassa 30.5.2025 asti eli noin kolme kuukautta.
+* DNS CAA -kohta oli oranssina, joten painoin "more info" tekstiä. Tämä vei minut blogitekstiin (https://blog.qualys.com/product-tech/2017/03/13/caa-mandated-by-cabrowser-forum) [10], jossa selitettiin CAA:sta. CAA on mekanismi, jolla domainnimen omistaja voi valita mitkä Certificate Authorityt saavat myöntää sertifikaatteja domainnimelle. [10] En ollut tehnyt tällaista valintaa eli ilmeisesti mikä tahansa CA voi myöntää domainnimelleni sertifikaatteja.
 
 ![image](https://github.com/user-attachments/assets/f537e42a-88cd-4fe0-9e2c-103f0ce28582)
 
+* Virtuaalipalvelimeni käyttää protokollia TLS 1.3 ja TLS 1.3.
+* Cipher Suites -kohdassa oli oransseja rivejä. Etsin asiasta lisää tietoa. Cipher suitet ovat algoritmikokoelmia, jotka osallistuvat TLS-handshake-prosessiin serverin ja clientin yhteyden muodostamisessa. Cipher suiteja on erilaisia ja palvelimelle voi tehdä asetuksia, jotka suosivat tiettyjä versioita. (https://www.namecheap.com/blog/beginners-guide-to-tls-cipher-suites/) [11] Ilmeisesti virtuaalipalvelimeni TLS 1.2 -protokolla käyttää joitakin cipher suiteja, jotka SSLAbsin luokitteli heikkolaatuisiksi.
+
 ![image](https://github.com/user-attachments/assets/e2eeeed4-4592-42d2-abfd-38363a52672b)
+
+* Handshake Simulation -kohdassa oli testejä erilaisilla selaimilla yhteyden muodostamisesta palvelimelleni. Nämä testit näyttivät sujuneen pääosin ongelmitta.
 
 ![image](https://github.com/user-attachments/assets/750cf97a-980b-44e6-916e-3940b1fefab9)
 
+* Protocol Details kohdassa oli paljon tietoa ilmeisesti erilaisista haavoittuvuuksista. Näitä ei näyttänyt testeissä ilmenneen.
+* Kiinnostuin Zombie POODLE -haavoittuvuudesta ja etsin siitä lisää tietoa. Löytämäni kuvaus haavoittuvuudesta oli erittäin tekninen, mutta ymmärsin että haavoittuvuus liittyy TLS versio 1.2:n tukemiin cipher suiteihin, jotka ovat kryptografisesti vanhanaikaisia.  Haavoittuvuus ei koske TLS:n versio 1.3:a. (https://www.tripwire.com/state-of-security/zombie-poodle-goldendoodle) [12]
+
 ![image](https://github.com/user-attachments/assets/618f5d92-e6f5-41ea-8450-b271d61c8ff7)
 
+Raportin lopussa oli vielä tietoa mm. testin ajankohdasta ja kestosta, HTTP-statuskoodi ja virtuaalipalvelimeni tietoja.
+
 ![image](https://github.com/user-attachments/assets/a92cc02e-aa43-4e16-b1af-d385530d0da0)
+
+## Tiivistelmä
 
 
 
@@ -187,3 +193,19 @@ DNS CAA oranssina => https://blog.qualys.com/product-tech/2017/03/13/caa-mandate
 [3] Lange, Nick J. 2024-11-29. Obtain a Certificate. https://go-acme.github.io/lego/usage/cli/obtain-a-certificate/index.html#using-an-existing-running-web-server. Luettu 2025-03-01.
 
 [4] The Apache Software Foundation. 2025. SSL/TLS Strong Encryption: How-To. https://httpd.apache.org/docs/2.4/ssl/ssl_howto.html#configexample. Luettu 2025-03-01.
+
+[5] Fernandez, Ludovic. 2025-02-16. https://go-acme.github.io/lego/. Luettu 2025-03-02.
+
+[6] Karvinen, T: Oppitunnit 2015-02-25, Linux palvelimet -kurssi (https://terokarvinen.com/linux-palvelimet/).
+
+[7] Internet Security Research Group. 2024-12-17. Rate Limits. https://letsencrypt.org/docs/rate-limits/. Luettu 2025-03-02.
+
+[8] Internet Security Research Group. 2024-06-11. Staging Environment. https://letsencrypt.org/docs/staging-environment/. Luettu 2025-03-02.
+
+[9] Fernandez, Ludovic. 2025-02-04. Usage. https://go-acme.github.io/lego/usage/cli/options/index.html. Luettu 2025-03-02.
+
+[10] Ristic, Ivan. 2017-03-13. CAA Mandated by CA/Browser Forum. https://blog.qualys.com/product-tech/2017/03/13/caa-mandated-by-cabrowser-forum. Luettu 2025-03-02.
+
+[11] Quigley, Cora. 2020-12-22. A Beginner’s Guide to TLS Cipher Suites. https://www.namecheap.com/blog/beginners-guide-to-tls-cipher-suites/. Luettu 2025-03-02.
+
+[12] Fortra, LLC. 2019-02-04. Introducing Zombie POODLE and GOLDENDOODLE. https://www.tripwire.com/state-of-security/zombie-poodle-goldendoodle. Luettu 2025-03-02.
