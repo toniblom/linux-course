@@ -2,7 +2,7 @@
 
 Tekijä: Toni Blom
 
-Tein tämän raportin Linux-palvelimet -kurssin tehtävään h5 liittyen. Tehtävänanto löytyi osoitteesta https://terokarvinen.com/linux-palvelimet/ [1].
+Tein tämän raportin Linux-palvelimet -kurssin tehtävään h6 liittyen. Tehtävänanto löytyi osoitteesta https://terokarvinen.com/linux-palvelimet/ [1].
 
 Tein tehtävän seuraavalla kone- ja ohjelmistokokoonpanolla:
 
@@ -146,7 +146,7 @@ Testasin vielä isäntäkoneeni Chrome-selaimella webbisivuani. Selaimesta näky
 ![image](https://github.com/user-attachments/assets/56e8297b-0b8a-4ce7-a41f-99d9a0ac25ae)
 
 
-## b) Sivun testaaminen SSLLabsissa
+## b) Sivun testaaminen SSL Labsissa
 
 2025-03-01 klo 19:55 - 20:10
 
@@ -162,27 +162,27 @@ Raportissa oli eritelty varsin kattavasti palvelimeni tietoja ja tehtyjä testej
 
 ![image](https://github.com/user-attachments/assets/f537e42a-88cd-4fe0-9e2c-103f0ce28582)
 
-* Virtuaalipalvelimeni käyttää protokollia TLS 1.3 ja TLS 1.3.
-* Cipher Suites -kohdassa oli oransseja rivejä. Etsin asiasta lisää tietoa. Cipher suitet ovat algoritmikokoelmia, jotka osallistuvat TLS-handshake-prosessiin serverin ja clientin yhteyden muodostamisessa. Cipher suiteja on erilaisia ja palvelimelle voi tehdä asetuksia, jotka suosivat tiettyjä versioita. (https://www.namecheap.com/blog/beginners-guide-to-tls-cipher-suites/) [11] Ilmeisesti virtuaalipalvelimeni TLS 1.2 -protokolla käyttää joitakin cipher suiteja, jotka SSLAbsin luokitteli heikkolaatuisiksi.
+* Virtuaalipalvelimeni käyttää protokollia TLS 1.2 ja TLS 1.3.
+* Cipher Suites -kohdassa oli oransseja rivejä. Etsin asiasta lisää tietoa. Cipher suitet ovat algoritmikokoelmia, jotka osallistuvat TLS-handshake-prosessiin serverin ja clientin yhteyden muodostamisessa. Cipher suiteja on erilaisia ja palvelimelle voi tehdä asetuksia, jotka suosivat tiettyjä versioita. (https://www.namecheap.com/blog/beginners-guide-to-tls-cipher-suites/) [11] Ilmeisesti virtuaalipalvelimeni TLS 1.2 -protokolla käyttää joitakin cipher suiteja, jotka SSLLabsin testi luokitteli heikkolaatuisiksi.
 
 ![image](https://github.com/user-attachments/assets/e2eeeed4-4592-42d2-abfd-38363a52672b)
 
-* Handshake Simulation -kohdassa oli testejä erilaisilla selaimilla yhteyden muodostamisesta palvelimelleni. Nämä testit näyttivät sujuneen pääosin ongelmitta.
+* Handshake Simulation -kohdassa oli testejä erilaisilla selaimilla yhteyden muodostamisesta palvelimelleni. Nämä testit näyttivät sujuneen pääosin ongelmitta, lukuun ottamatta erästä vanhaa Chromen versiota.
 
 ![image](https://github.com/user-attachments/assets/750cf97a-980b-44e6-916e-3940b1fefab9)
 
 * Protocol Details kohdassa oli paljon tietoa ilmeisesti erilaisista haavoittuvuuksista. Näitä ei näyttänyt testeissä ilmenneen.
-* Kiinnostuin Zombie POODLE -haavoittuvuudesta ja etsin siitä lisää tietoa. Löytämäni kuvaus haavoittuvuudesta oli erittäin tekninen, mutta ymmärsin että haavoittuvuus liittyy TLS versio 1.2:n tukemiin cipher suiteihin, jotka ovat kryptografisesti vanhanaikaisia.  Haavoittuvuus ei koske TLS:n versio 1.3:a. (https://www.tripwire.com/state-of-security/zombie-poodle-goldendoodle) [12]
+* Kiinnostuin Zombie POODLE -haavoittuvuudesta ja etsin siitä lisää tietoa. Löytämäni kuvaus haavoittuvuudesta oli kuitenkin erittäin tekninen, mutta ymmärsin että haavoittuvuus liittyy TLS versio 1.2:n tukemiin cipher suiteihin, jotka ovat kryptografisesti vanhanaikaisia.  Haavoittuvuus ei koske TLS versio 1.3:a. (https://www.tripwire.com/state-of-security/zombie-poodle-goldendoodle) [12]
 
 ![image](https://github.com/user-attachments/assets/618f5d92-e6f5-41ea-8450-b271d61c8ff7)
 
-Raportin lopussa oli vielä tietoa mm. testin ajankohdasta ja kestosta, HTTP-statuskoodi ja virtuaalipalvelimeni tietoja.
+* Raportin lopussa oli vielä tietoa mm. testin ajankohdasta ja kestosta, HTTP-statuskoodi ja virtuaalipalvelimeni tietoja.
 
 ![image](https://github.com/user-attachments/assets/a92cc02e-aa43-4e16-b1af-d385530d0da0)
 
 ## Tiivistelmä
 
-
+Hankin onnistuneesti TLS-sertifikaatin webbisivulleni Let's Encryptiltä käyttämällä lego-ohjelmaa. Ennen varsinaisen sertifikaatin hankkimista testasin lego-komennon onnistuvan Let's Encrypting testipalvelimella. Tein TLS:n käyttöön tarvittavat asetukset name-based virtual hostin konfiguraatiotiedostoon, kytkin SSL:n päälle Apachessa ja tein palomuuriin säännön porttia 443 koskien. Testasin palvelimeni SSL-tietoja SSLabsin sivuilla ja analysoin raportin tuloksia.
 
 ## Lähteet
 
