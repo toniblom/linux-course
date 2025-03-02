@@ -1,6 +1,6 @@
 # h6 Salataampa -raportti
 
-Tekijä: Toni Blom
+_Tekijä: Toni Blom, 2025-03-02_
 
 Tein tämän raportin Linux-palvelimet -kurssin tehtävään h6 liittyen. Tehtävänanto löytyi osoitteesta https://terokarvinen.com/linux-palvelimet/ [1].
 
@@ -67,7 +67,7 @@ Kirjauduin virtuaalipalvelimelleni `ssh`-komennolla, päivitin paketinhallinnan 
 
 ### Sertifikaatin hankkiminen Staging Environmentissa
 
-Seuraavaksi ajoin lego-komennon Let's Encryptin Staging Environmentissa terminaalissa luennolla käydyn ja kurssin sivulla olleiden ohjeiden mukaisesti [1][6]. Staging Environmentia voi käyttää Let's Encryptin palvelun testaamiseen. Tämä on hyödyllistä, koska Let's Encrypt rajoittaa tehtävien sertifikaattipyyntöjen ja auktorisointiyritysten määrää, ja rajojen ylittyessä seuraa karenssia uusien pyyntöjen tekemiseen (https://letsencrypt.org/docs/rate-limits/) [7]. Tarkistin vielä Let's Encrypting sivuilta Staging Environmentin palvelimen osoitteen (https://letsencrypt.org/docs/staging-environment/ [8]), jota tarvitaan lego-komennossa.
+Seuraavaksi ajoin lego-komennon Let's Encryptin Staging Environmentissa terminaalissa luennolla käydyn ja kurssin sivulla olleiden ohjeiden mukaisesti [1][6]. Staging Environmentia voi käyttää Let's Encryptin palvelun testaamiseen. Tämä on hyödyllistä, koska Let's Encrypt rajoittaa tehtävien sertifikaattipyyntöjen ja auktorisointiyritysten määrää, ja rajojen ylittyessä seuraa karenssia uusien pyyntöjen tekemiseen (https://letsencrypt.org/docs/rate-limits/) [7]. Tarkistin vielä Let's Encryptin sivuilta Staging Environmentin palvelimen osoitteen (https://letsencrypt.org/docs/staging-environment/ [8]), jota tarvitaan lego-komennossa.
 
 ```
 lego
@@ -182,7 +182,7 @@ Raportissa oli eritelty varsin kattavasti palvelimeni tietoja ja tehtyjä testej
 
 ## Tiivistelmä
 
-Hankin onnistuneesti TLS-sertifikaatin webbisivulleni Let's Encryptiltä käyttämällä lego-ohjelmaa. Ennen varsinaisen sertifikaatin hankkimista testasin lego-komennon onnistuvan Let's Encrypting testipalvelimella. Tein TLS:n käyttöön tarvittavat asetukset name-based virtual hostin konfiguraatiotiedostoon, kytkin SSL:n päälle Apachessa ja tein palomuuriin säännön porttia 443 koskien. Testasin palvelimeni SSL-tietoja SSLabsin sivuilla ja analysoin raportin tuloksia.
+Hankin onnistuneesti TLS-sertifikaatin webbisivulleni Let's Encryptiltä käyttämällä lego-ohjelmaa. Ennen varsinaisen sertifikaatin hankkimista testasin lego-komennon onnistuvan Let's Encryptin testipalvelimella. Tein TLS:n käyttöön tarvittavat asetukset name-based virtual hostin konfiguraatiotiedostoon, kytkin SSL:n päälle Apachessa ja tein palomuuriin säännön porttia 443 koskien. Testasin web-palvelimeni SSL-tietoja SSL Labsin sivuilla ja analysoin raportin tuloksia.
 
 ## Lähteet
 
