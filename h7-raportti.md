@@ -99,9 +99,91 @@ Luo uusi käyttäjä
 
 Toimi
 
+Huomasin kirjoitusvirheen komennon tuloksessa, joten korjataan
+* micro orientoi
+* sudo cp -v orientoi /urs/local/bin/
+* orientoi
+Nyt lukee oikein
+
+![image](https://github.com/user-attachments/assets/9496064a-575e-46dd-9f3b-737f41e51079)
+
+
 
 ## d)
 
+https://terokarvinen.com/2024/arvioitava-laboratorioharjoitus-2024-linux-palvelimet/
+
+* Luo tyhjä virtuaalikone + ufw, update + dist-upgrade
+
+* Kotihakemistoon report/index.md => tänne myös jpg tai png
+
+a)
+- Oma nimi
+- Opiskelijanumero
+- Linkki omaan kotitehtäväpakettiin
+
+b) Tiivistelmä
+- Mikä toimii: toimivien palveluiden osoitteet tai polut komentoihin
+- Mikä ei toimi: luettelo kohdista, joita ei ratkaistu
+
+c) Ei kolmea sekoseiskaa
+- suojaa raportti Linux-oikeuksilla niin, että vain oma käyttäjäsi pystyy katselemaan raporttia
+- // chmod go-rwx /report/index.md
+
+d) 'howdy'
+- Tee kaikkien käyttäjien käyttöön komento 'howdy'
+- Tulostaa päivämäärän, koneen osoitteen
+- testaa toisella käyttäjällä => sudo useradd user => sudo passwd user => su user => howdy
+
+e) etusivu uusiksi
+- asenna apache-weppipalvelin => sudo apt-get install apache2
+- tee sivu, joka näkyy koneen IP-osoitteella suoraan etusivulla
+- sivua pitää päästä muokkaamaan ilman sudoa
+
+sudoedit /etc/apache2/sites-available/example.com.conf
+
+<VirtualHost *:80>
+ ServerName pyora.example.com
+ ServerAlias www.pyora.example.com
+ DocumentRoot /home/xubuntu/publicsites/pyora.example.com
+ <Directory /home/xubuntu/publicsites/pyora.example.com>
+   Require all granted
+ </Directory>
+</VirtualHost>
+
+$ sudo a2ensite pyora.example.com.conf
+sudo a2dissite whatever.com.conf
+
+$ mkdir -p /home/xubuntu/publicsites/pyora.example.com/
+
+
+g) salattua hallintaa
+- asenna ssh-palvelin
+- Tee uusi käyttäjä omalla nimelläsi: "Tero Karvinen test", login name: "terote01"
+- Automatisoi ssh-kirjautuminen julkisen avaimen menetelmällä niin, että et tarvitse salasanoja, voit käyttää kirjautumiseen localhost-osoitetta
+
+$ ssh root@10.0.0.1
+
+$ sudo ufw allow 22/tcp
+$ sudo ufw enable
+
+$ sudo adduser tero
+$ sudo adduser tero sudo
+$ sudo adduser tero adm
+$ sudo adduser tero admin
+
+root# sudo cp -rvn /root/.ssh/ /home/jurpo/
+root# sudo chown -R jurpo:jurpo /home/jurpo/
+
+root# exit
+local$ ssh jurpo@10.0.0.1
+
+jurpo$ sudo usermod --lock root
+jurpo$ sudo mv -nv /root/.ssh /root/DISABLED-ssh/
+
+
+
+h) Djangoasioita ei tehty
 
 ## Lähteet
 
