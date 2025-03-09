@@ -11,129 +11,113 @@ Tein tehtävän seuraavalla kone- ja ohjelmistokokoonpanolla:
 * Oracle VM VirtualBox versio 7.1.4 r165100 (Qt6.5.3)
 * Virtuaalikoneen käyttöjärjestelmä: Debian 12.9.0
 
-## a) Osaan sanoa kolmella kielellä "Hei maailma"
+## a) "Hei maailma" kolmella kielellä
 
 2025-03-08 klo 18:31 - 18:47
 
-- sudo apt-get update
-- Käyttämäni kielet, valitsin python, C ja bash
-- Python ja C tarvitsee asentaa
-- sudo apt-get install python3 gcc
+Ajoin ensin komennon `sudo apt-get update`. Päätin tehdä tehtäväni Pythonilla, C:llä ja bashilla. Pythonin ja C:n asentamista varten ajoin komennon `sudo apt-get install python3 gcc`.
 
 ![image](https://github.com/user-attachments/assets/b1e936b3-59c3-4dd6-9efc-27014066b70b)
 
-- Nämä olivatkin jo valmiiksi asennettuna, ilmeisesti debianissa oletuksena
+Nämä olivatkin jo valmiiksi asennettuna, eli ne ilmeisesti ovat Debianissa oletuksena asennettuna, koska en muistanut aiemmin niitä asentaneeni.
 
-- Tehdään ensin bashilla
-micro heimaailma.sh
-cat heimaailma.sh
-bash heimaailma.sh
+Loin heimaailma-tiedoston ja suoritin ensin bashilla.
 
 ![image](https://github.com/user-attachments/assets/bbf3ac2c-5324-4e83-996e-acb0203bc75b)
 
-- Pythonilla
-micro heimaailma.py
-cat heimaailma.py
-python3 heimaailma.py
+Seuraavaksi tein saman Pythonilla.
 
 ![image](https://github.com/user-attachments/assets/02ace5d3-72cf-47e5-bf40-fd55bcc32d7d)
 
-- C:llä
-micro heimaailma.c
-cat heimaailma.c
-gcc heimaailma.c -o heimaailmac
-./heimaailmac
+Lopuksi tein vielä saman C:llä. C:n tapuksessa koodi täytyi kääntää `gcc heimaailma.c -o heimaailmac` -komennolla.
 
 ![image](https://github.com/user-attachments/assets/fc3598a7-f7a5-4eef-ab46-a9dc13ac5edd)
 
-
-## c)
+## c) Uusi komento
 
 2025-03-08 klo 18:48 - 19:16
 
-- micro orientoi.sh
-- cat orientoi.sh
-  #!/usr/bin/bash
-  echo "Nimesi on:"
-  whoami
-  echo
-  echo "Vuosi on:"
-  date "+%Y"
-  echo
-  echo "Käytät bashia versio:"
-  echo $BASH_VERSION
-    https://stackoverflow.com/questions/9450604/how-to-get-the-bash-version-number
+Loin uuden tiedoston ja kirjoitin micro-editorilla siihen alla olevan kuvan kuvan mukaisen sisällön.
 
 ![image](https://github.com/user-attachments/assets/396f311f-3069-4e1e-bfda-72b927ba11f4)
 
-
-- chmod ugo+x orientoi.sh
+Lisäsin suoritusoikeuden tiedostoon käyttäjälle, ryhmälle ja muille komennolla `chmod ugo+x orientoi.sh`
 
 ![image](https://github.com/user-attachments/assets/d0fa8788-6649-48b7-a3d7-0d6dbc972281)
 
-- ./orientoi.sh
+Kokeilin suorittaa tiedostoa komennolla `./orientoi.sh` Komento toimi odotetusti.
 
 ![image](https://github.com/user-attachments/assets/97cadd66-e759-4404-92e3-1aab53101c60)
 
-- mv orientoi.sh orientoi
-- ./orientoi
+Vaihdoin tiedoston nimeä komennolla `mv orientoi.sh orientoi`, jotta komennon voi ajaa ilman .sh-päätettä.
 
 ![image](https://github.com/user-attachments/assets/5ba84a95-4d94-4a1d-b5c1-62b33f15c0b0)
 
-
-- sudo cp -v orientoi /urs/local/bin/
-- orientoi
+Kopioin tiedoston pääkäyttäjänä `usr/local/bin/`, jolloin komento on kaikkien käyttäjien käytettävissä.
+```
+sudo cp -v orientoi /urs/local/bin/
+```
 
 ![image](https://github.com/user-attachments/assets/4d88ce7c-0b7e-47b2-ad60-00d0756523bf)
 
 
-Luo uusi käyttäjä
-- sudo useradd mikkihiiri
-- sudo passwd mikkihiiri
-- su mikkihiiri
-- orientoi
-- exit
-- sudo userdel mikkihiiri
+Loin uuden käyttäjän komennolla `sudo useradd mikkihiiri` ja annoin käyttäjälle salasanan komennolla `sudo passwd mikkihiiri`. Vaihdoin käyttäjää komennolla `su mikkihiiri` ja kokeilin uutta komentoani. Se toimi odotetunlaisesti. Lopuksi poistin luomani uuden käyttäjän komennolla `sudo userdel mikkihiiri`.
 
 ![image](https://github.com/user-attachments/assets/efe63197-8260-4fbe-8207-4472cc769439)
 
-Toimi
-
-Huomasin kirjoitusvirheen komennon tuloksessa, joten korjataan
-* micro orientoi
-* sudo cp -v orientoi /urs/local/bin/
-* orientoi
-Nyt lukee oikein
+Huomasin kirjoitusvirheen komennon tulostuksessa, joten korjasin tiedostoa ensin kotikansiossani ja sitten kopioin sen uudelleen `/usr/local/bin/` -kansioon. Tämän jälkeen komennon tulos luki oikein.
 
 ![image](https://github.com/user-attachments/assets/9496064a-575e-46dd-9f3b-737f41e51079)
 
+## d) Vanha laboratorioharjoitus
 
+2025-08-09 klo 17:10 - 18:35
 
-## d)
+Tein kevään 2024 kurssin harjoitusta, joka löytyi osoitteesta https://terokarvinen.com/2024/arvioitava-laboratorioharjoitus-2024-linux-palvelimet/.
 
-https://terokarvinen.com/2024/arvioitava-laboratorioharjoitus-2024-linux-palvelimet/
-
-* Luo tyhjä virtuaalikone + ufw, update + dist-upgrade
+Aluksi loin tyhjän virtuaalikoneen 
+* Luo tyhjä virtuaalikone
+* Käytin tässä apuna raporttiani h1
+* päivitin koneen, asensin palomuurin ja kytkin sen päälle
 
 * Kotihakemistoon report/index.md => tänne myös jpg tai png
+
+![image](https://github.com/user-attachments/assets/bfee9953-ee01-40b0-b5e1-9893624bfc3b)
+
+
 
 a)
 - Oma nimi
 - Opiskelijanumero
 - Linkki omaan kotitehtäväpakettiin
 
+![image](https://github.com/user-attachments/assets/74892eee-25dc-4168-af87-344080687059)
+
+
 b) Tiivistelmä
 - Mikä toimii: toimivien palveluiden osoitteet tai polut komentoihin
 - Mikä ei toimi: luettelo kohdista, joita ei ratkaistu
+
+![image](https://github.com/user-attachments/assets/b3461655-b9ff-4d86-a4bc-195626f73b71)
+
 
 c) Ei kolmea sekoseiskaa
 - suojaa raportti Linux-oikeuksilla niin, että vain oma käyttäjäsi pystyy katselemaan raporttia
 - // chmod go-rwx /report/index.md
 
+![image](https://github.com/user-attachments/assets/5e113a08-c748-415d-a7f8-b9279cf9fff0)
+
+
 d) 'howdy'
 - Tee kaikkien käyttäjien käyttöön komento 'howdy'
 - Tulostaa päivämäärän, koneen osoitteen
 - testaa toisella käyttäjällä => sudo useradd user => sudo passwd user => su user => howdy
+
+![image](https://github.com/user-attachments/assets/ba3b9072-26a3-41cf-913f-a1fdb7958f4d)
+
+![image](https://github.com/user-attachments/assets/eb2b8d42-0a00-4746-b01c-2a23c183ba16)
+
+
 
 e) etusivu uusiksi
 - asenna apache-weppipalvelin => sudo apt-get install apache2
@@ -141,6 +125,11 @@ e) etusivu uusiksi
 - sivua pitää päästä muokkaamaan ilman sudoa
 
 sudoedit /etc/apache2/sites-available/example.com.conf
+
+![image](https://github.com/user-attachments/assets/ce4d1b47-cc99-4dbc-b37b-8308fe8d1b3e)
+
+
+
 
 <VirtualHost *:80>
  ServerName pyora.example.com
@@ -154,13 +143,32 @@ sudoedit /etc/apache2/sites-available/example.com.conf
 $ sudo a2ensite pyora.example.com.conf
 sudo a2dissite whatever.com.conf
 
+![image](https://github.com/user-attachments/assets/3fe30176-a939-408e-acef-f2bdfcfed328)
+
+
 $ mkdir -p /home/xubuntu/publicsites/pyora.example.com/
 
+![image](https://github.com/user-attachments/assets/084bf431-992f-4114-baab-48482fe4dd33)
+
+sudo systemctl restart apache2
+=> näkyi vain Default-sivu
+
+![image](https://github.com/user-attachments/assets/b50bf701-2cfd-467b-96ad-acfe2534ab89)
+
+Asia ei selvinnyt.
 
 g) salattua hallintaa
 - asenna ssh-palvelin
 - Tee uusi käyttäjä omalla nimelläsi: "Tero Karvinen test", login name: "terote01"
 - Automatisoi ssh-kirjautuminen julkisen avaimen menetelmällä niin, että et tarvitse salasanoja, voit käyttää kirjautumiseen localhost-osoitetta
+
+![image](https://github.com/user-attachments/assets/835998d5-9d61-48b7-8e63-6d918ebe8fda)
+
+sudo apt-get install ssh
+
+![image](https://github.com/user-attachments/assets/404df4e6-ed3a-4e93-b1e8-66eb2bff8a3e)
+
+
 
 $ ssh root@10.0.0.1
 
