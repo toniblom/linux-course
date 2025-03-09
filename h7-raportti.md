@@ -75,7 +75,7 @@ Huomasin kirjoitusvirheen komennon tulostuksessa, joten korjasin tiedostoa ensin
 
 Tein kevään 2024 kurssin harjoitusta, joka löytyi osoitteesta https://terokarvinen.com/2024/arvioitava-laboratorioharjoitus-2024-linux-palvelimet/. [^7]
 
-Aluksi loin tyhjän virtuaalikoneen. Käytin tässä apuna aiempaa raporttiani h1 (https://github.com/toniblom/linux-course/blob/main/h01-oma-linux.md). Päivitin myös virtuaalikoneen, asensin ufw-palomuurin ja kytkin sen päälle. [^8]
+Aluksi loin uuden virtuaalikoneen. Käytin tässä apuna aiempaa raporttiani h1 (https://github.com/toniblom/linux-course/blob/main/h01-oma-linux.md). Päivitin myös virtuaalikoneen, asensin ufw-palomuurin ja kytkin sen päälle. [^8]
 
 Loin kotihakemistoon `report/index.md` -tiedoston.
 
