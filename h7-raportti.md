@@ -15,7 +15,7 @@ Tein tehtävän seuraavalla kone- ja ohjelmistokokoonpanolla:
 
 2025-03-08 klo 18:31 - 18:47
 
-Ajoin ensin komennon `sudo apt-get update`. Päätin tehdä tehtäväni Pythonilla, C:llä ja bashilla. Pythonin ja C:n asentamista varten ajoin komennon `sudo apt-get install python3 gcc`.
+Ajoin ensin komennon `sudo apt-get update`. Päätin tehdä tehtäväni Pythonilla, C:llä ja bashilla. Pythonin ja C:n asentamista varten ajoin komennon `sudo apt-get install python3 gcc`. [2]
 
 ![image](https://github.com/user-attachments/assets/b1e936b3-59c3-4dd6-9efc-27014066b70b)
 
@@ -53,15 +53,15 @@ Vaihdoin tiedoston nimeä komennolla `mv orientoi.sh orientoi`, jotta komennon v
 
 ![image](https://github.com/user-attachments/assets/5ba84a95-4d94-4a1d-b5c1-62b33f15c0b0)
 
-Kopioin tiedoston pääkäyttäjänä `usr/local/bin/`, jolloin komento on kaikkien käyttäjien käytettävissä.
+Kopioin tiedoston pääkäyttäjänä `usr/local/bin/`, jolloin komento on kaikkien käyttäjien käytettävissä. [3]
 ```
-sudo cp -v orientoi /urs/local/bin/
+sudo cp -v orientoi /usr/local/bin/
 ```
 
 ![image](https://github.com/user-attachments/assets/4d88ce7c-0b7e-47b2-ad60-00d0756523bf)
 
 
-Loin uuden käyttäjän komennolla `sudo useradd mikkihiiri` ja annoin käyttäjälle salasanan komennolla `sudo passwd mikkihiiri`. Vaihdoin käyttäjää komennolla `su mikkihiiri` ja kokeilin uutta komentoani. Se toimi odotetunlaisesti. Lopuksi poistin luomani uuden käyttäjän komennolla `sudo userdel mikkihiiri`.
+Loin uuden käyttäjän komennolla `sudo useradd mikkihiiri` ja annoin käyttäjälle salasanan komennolla `sudo passwd mikkihiiri`. Vaihdoin käyttäjää komennolla `su mikkihiiri` ja kokeilin uutta komentoani. Se toimi odotetunlaisesti. Lopuksi poistin luomani uuden käyttäjän komennolla `sudo userdel mikkihiiri`. [4][5][6]
 
 ![image](https://github.com/user-attachments/assets/efe63197-8260-4fbe-8207-4472cc769439)
 
@@ -73,9 +73,9 @@ Huomasin kirjoitusvirheen komennon tulostuksessa, joten korjasin tiedostoa ensin
 
 2025-08-09 klo 17:10 - 18:35
 
-Tein kevään 2024 kurssin harjoitusta, joka löytyi osoitteesta https://terokarvinen.com/2024/arvioitava-laboratorioharjoitus-2024-linux-palvelimet/.
+Tein kevään 2024 kurssin harjoitusta, joka löytyi osoitteesta https://terokarvinen.com/2024/arvioitava-laboratorioharjoitus-2024-linux-palvelimet/. [7]
 
-Aluksi loin tyhjän virtuaalikoneen. Käytin tässä apuna aiempaa raporttiani h1 (https://github.com/toniblom/linux-course/blob/main/h01-oma-linux.md). Päivitin myös virtuaalikoneen, asensin ufw-palomuurin ja kytkin sen päälle. 
+Aluksi loin tyhjän virtuaalikoneen. Käytin tässä apuna aiempaa raporttiani h1 (https://github.com/toniblom/linux-course/blob/main/h01-oma-linux.md). Päivitin myös virtuaalikoneen, asensin ufw-palomuurin ja kytkin sen päälle. [8]
 
 Loin lotihakemistoon `report/index.md` -tiedoston.
 
@@ -114,6 +114,8 @@ Testasin komentoa toisella käyttäjällä. Komento toimi myös toisella käytt�
 
 ### Kohta e)
 
+Käytin tämän kohdan tekemisessä aiemmin tekemääni raporttia (https://github.com/toniblom/linux-course/blob/main/h3-raportti.md).
+
 Asensin apache-web-palvelimen komennolla `sudo apt-get install apache2`
 
 Loin uuden konfiguraatiotiedoston Apacheen tulevaa sivuani varten komennolla `sudoedit /etc/apache2/sites-available/harjoitus7d.com.conf`.
@@ -132,7 +134,7 @@ Käynnistin Apachen uudelleen komennolla `sudo systemctl restart apache2`.
 
 Avasin internetselaimen osoitteesta http://localhost ja 127.0.0.1. Näistä molemmista tuli näkyviin Default-tekstillä korvaamani oletussivu eikä kotikansiossani sijaitsevaa index.html -tiedostoa. Toiminta ei siis ollut sellaista mihin olin pyrkinyt.
 
-Katsoin lokeja, josko näissä olisi jotain, joka auttaisi asiaa eteenpäin. error.log -tiedostossa oli lähinnä Apachen normaaliin toimintaan ja uudelleenkäynnistykseen liittyviä rivejä. Muitakaan lokeja tarkastellen en päässyt asiassa eteenpäin.
+Katsoin lokeja, josko näissä olisi jotain, joka auttaisi asiaa eteenpäin. error.log -tiedostossa oli lähinnä Apachen normaaliin toimintaan ja uudelleenkäynnistykseen liittyviä rivejä. Muitakaan lokeja tarkastellen en päässyt asiassa eteenpäin. [9]
 
 ![image](https://github.com/user-attachments/assets/b50bf701-2cfd-467b-96ad-acfe2534ab89)
 
@@ -153,3 +155,19 @@ Tehtävässä pyydettiin asentamaan ssh-palvelin ja että ssh-kirjautumiseen voi
 ## Lähteet
 
 [1] Karvinen, Tero. Linux Palvelimet 2025 alkukevät. https://terokarvinen.com/linux-palvelimet/. Luettu 2025-03-08.
+
+[2] Karvinen, Tero. 2018-09-27. Hello World Python3, Bash, C, C++, Go, Lua, Ruby, Java – Programming Languages on Ubuntu 18.04. https://terokarvinen.com/2018/hello-python3-bash-c-c-go-lua-ruby-java-programming-languages-on-ubuntu-18-04/. Luettu 2025-03-08.
+
+[3] Karvinen, Tero: Oppitunnit 2015-03-04, Linux palvelimet -kurssi (https://terokarvinen.com/linux-palvelimet/).
+
+[4] GeeksForGeeks. 2024-07-12. How to add User in Linux | useradd Command. https://www.geeksforgeeks.org/useradd-command-in-linux-with-examples/. Luettu 2025-03-08.
+
+[5] GeeksForGeeks. 2024-01-19. Switch Users on Linux with the su Command. https://www.geeksforgeeks.org/switch-users-on-linux-with-the-su-command/. Luettu 2025-03-08.
+
+[6] GeeksForGeeks. 2024-09-19. How to Delete User in Linux | userdel Command. https://www.geeksforgeeks.org/userdel-command-in-linux-with-examples/. Luettu 2025-03-08.
+
+[7] Karvinen, Tero. Final Lab for Linux Palvelimet 2024 Spring. https://terokarvinen.com/2024/arvioitava-laboratorioharjoitus-2024-linux-palvelimet/. Luettu 2025-03-09.
+
+[8] Blom, Toni. h01 Oma Linux - raportti. https://github.com/toniblom/linux-course/blob/main/h01-oma-linux.md. Luettu 2025-03-09.
+
+[9] Blom, Toni. h3 Hello Web Server - Raportti. https://github.com/toniblom/linux-course/blob/main/h3-raportti.md. Luettu 2025-03-09.
