@@ -1,7 +1,7 @@
 # h5 Nimekäs -raportti
 Tekijä: Toni Blom
 
-Tein tämän raportin Linux-palvelimet -kurssin tehtävään h5 liittyen. Tehtävänanto löytyi osoitteesta https://terokarvinen.com/linux-palvelimet/ [1].
+Tein tämän raportin Linux-palvelimet -kurssin tehtävään h5 liittyen. Tehtävänanto löytyi osoitteesta https://terokarvinen.com/linux-palvelimet/ [^1].
 
 Tein tehtävän seuraavalla kone- ja ohjelmistokokoonpanolla:
 * Tietokone: Lenovo Yoga Slim 7 Pro 14ACH5 -kannettava tietokone
@@ -28,7 +28,7 @@ Kirjauduttuani Namecheapiin näin, että tilaamani domain-nimi oli aktiivinen. L
 
 ![image](https://github.com/user-attachments/assets/c3023c5f-0adc-457b-8887-afdca994855f)
 
-Seuraavaksi muutin domain-nimeni tietueita siten, että ne osoittavat aiemmin vuokraamaani virtuaalipalvelimeen. Tämä tapahtui siirtymällä vasemman palkin "Dashboard" -kohtaan ja painamalla talokuvaketta domain-nimeni vieressä ja kohtaa "Advanced DNS". [4]
+Seuraavaksi muutin domain-nimeni tietueita siten, että ne osoittavat aiemmin vuokraamaani virtuaalipalvelimeen. Tämä tapahtui siirtymällä vasemman palkin "Dashboard" -kohtaan ja painamalla talokuvaketta domain-nimeni vieressä ja kohtaa "Advanced DNS". [^4]
 
 ![image](https://github.com/user-attachments/assets/bacda192-2a6a-41e4-a635-0d9c68524dc0)
 
@@ -41,11 +41,11 @@ Lisäsin kaksi uutta A-tietuetta seuraavin tiedoin.
   * Record Type: A record / Host: @ / IP Address: virtuaalipalvelimeni IP-osoite / TTL: 5
   * Record Type: A record / Host: www / IP Address: virtuaalipalvelimeni IP-osoite / TTL: 5
 
- Muut valmiina olleet tietueet eivät poistuneet itsestään, joten poistin ne. [4]
+ Muut valmiina olleet tietueet eivät poistuneet itsestään, joten poistin ne. [^4]
 
 ![image](https://github.com/user-attachments/assets/22a2af1f-2ff1-46dc-9562-116b946108a8)
 
-Tässä vaiheessa odottelin hetken, että tietuetiedot ehtisivät päivittyä ja selaimen välimuistiin jäisivät muokkaamani tiedot. Kokeilin toniblom.me -osoitetta ja aiemmin tekemäni sivu näkyi. [4]
+Tässä vaiheessa odottelin hetken, että tietuetiedot ehtisivät päivittyä ja selaimen välimuistiin jäisivät muokkaamani tiedot. Kokeilin toniblom.me -osoitetta ja aiemmin tekemäni sivu näkyi. [^4]
 
 ![image](https://github.com/user-attachments/assets/e1f3990f-77c9-4749-ae1d-2a4b3483fdcd)
 
@@ -54,7 +54,7 @@ Tässä vaiheessa odottelin hetken, että tietuetiedot ehtisivät päivittyä ja
 
 2025-02-16 klo 14:00 - 15:20
 
-Olin jo asentanut Apache-serverin virtuaalipalvelimelleni, tätä on kuvattu edellisessä raportissani. Etenin myös name-based virtual hostin konfiguroinnissa [edellisen raportin](https://github.com/toniblom/linux-course/blob/main/h4-raportti.md) vaiheita noudattaen. [5]
+Olin jo asentanut Apache-serverin virtuaalipalvelimelleni, tätä on kuvattu edellisessä raportissani. Etenin myös name-based virtual hostin konfiguroinnissa [edellisen raportin](https://github.com/toniblom/linux-course/blob/main/h4-raportti.md) vaiheita noudattaen. [^5]
 
 Loin uuden .conf -tiedoston Apacheen toniblom.me -domain-nimeä varten. Kirjasin siihen tarvittavat tiedot kuvan mukaisesti.
 ```
@@ -90,7 +90,7 @@ systemctl status apache2.service
 
 ![image](https://github.com/user-attachments/assets/65d54144-5fff-4c32-9e1a-2db87cfee456)
 
-Toisella ehdotetulla komennolla en saanut lokia näkyviin, koska käyttäjänimelläni ei ollut tarvittavia oikeuksia. Tämä saattoi myös johtua siitä, että Apachen lokit eivät ole vielä siirtyneet journalctl:iin [4].
+Toisella ehdotetulla komennolla en saanut lokia näkyviin, koska käyttäjänimelläni ei ollut tarvittavia oikeuksia. Tämä saattoi myös johtua siitä, että Apachen lokit eivät ole vielä siirtyneet journalctl:iin [^4].
 ```
 journalctl -xeu apache2.service
 ```
@@ -104,7 +104,7 @@ sudo tail /var/log/apache2/error.log
 
 ![image](https://github.com/user-attachments/assets/6f32217d-2025-46e2-ae08-be7e8c7c8a7a)
 
-En ymmärtänyt mistä kyseiset virheilmoitukset johtuivat, joten etsin tietoa internetin hakukoneilla. Soveltuvia selityksiä tai ratkaisuja ongelmaan en löytänyt. Katsoin Apachen tilaa ja yritin käynnistää sen uudelleen löytämieni komentojen avulla (https://www.geeksforgeeks.org/how-to-start-stop-or-restart-apache-server-on-ubuntu/) [2]. Näillä komennoilla näkyi lähinnä samanlaisia virheilmoituksia kuin aiemminkin.
+En ymmärtänyt mistä kyseiset virheilmoitukset johtuivat, joten etsin tietoa internetin hakukoneilla. Soveltuvia selityksiä tai ratkaisuja ongelmaan en löytänyt. Katsoin Apachen tilaa ja yritin käynnistää sen uudelleen löytämieni komentojen avulla (https://www.geeksforgeeks.org/how-to-start-stop-or-restart-apache-server-on-ubuntu/) [^2]. Näillä komennoilla näkyi lähinnä samanlaisia virheilmoituksia kuin aiemminkin.
 ```
 sudo systemctl status apache2
 sudo systemctl start apache2
@@ -166,9 +166,9 @@ Ongelma johtui siis ilmeisesti kirjoitusvirheestä konfiguraatiotiedostossani. S
 
 2025-02-16 klo 18:25 - 18:40
 
-Tein virtuaalikoneellani sivut index.html, blog.html, projects.html ja laitoin kaikki linkittämään toisiinsa. Käytin validaattoria sivujen html:n tarkistamiseen [3].
+Tein virtuaalikoneellani sivut index.html, blog.html, projects.html ja laitoin kaikki linkittämään toisiinsa. Käytin validaattoria sivujen html:n tarkistamiseen [^3].
 
-Käytin sivujen kopiointiin palvelimelle scp-komentoa [1]. Sekä kopioitavan virtuaalikoneellani olevan kansion, että virtuaalipalvelimella kohteessa olevan kansion nimi oli tässä vaiheessa toniblom.me, vaihdoin virtuaalipalvelimella olevan kansion nimeä, jotta tästä ei seuraisi komentoa ajaessa ongelmia. Komennon suoritus onnistui.
+Käytin sivujen kopiointiin palvelimelle scp-komentoa [^1]. Sekä kopioitavan virtuaalikoneellani olevan kansion, että virtuaalipalvelimella kohteessa olevan kansion nimi oli tässä vaiheessa toniblom.me, vaihdoin virtuaalipalvelimella olevan kansion nimeä, jotta tästä ei seuraisi komentoa ajaessa ongelmia. Komennon suoritus onnistui.
 ```
 ~publicsites$ scp -r toniblom.me/ toni@toniblom.me:public_sites/
 ```
@@ -190,7 +190,7 @@ Yleisiä DNS-tietueita ovat mm. seuraavat:
 * **MX-tietue** (mail exchange records): Nämä tietueet yhdessä sähköpostipalvelimen kanssa mahdollistavat domain-nimeen linkittyneiden sähköpostitilien luomisen (esim. user@example.com -sähköpostiosoite example.com -domainista).
 * **NS-tietue** (name server records): Kertoo domain-nimen auktoritatiivisen nimipalvelimen.
 * **SOA-tietue** (start of authority records): Sisältää domainin hallinnollisia tietoja, mm. domainista vastaavan sähköpostiosoitteen.
-* **TXT-tietue** (text records): Tekstimuotoista tietoa liittyen domainiin ja alidomaineihin. Vastaanotettujen sähköpostien luotettavuuden arviointiin ja verifikaatioon käytettävät SPF-tietueet ja DMARC-tietueet tallennetaan TXT-tietueisiin. [6]
+* **TXT-tietue** (text records): Tekstimuotoista tietoa liittyen domainiin ja alidomaineihin. Vastaanotettujen sähköpostien luotettavuuden arviointiin ja verifikaatioon käytettävät SPF-tietueet ja DMARC-tietueet tallennetaan TXT-tietueisiin. [^6]
 
 ## d) Alidomainien tekeminen
 
@@ -210,7 +210,7 @@ Hetken kuluttua kokeilin internetselaimella osoitetta home.toniblom.me, ja sivus
 
 ## dig ja host -komentojen teoriaa
 
-Sekä dig että host -komento soveltuvat DNS-tietojen kyselyihin nimipalvelimilta [7][8]. host on yksinkertainen komento, jota yleensä käytetään selvittämään IP-osoite domain-nimen perusteella tai päinvastoin [7]. dig-komennolla on paljon erilaisia toiminnallisuuksia. Ilman parametrejä dig-komento näyttää vain A-tietueet, kaikkia tietueita voi kysellä antamalla komennolle ANY-parametrin. [8][9] Sekä dig että host-komennolle voi antaa argumenttina tietyn nimipalvelimen nimen tai IP-osoitteen, jolloin kysely kohdistuu tähän nimipalvelimeen. Muutoin näiden komentojen kyselyt kohdistuvat `/etc/resolv.conf` -tiedostossa listattuihin palvelimiin. [7][8]
+Sekä dig että host -komento soveltuvat DNS-tietojen kyselyihin nimipalvelimilta [^7][^8]. host on yksinkertainen komento, jota yleensä käytetään selvittämään IP-osoite domain-nimen perusteella tai päinvastoin [^7]. dig-komennolla on paljon erilaisia toiminnallisuuksia. Ilman parametrejä dig-komento näyttää vain A-tietueet, kaikkia tietueita voi kysellä antamalla komennolle ANY-parametrin. [^8][^9] Sekä dig että host-komennolle voi antaa argumenttina tietyn nimipalvelimen nimen tai IP-osoitteen, jolloin kysely kohdistuu tähän nimipalvelimeen. Muutoin näiden komentojen kyselyt kohdistuvat `/etc/resolv.conf` -tiedostossa listattuihin palvelimiin. [^7][^8]
 
 ## e) dig ja host -komentojen testaaminen
 
@@ -226,15 +226,15 @@ dig toniblom.me ANY
 
 ![image](https://github.com/user-attachments/assets/b2640074-7c6f-4877-9aa7-494e3ac618cf)
 
-dig-komennon tuloksien alussa oli tietoja DNS-pyyntöön liittyen, mm. tehtyjen kyselyiden (QUERY: 1) ja saatujen vastauksien (ANSWER: 9) määrä. OPT PSEUDOSECTION -osiossa näkyi mm. EDNS, joka tarkoittaa DNS:n laajennuksen versiota. QUESTION SECTION -osiossa näkyi tekemäni kyselyn tiedot. [9]
+dig-komennon tuloksien alussa oli tietoja DNS-pyyntöön liittyen, mm. tehtyjen kyselyiden (QUERY: 1) ja saatujen vastauksien (ANSWER: 9) määrä. OPT PSEUDOSECTION -osiossa näkyi mm. EDNS, joka tarkoittaa DNS:n laajennuksen versiota. QUESTION SECTION -osiossa näkyi tekemäni kyselyn tiedot. [^9]
 
 ANSWER SECTION-osiossa esim. viimeisellä rivillä näkyi seuraavaa:
 * **toniblom.me**: Domain-nimi, johon kysely kohdistui.
 * **366**: TTL eli Time to Live kertoo kuinka kauan tietuetta säilytetään välimuistissa.
 * **IN**: Kyselyn luokka, IN tarkoittaa internetkyselyä.
-* **NS**: Tietuetyyppi, jota kysyttiin. Tällä rivillä siis NS-tietue eli auktoritatiivisen nimipalvelimen tiedot. [9]
+* **NS**: Tietuetyyppi, jota kysyttiin. Tällä rivillä siis NS-tietue eli auktoritatiivisen nimipalvelimen tiedot. [^9]
 
-dig-komennon lopussa oli vielä tilastoja kyselyyn liittyen [9].
+dig-komennon lopussa oli vielä tilastoja kyselyyn liittyen [^9].
 
 Kokeilin samoja komentoja pienen yrityksen internetsivuilla, tulokset vaikuttivat monilta osin samanlaisilta kuin omalla sivullani. host-komennolla näkyi IPv4-osoite ja sähköpostipalvelimien tietoja.
 
@@ -244,7 +244,7 @@ dig-komennon vastausosiossa näkyi A-, MX- ja SOA-tietueita, NS-tietueita sen si
 
 ![image](https://github.com/user-attachments/assets/80b0dda7-cd84-4b26-be8a-8b56e8daa8d2)
 
-Kokeilin samoja komentoja vielä Googlen sivuilla. host-komennossa näkyi nyt myös IPv6-osoite. dig-komennolla näkyi paljon enemmän erilaisia tietueita; myös AAAA-, HTTPS- ja paljon TXT-tietueita. Kuvausten perusteella TXT-tietueet liittyivät pitkälti erilaisiin verifikaatioihin. HTTPS-tietue kertoo, että google.com -osoitteeseen voi ottaa salatun yhteyden [10].
+Kokeilin samoja komentoja vielä Googlen sivuilla. host-komennossa näkyi nyt myös IPv6-osoite. dig-komennolla näkyi paljon enemmän erilaisia tietueita; myös AAAA-, HTTPS- ja paljon TXT-tietueita. Kuvausten perusteella TXT-tietueet liittyivät pitkälti erilaisiin verifikaatioihin. HTTPS-tietue kertoo, että google.com -osoitteeseen voi ottaa salatun yhteyden [^10].
 
 ![image](https://github.com/user-attachments/assets/da14c921-321d-4a6c-8790-d31caf405f96)
 
@@ -256,22 +256,22 @@ Hankin onnistuneesti domain-nimen namecheap.com -sivustolta GitHub Education -pa
 
 ## Lähteet
 
-[1] Karvinen, T. Linux Palvelimet 2025 alkukevät. https://terokarvinen.com/linux-palvelimet/. Luettu 2025-02-16.
+[^1]: [Karvinen, T. Linux Palvelimet 2025 alkukevät.](https://terokarvinen.com/linux-palvelimet/) Luettu 2025-02-16.
 
-[2] GeeksforGeeks. 2024-06-06. How to Start, Stop, or Restart Apache Server on Ubuntu?. https://www.geeksforgeeks.org/how-to-start-stop-or-restart-apache-server-on-ubuntu/. Luettu 2025-02-16.
+[^2]: [GeeksforGeeks. 2024-06-06. How to Start, Stop, or Restart Apache Server on Ubuntu?.](https://www.geeksforgeeks.org/how-to-start-stop-or-restart-apache-server-on-ubuntu/) Luettu 2025-02-16.
 
-[3] World Wide Web Consortium. W3C®. Markup Validation Service. https://validator.w3.org/#validate_by_input. Luettu 2025-02-16.
+[^3]: [World Wide Web Consortium. W3C®. Markup Validation Service.](https://validator.w3.org/#validate_by_input) Luettu 2025-02-16.
 
-[4] Karvinen, T: Oppitunnit 2015-02-11, Linux palvelimet -kurssi (https://terokarvinen.com/linux-palvelimet/).
+[^4]: [Karvinen, T: Oppitunnit 2015-02-11, Linux palvelimet -kurssi.](https://terokarvinen.com/linux-palvelimet/).
 
-[5] Blom, T. h4 Maailma kuulee -raportti. https://github.com/toniblom/linux-course/blob/main/h4-raportti.md. Luettu 2025-02-16.
+[^5]: [Blom, T. h4 Maailma kuulee -raportti.](https://github.com/toniblom/linux-course/blob/main/h4-raportti.md) Luettu 2025-02-16.
 
-[6] Quiroz-Vázquez, C. Goodwin, M. 2024-01-22. What are DNS records? https://www.ibm.com/think/topics/dns-records. Luettu 2025-02-16.
+[^6]: [Quiroz-Vázquez, C. Goodwin, M. 2024-01-22. What are DNS records?](https://www.ibm.com/think/topics/dns-records) Luettu 2025-02-16.
 
-[7] Canonical Ltd. 2019. https://manpages.ubuntu.com/manpages/noble/man1/host.1.html. Luettu 2025-02-16.
+[^7]: [Canonical Ltd. 2019. host.](https://manpages.ubuntu.com/manpages/noble/man1/host.1.html) Luettu 2025-02-16.
 
-[8] Canonical Ltd. 2019. https://manpages.ubuntu.com/manpages/noble/man1/dig.1.html. Luettu 2025-02-16.
+[^8]: [Canonical Ltd. 2019. dig.](https://manpages.ubuntu.com/manpages/noble/man1/dig.1.html) Luettu 2025-02-16.
 
-[9] McKay, D. 2024-02-05. How to Use the dig Command on Linux. https://www.howtogeek.com/663056/how-to-use-the-dig-command-on-linux/. Luettu 2025-02-16.
+[^9]: [McKay, D. 2024-02-05. How to Use the dig Command on Linux.](https://www.howtogeek.com/663056/how-to-use-the-dig-command-on-linux/) Luettu 2025-02-16.
 
-[10] Ghedini, A. 2020-09-30. Speeding up HTTPS and HTTP/3 negotiation with... DNS. https://blog.cloudflare.com/speeding-up-https-and-http-3-negotiation-with-dns/. Luettu 2025-02-16.
+[^10]: [Ghedini, A. 2020-09-30. Speeding up HTTPS and HTTP/3 negotiation with... DNS.](https://blog.cloudflare.com/speeding-up-https-and-http-3-negotiation-with-dns/) Luettu 2025-02-16.
