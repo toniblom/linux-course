@@ -77,7 +77,7 @@ Tein kevään 2024 kurssin harjoitusta, joka löytyi osoitteesta https://terokar
 
 Aluksi loin tyhjän virtuaalikoneen. Käytin tässä apuna aiempaa raporttiani h1 (https://github.com/toniblom/linux-course/blob/main/h01-oma-linux.md). Päivitin myös virtuaalikoneen, asensin ufw-palomuurin ja kytkin sen päälle. [8]
 
-Loin lotihakemistoon `report/index.md` -tiedoston.
+Loin kotihakemistoon `report/index.md` -tiedoston.
 
 ![image](https://github.com/user-attachments/assets/bfee9953-ee01-40b0-b5e1-9893624bfc3b)
 
@@ -137,6 +137,18 @@ Avasin internetselaimen osoitteesta http://localhost ja 127.0.0.1. Näistä mole
 Katsoin lokeja, josko näissä olisi jotain, joka auttaisi asiaa eteenpäin. error.log -tiedostossa oli lähinnä Apachen normaaliin toimintaan ja uudelleenkäynnistykseen liittyviä rivejä. Muitakaan lokeja tarkastellen en päässyt asiassa eteenpäin. [9]
 
 ![image](https://github.com/user-attachments/assets/b50bf701-2cfd-467b-96ad-acfe2534ab89)
+
+Lisäys 2025-03-09 klo 19:39 - 19:43
+
+Raporttia oikolukiessani huomasin kirjoitusvirheen konfiguraatiotiedostossa. Korjasin tämän.
+
+![image](https://github.com/user-attachments/assets/c85902e4-7183-4bfe-a14b-3a1ea0af6677)
+
+Käynnistin Apachen uudelleen ja avasin internetselaimessa sivun 127.0.0.1. Nyt tekemäni sivu näkyi kuten oli tarkoitus.
+
+![image](https://github.com/user-attachments/assets/2e3ea67c-421d-4a63-bfa4-0a995063bbda)
+
+Lisäys loppuu.
 
 ### Kohta g)
 
