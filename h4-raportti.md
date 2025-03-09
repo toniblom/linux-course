@@ -2,7 +2,7 @@
 
 Tekijä: Toni Blom
 
-Tein tämän raportin Linux-palvelimet -kurssin tehtävään h4 liittyen. Tehtävänanto löytyi osoitteesta https://terokarvinen.com/linux-palvelimet/ [1].
+Tein tämän raportin Linux-palvelimet -kurssin tehtävään h4 liittyen. Tehtävänanto löytyi osoitteesta https://terokarvinen.com/linux-palvelimet/ [^1].
 
 Tein tehtävän seuraavalla kone- ja ohjelmistokokoonpanolla:
 * Tietokone: Lenovo Yoga Slim 7 Pro 14ACH5 -kannettava tietokone
@@ -15,7 +15,7 @@ Tein tehtävän seuraavalla kone- ja ohjelmistokokoonpanolla:
 
 ### Opiskelijan esimerkkiraportti
 
-Tein seuraavan tiivistelmän Susanna Lehdon pilvipalvelimen vuokraamiseen liittyvästä raportista (https://susannalehto.fi/2022/teoriasta-kaytantoon-pilvipalvelimen-avulla-h4/). [2]
+Tein seuraavan tiivistelmän Susanna Lehdon pilvipalvelimen vuokraamiseen liittyvästä raportista (https://susannalehto.fi/2022/teoriasta-kaytantoon-pilvipalvelimen-avulla-h4/). [^2]
 
 **Pilvipalvelimen vuokraus ja asennus:**
 * Pilvipalvelimen vuokraamisessa luodaan uusi virtuaalipalvelin, johon voi palveluntarjoajan palvelussa valita mm. haluamansa käyttöjärjestelmän ja muistin määrän.
@@ -42,7 +42,7 @@ Tein seuraavan tiivistelmän Susanna Lehdon pilvipalvelimen vuokraamiseen liitty
 
 ### Ensiaskeleet uudella virtuaalipalvelimella
 
-Tein seuraavan tiivistelmän Tero Karvisen artikkelista (https://terokarvinen.com/2017/first-steps-on-a-new-virtual-private-server-an-example-on-digitalocean/). [3]
+Tein seuraavan tiivistelmän Tero Karvisen artikkelista (https://terokarvinen.com/2017/first-steps-on-a-new-virtual-private-server-an-example-on-digitalocean/). [^3]
 
 Virtuaalipalvelimen (virtual private server) käyttöönotossa tehdään seuraavia vaiheita:
 * Palomuurin laittaminen päälle
@@ -64,7 +64,7 @@ Kokeilin ensin käyttää GitHubin Student Pack -krediittejä vuokratakseni palv
 * Valitsin DigitalOceanin sivulta kohdan "Sign In with GitHub" ja "Authorize digitalocean". Tässä kohtaa tuli virheilmoitus "An unknown error has occurred." Tämä johtui siitä, etten ollut vielä rekisteröitynyt DigitalOceaniin.
 * Valitsin kohdan "Sign Up with GitHub", vastailin muutamaan kysymykseen ja täytin pankkikorttini sekä muut tarvittavat tiedot. Painoin "Save", jonka jälkeen tuli viesti "Tapahtui käsittelyvirhe". Ongelma liittyi ilmeisesti jollain tavalla pankkikorttiini, tarkkaa syytä en lähtenyt selvittämään.
 
-Päätin kokeilla vuokrata palvelimen UpCloudista, joka oli ollut esimerkkinä myös oppitunnilla. [4]
+Päätin kokeilla vuokrata palvelimen UpCloudista, joka oli ollut esimerkkinä myös oppitunnilla. [^4]
 * Menin osoitteeseen upcloud.com ja valitsin "sign up". Tilin luominen onnistui ja pankkikorttinikin hyväksyttiin. Päätin laittaa tililleni vielä kaksivaihetunnistuksen kohdasta "Activate 2FA".
 * Tämän jälkeen aloin tilaamaan uutta virtuaalipalvelinta. Painoin kohdasta "Server List" ja "Deploy server".
 
@@ -81,13 +81,13 @@ Päätin kokeilla vuokrata palvelimen UpCloudista, joka oli ollut esimerkkinä m
 * **Network**-kohtaan jätin oletusasetuksen.
 * **Optionals**-kohdassa en valinnut mitään lisäpalveluita.
 * **Login Method** -kohdassa valitsin "SSH keys" ja tässä vaiheessa siirryin virtuaalikoneeni Terminal Emulatoriin luomaan SSH-avaimet. Tässä seurasin tehtävänannossa annettua ohjetta.
- 	* Ajoin ensin komennot `sudo apt-get update` ja `sudo apt-get -y install openssh-client`. Openssh-client asentui onnistuneesti. [1]
-  	* Generoin SSH-avaimet komennolla `ssh-keygen` ja painoin kolme kertaa Enteriä eli tallensin avaimet oletussijaintiin ilman salasanaa. [1]
-	* Avasin julkisen avaimen `micro $HOME/.ssh/id_rsa.pub` -komennolla ja kopioin sen sisällön. [1]
+ 	* Ajoin ensin komennot `sudo apt-get update` ja `sudo apt-get -y install openssh-client`. Openssh-client asentui onnistuneesti. [^1]
+  	* Generoin SSH-avaimet komennolla `ssh-keygen` ja painoin kolme kertaa Enteriä eli tallensin avaimet oletussijaintiin ilman salasanaa. [^1]
+	* Avasin julkisen avaimen `micro $HOME/.ssh/id_rsa.pub` -komennolla ja kopioin sen sisällön. [^1]
 * Tässä vaiheessa palasin takaisin UpCloudin palveluun ja kopioin julkisen avaimen kenttään ja painoin "Save the SSH key".
 * **Initialization script** -kohtaan en laittanut mitään
 * **Server configuration** -kohdassa vaihdoin sekä palvelin-, että host-nimen, koska muistelin, että oppitunnilla sanottiin, että olisi parempi jos nimessä ei viitata esim. palvelinsalin sijaintiin.
-* Lopuksi painoin "Deploy". Hetken kuluttua virtuaalipalvelimeni oli valmis. [4]
+* Lopuksi painoin "Deploy". Hetken kuluttua virtuaalipalvelimeni oli valmis. [^4]
 
 ![image](https://github.com/user-attachments/assets/89ef3aaa-4526-4b6f-bad2-87e4c9c599f0)
 
@@ -98,7 +98,7 @@ Päätin kokeilla vuokrata palvelimen UpCloudista, joka oli ollut esimerkkinä m
 
 ### Palomuurin asentaminen
 
-Palomuurin asentamiseksi käytin seuraaavia komentoja [1][2][3]:
+Palomuurin asentamiseksi käytin seuraaavia komentoja [^1][^2][^3]:
 
 ```
 ssh root@94.237.39.223		# Otin SSH-yhteyden virtuaalipalvelimeeni root-käyttäjänä
@@ -111,7 +111,7 @@ sudo ufw allow 80/tcp		# Tein "reiän" palomuuriin porttiin 80
 
 ### root-käyttäjän sulkeminen
 
-Loin ensin uuden käyttäjän nimelläni ja lisäsin käyttäjän sudo-ryhmään [1].
+Loin ensin uuden käyttäjän nimelläni ja lisäsin käyttäjän sudo-ryhmään [^1].
 
 ```
 sudo adduser toni 	# Loin käyttäjän ja annoin hyvän salasanan
@@ -120,7 +120,7 @@ sudo adduser toni sudo	# Lisäsin käyttäjän sudo-ryhmään
 
 ![image](https://github.com/user-attachments/assets/97dc9efd-08f6-4715-a65a-972e6d1743bc)
 
-Seuraavaksi kopioin root-käyttäjän SSH-asetukset luomalleni uudelle toni-käyttäjälle ja kokeilin ottaa SSH-yhteyden virtuaalipalvelimeen toni-käyttäjänä [1].
+Seuraavaksi kopioin root-käyttäjän SSH-asetukset luomalleni uudelle toni-käyttäjälle ja kokeilin ottaa SSH-yhteyden virtuaalipalvelimeen toni-käyttäjänä [^1].
 
 ```
 sudo cp -rvn /root/.ssh /home/toni/	# Kopioin root-käyttäjän .ssh -kansion toni-käyttäjän kotihakemistoon
@@ -133,7 +133,7 @@ SSH-yhteys toni-käyttäjänä virtuaalipalvelimelle onnistui.
 
 ![image](https://github.com/user-attachments/assets/8793a354-c828-4110-9d00-9042eb1b229a)
 
-Varmistuttuani uuden käyttäjänimen toimivuudesta suljin root-käyttäjän pääsyn virtuaalipalvelimelle [1].
+Varmistuttuani uuden käyttäjänimen toimivuudesta suljin root-käyttäjän pääsyn virtuaalipalvelimelle [^1].
 
 ```
 sudo usermod --lock root 			# Lukitsin root-käyttäjätilin
@@ -152,7 +152,7 @@ _Raportti jatkuu alla._
 
 ### Ohjelmien päivittäminen
 
-Päivitin vielä virtuaalipalvelimen seuraavilla komennoilla [1]:
+Päivitin vielä virtuaalipalvelimen seuraavilla komennoilla [^1]:
 
 ```
 sudo apt-get update
@@ -170,7 +170,7 @@ _Raportti jatkuu alla._
 
 2025-02-08, klo 21:16 - 21:22
 
-Asensin Apache web-palvelimen virtuaalikoneelle ja korvasin oletussivun [2]:
+Asensin Apache web-palvelimen virtuaalikoneelle ja korvasin oletussivun [^2]:
 
 ```
 ssh toni@94.237.39.223 					# Otin SSH-yhteyden virtuaalipalvelimeen, salasanaa ei tarvittu
@@ -208,7 +208,7 @@ Loin kansion /home/toni/public_sites/toni.example.com/ ja kokeilin luoda sinne i
 
 ![image](https://github.com/user-attachments/assets/449b4f58-8300-4651-8521-5326adedb4a1)
 
-Loin index.html-tiedoston käyttäen apuna Tero Karvisen artikkelista (https://terokarvinen.com/2012/short-html5-page/) löytyvää mallia ja tarkistin tekemäni html-tiedoston sisällön validaattorilla (https://validator.w3.org/#validate_by_input). [5][6]
+Loin index.html-tiedoston käyttäen apuna Tero Karvisen artikkelista (https://terokarvinen.com/2012/short-html5-page/) löytyvää mallia ja tarkistin tekemäni html-tiedoston sisällön validaattorilla (https://validator.w3.org/#validate_by_input). [^5][^6]
 
 Tässä vaiheessa kokeilin päivittää internetselaimella virtuaalipalvelimen IP-osoitetta. Näin kuitenkin edelleen aikaisemman "Hello world" -sisältöisen sivun, jolla olin korvannut Apachen oletussivun.
 
@@ -223,7 +223,7 @@ Katsoin asiaa tarkemmin lokeista. Suoritin komennon `sudo tail /var/log/apache2/
 Virheilmoitus kertoi jotakuinkin seuraaavaa: "search permissions are missing on a component of the path". En ymmärtänyt tällaisenaan mistä virhe johtui, joten etsin hakukoneella lokin virhekoodilla AH00035. Löysin erään selityksen (https://serverfault.com/questions/1041060/solving-apache-search-permissions-are-missing-on-a-component-of-the-path-issue) ongelmaan, jonka mukaan virhekoodi esiintyy mm. seuraavissa tilanteissa:
 * Jostakin tiedostopolun kansioista puuttuu -x lupa.
 * Apachen .conf-tiedostossa ei ole tarvittavia lupia.
-* SELinux-ongelmat. [7]
+* SELinux-ongelmat. [^7]
 
 Huomasin, että toni-käyttäjäni kotihakemistossa luvat olivat muotoa `drwx------` eli toni-käyttäjän lisäksi muilla ei ollut mitään oikeuksia hakemistoon. 
 
@@ -231,7 +231,7 @@ Huomasin, että toni-käyttäjäni kotihakemistossa luvat olivat muotoa `drwx---
 
 **HUOM! Seuraavassa esitetty ei ole tietoturvan kannalta hyvä ratkaisu, koska write-luvan lisääminen `chmod 755` -komennolla kansioon mahdollistaa uusien tiedostojen ja kansioiden luomisen kaikille käyttäjille. Ainoa tarvittava lupa on -x eli execute, joka mahdollistaa kansioon siirtymisen.**
 
-Kokeilin muokata toni-hakemiston lupia löytämäni toisen ehdotuksen mukaisesti (https://askubuntu.com/questions/451922/apache-access-denied-because-search-permissions-are-missing) ja käynnistin Apachen uudelleen. [8]
+Kokeilin muokata toni-hakemiston lupia löytämäni toisen ehdotuksen mukaisesti (https://askubuntu.com/questions/451922/apache-access-denied-because-search-permissions-are-missing) ja käynnistin Apachen uudelleen. [^8]
 
 ```
 chmod 755 /home/toni
@@ -244,7 +244,7 @@ _Päivitys 2025-02-11._
 
 Muokkasin /home/toni -kansion lupia komennolla:
 
-`chmod u=rwx,g=x,o=x /home/toni` [9]
+`chmod u=rwx,g=x,o=x /home/toni` [^9]
 
 ![image](https://github.com/user-attachments/assets/1505b5ba-75e1-4ea2-b787-0321bf132190)
 
@@ -258,20 +258,20 @@ Kokeilin vielä virtuaalipalvelimeni IP-osoitetta puhelimen nettiselaimella ja s
 
 ## Lähteet
 
-[1] Karvinen, T. Linux Palvelimet 2025 alkukevät. https://terokarvinen.com/linux-palvelimet/. Luettu 2025-02-08.
+[^1]: [Karvinen, T. Linux Palvelimet 2025 alkukevät.](https://terokarvinen.com/linux-palvelimet/) Luettu 2025-02-08.
 
-[2] Lehto, S. 2022-02-14. Teoriasta käytäntöön pilvipalvelimen avulla (h4). https://susannalehto.fi/2022/teoriasta-kaytantoon-pilvipalvelimen-avulla-h4/. Luettu 2025-02-08.
+[^2]: [Lehto, S. 2022-02-14. Teoriasta käytäntöön pilvipalvelimen avulla (h4).](https://susannalehto.fi/2022/teoriasta-kaytantoon-pilvipalvelimen-avulla-h4/) Luettu 2025-02-08.
 
-[3] Karvinen, T. 2017-09-19. First Steps on a New Virtual Private Server – an Example on DigitalOcean and Ubuntu 16.04 LTS. https://terokarvinen.com/2017/first-steps-on-a-new-virtual-private-server-an-example-on-digitalocean/. Luettu 2025-02-08.
+[^3]: [Karvinen, T. 2017-09-19. First Steps on a New Virtual Private Server – an Example on DigitalOcean and Ubuntu 16.04 LTS.](https://terokarvinen.com/2017/first-steps-on-a-new-virtual-private-server-an-example-on-digitalocean/) Luettu 2025-02-08.
 
-[4] Karvinen, T: Oppitunnit 2015-02-04, Linux palvelimet -kurssi (https://terokarvinen.com/linux-palvelimet/).
+[^4]: [Karvinen, T: Oppitunnit 2015-02-04, Linux palvelimet -kurssi.](https://terokarvinen.com/linux-palvelimet/).
 
-[5] Karvinen, T. 2012-02-12. Short HTML5 page. https://terokarvinen.com/2012/short-html5-page/. Luettu 2025-02-08.
+[^5]: [Karvinen, T. 2012-02-12. Short HTML5 page.](https://terokarvinen.com/2012/short-html5-page/) Luettu 2025-02-08.
 
-[6] World Wide Web Consortium. W3C®. Markup Validation Service. https://validator.w3.org/#validate_by_input. Luettu 2025-02-08.
+[^6]: [World Wide Web Consortium. W3C®. Markup Validation Service.](https://validator.w3.org/#validate_by_input) Luettu 2025-02-08.
 
-[7] Stack Exchange Inc. / käyttäjänimi sastorsl 2024-08-04. Solving Apache "search permissions are missing on a component of the path" issue. https://serverfault.com/questions/1041060/solving-apache-search-permissions-are-missing-on-a-component-of-the-path-issue. Luettu 2025-02-08.
+[^7]: [Stack Exchange Inc. / käyttäjänimi sastorsl 2024-08-04. Solving Apache "search permissions are missing on a component of the path" issue.](https://serverfault.com/questions/1041060/solving-apache-search-permissions-are-missing-on-a-component-of-the-path-issue) Luettu 2025-02-08.
 
-[8] Stack Exchange Inc. / käyttäjänimet Peter (2014-07-30) ja Cyrille (2022-12-03). Apache: access denied because search permissions are missing. https://askubuntu.com/questions/451922/apache-access-denied-because-search-permissions-are-missing. Luettu 2025-02-08.
+[^8]: [Stack Exchange Inc. / käyttäjänimet Peter (2014-07-30) ja Cyrille (2022-12-03). Apache: access denied because search permissions are missing.](https://askubuntu.com/questions/451922/apache-access-denied-because-search-permissions-are-missing) Luettu 2025-02-08.
 
-[9] Karvinen, T: Oppitunnit 2015-02-11, Linux palvelimet -kurssi (https://terokarvinen.com/linux-palvelimet/).
+[^9]: [Karvinen, T: Oppitunnit 2015-02-11, Linux palvelimet -kurssi.](https://terokarvinen.com/linux-palvelimet/).
