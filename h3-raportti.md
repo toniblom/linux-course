@@ -1,7 +1,7 @@
 # h3 Hello Web Server - Raportti
 Tekijä: Toni Blom
 
-Tein tämän raportin Linux-palvelimet -kurssin tehtävään h3 liittyen. Tehtävänanto löytyi osoitteesta https://terokarvinen.com/linux-palvelimet/ [1].
+Tein tämän raportin Linux-palvelimet -kurssin tehtävään h3 liittyen. Tehtävänanto löytyi osoitteesta https://terokarvinen.com/linux-palvelimet/ [^1].
 
 Tein tehtävän seuraavalla kone- ja ohjelmistokokoonpanolla:
 * Tietokone: Lenovo Yoga Slim 7 Pro 14ACH5 -kannettava tietokone
@@ -11,15 +11,15 @@ Tein tehtävän seuraavalla kone- ja ohjelmistokokoonpanolla:
 
 ## x) Name-based Virtual Host
 
-* *Name-based virtual hosting* mahdollistaa sen, että useammalla virtuaalipalvelimella on sama IP-osoite. [2]
+* *Name-based virtual hosting* mahdollistaa sen, että useammalla virtuaalipalvelimella on sama IP-osoite. [^2]
 
-* Name-based virtual hosting säästää IP-osoitteiden määrää verrattuna *IP-based virtual hosting* -ratkaisuun, jossa jokaisella virtuaalipalvelimella on oma IP-osoite. [2]
+* Name-based virtual hosting säästää IP-osoitteiden määrää verrattuna *IP-based virtual hosting* -ratkaisuun, jossa jokaisella virtuaalipalvelimella on oma IP-osoite. [^2]
 
-* Apache HTTP-palvelimen voi asentaa esimerkiksi Debianissa komennolla `sudo apt-get install apache2`. Konfiguraatiotiedostojen sijainti on `/etc/apache2/sites-available/` -kansiossa. [3]
+* Apache HTTP-palvelimen voi asentaa esimerkiksi Debianissa komennolla `sudo apt-get install apache2`. Konfiguraatiotiedostojen sijainti on `/etc/apache2/sites-available/` -kansiossa. [^3]
 
-* Apache HTTP-palvelimella jokainen name-based virtual host tarvitsee .conf-konfiguraatiotiedostossa `<VirtualHost>` -blokin, jonka sisälle on sijoitettu ainakin `DocumentRoot` ja yleensä vähintään myös `ServerName` -direktiivi [2].
+* Apache HTTP-palvelimella jokainen name-based virtual host tarvitsee .conf-konfiguraatiotiedostossa `<VirtualHost>` -blokin, jonka sisälle on sijoitettu ainakin `DocumentRoot` ja yleensä vähintään myös `ServerName` -direktiivi [^2].
 
-* Kun konfiguraatiotiedosto on valmis, seuraavat askeleet ovat virtual hostin käynnistäminen `sudo a2ensite example.com` -komennolla, Apache-serverin käynnistäminen uudelleen `sudo systemctl restart apache2` -komennolla ja itse sivuston luominen konfiguraatiotiedoston `DocumentRoot`-kohdassa määritettyyn sijaintiin. [4]
+* Kun konfiguraatiotiedosto on valmis, seuraavat askeleet ovat virtual hostin käynnistäminen `sudo a2ensite example.com` -komennolla, Apache-serverin käynnistäminen uudelleen `sudo systemctl restart apache2` -komennolla ja itse sivuston luominen konfiguraatiotiedoston `DocumentRoot`-kohdassa määritettyyn sijaintiin. [^4]
 
 ## a) localhost
 
@@ -41,7 +41,7 @@ Analysoidaan error.log -tiedoston viimeistä riviä:
 * **[Sat Feb 01 20:16:20.020103 2025]** on lokikirjauksen päivämäärä ja kellonaika.
 * **[core:notice]** tarkoittaa virheilmoituksen tuottanutta moduulia (core) ja ilmoituksen "vakavuusastetta" (notice).
 * **[pid 675:tid 675]** ovat process ID ja thread ID prosessille, joka kohtasi lokikirjauksen tilanteen.
-* Loppuosa on kuvaus ilmoituksesta/virheestä. [5]
+* Loppuosa on kuvaus ilmoituksesta/virheestä. [^5]
 
 ![image](https://github.com/user-attachments/assets/257ab9e2-eeb1-453a-8604-352708489dc2)
 
@@ -55,7 +55,7 @@ Analysoidaan access.log -tiedoston ensimmäistä riviä:
 * **404** on palvelimen asiakkaalle lähettämä statuskoodi. 4-alkuinen koodi tarkoittaa asiakkaan aiheuttamaa virhettä.
 * **487** on asiakkaalle palautetun objektin koko.
 * **"http://localhost/"** on sivu, jolta on linkki /favicon.ico -sijaintiin. Englanniksi tästä käytetään sanaa Referer.
-* **"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0"** on asiakkaan selaimen antamaa tietoa itsestään. [5]
+* **"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0"** on asiakkaan selaimen antamaa tietoa itsestään. [^5]
 
 access.log -tiedostossa näkyi lähinnä vanhempia lokitapahtumia. Suoritin `sudo tail -f /var/log/apache2/access.log` -komennon ja päivitin http://localhost/ -sivun painamalla Shift-näppäintä ja reload-nappia internetselaimesta, lokitiedostoon ei kuitenkaan ilmestynyt mitään uutta.
 
@@ -63,7 +63,7 @@ access.log -tiedostossa näkyi lähinnä vanhempia lokitapahtumia. Suoritin `sud
 
 2025-02-02, klo 17:37 - 18:10
 
-Loin lähteitä ([3], [4]) apuna käyttäen uuden name-based virtual hostin.
+Loin lähteitä ([^3], [^4]) apuna käyttäen uuden name-based virtual hostin.
 
 Suoritin komennon `sudoedit /etc/apache2/sites-available/hattu.example.com.conf`.
 
@@ -112,19 +112,19 @@ doctype-kohdassa oli ylimääräinen väli, joten poistin tämän, jolloin virhe
 
 2025-02-02, klo 18:35 - 19:18
 
-Katsoin ensin `man curl` -komennolla mitä `curl` -komento ja sen `-l` -asetus tekevät. `curl` -komento siirtää dataa palvelimelta tai palvelimelle ja käyttää useita eri protokollia. `curl -l` -komento pakottaa tuloksessa näkyvään vain nimet. Manuaalissa `-l` optiosta oli esimerkkejä FTP- ja POP3-protokolliin liittyen, joten `-l` option käyttö esim. HTTP-protokollan kanssa tai yhteys tehtävänantoon ei vielä selvinnyt. [8]
+Katsoin ensin `man curl` -komennolla mitä `curl` -komento ja sen `-l` -asetus tekevät. `curl` -komento siirtää dataa palvelimelta tai palvelimelle ja käyttää useita eri protokollia. `curl -l` -komento pakottaa tuloksessa näkyvään vain nimet. Manuaalissa `-l` optiosta oli esimerkkejä FTP- ja POP3-protokolliin liittyen, joten `-l` option käyttö esim. HTTP-protokollan kanssa tai yhteys tehtävänantoon ei vielä selvinnyt. [^8]
 
 Kokeilin `curl http://localhost/` -komentoa, jolloin näkyviin tuli aiemmin tekemäni sivun html-tiedoston sisältö.
 
 ![image](https://github.com/user-attachments/assets/8612c2fe-5375-4bd1-937f-42d5e3ed42ff)
 
-Etsin vielä tietoa termistä "response header", joka on HTTP-otsake (HTTP header), jota voidaan käyttää HTTP-vastauksessa antamaan lisätietoja vastauksen kontekstista. Esimerkkejä response headereista ovat esim. Age, Location ja Server. Puheessa kaikista HTTP headereista puhutaan usein response headereina, vaikka määritelmällisesti näin ei ole. [9]
+Etsin vielä tietoa termistä "response header", joka on HTTP-otsake (HTTP header), jota voidaan käyttää HTTP-vastauksessa antamaan lisätietoja vastauksen kontekstista. Esimerkkejä response headereista ovat esim. Age, Location ja Server. Puheessa kaikista HTTP headereista puhutaan usein response headereina, vaikka määritelmällisesti näin ei ole. [^9]
 
 Kokeilin `curl -l http://localhost/` -komentoa, jolloin näkyviin tuli sama tulos kuin komennolla ilman `-l` optiota. Response headereita ei tullut näkyviin.
 
 2025-02-02, klo 20:20 - 20:38
 
-`curl`-komennon man-sivulta löysin, että `-L` -optioon liitettäessä `-i` optio näyttää otsakkeet. [8]
+`curl`-komennon man-sivulta löysin, että `-L` -optioon liitettäessä `-i` optio näyttää otsakkeet. [^8]
 
 ![image](https://github.com/user-attachments/assets/4c7be9ea-a17d-44ec-b754-9287c2a26b90)
 
@@ -132,20 +132,20 @@ Kokeilin `curl -l http://localhost/` -komentoa, jolloin näkyviin tuli sama tulo
 
 ## Lähteet
 
-[1] Karvinen, Tero. Linux Palvelimet 2025 alkukevät. https://terokarvinen.com/linux-palvelimet/. Luettu 2025-02-01.
+[^1]: [Karvinen, Tero. Linux Palvelimet 2025 alkukevät.](https://terokarvinen.com/linux-palvelimet/) Luettu 2025-02-01.
 
-[2] The Apache Software Foundation. Name-based Virtual Host Support. https://httpd.apache.org/docs/2.4/vhosts/name-based.html. Luettu 2025-01-30.
+[^2]: [The Apache Software Foundation. Name-based Virtual Host Support.](https://httpd.apache.org/docs/2.4/vhosts/name-based.html) Luettu 2025-01-30.
 
-[3] Karvinen, Tero: Oppitunnit 2015-01-28, Linux palvelimet -kurssi (https://terokarvinen.com/linux-palvelimet/). 
+[^3]: [Karvinen, Tero: Oppitunnit 2015-01-28, Linux palvelimet -kurssi.](https://terokarvinen.com/linux-palvelimet/)
 
-[4] Karvinen, Tero. Name Based Virtual Hosts on Apache – Multiple Websites to Single IP Address. https://terokarvinen.com/2018/04/10/name-based-virtual-hosts-on-apache-multiple-websites-to-single-ip-address/. Luettu 2025-02-02.
+[^4]: [Karvinen, Tero. Name Based Virtual Hosts on Apache – Multiple Websites to Single IP Address.](https://terokarvinen.com/2018/04/10/name-based-virtual-hosts-on-apache-multiple-websites-to-single-ip-address/) Luettu 2025-02-02.
 
-[5] The Apache Software Foundation. Log Files. https://httpd.apache.org/docs/2.4/logs.html. Luettu 2025-02-02.
+[^5]: [The Apache Software Foundation. Log Files.](https://httpd.apache.org/docs/2.4/logs.html) Luettu 2025-02-02.
 
-[6] Karvinen, Tero. Short HTML5 page. https://terokarvinen.com/2012/short-html5-page/. Luettu 2025-02-02.
+[^6]: [Karvinen, Tero. Short HTML5 page.](https://terokarvinen.com/2012/short-html5-page/) Luettu 2025-02-02.
 
-[7] World Wide Web Consortium. W3C®. Markup Validation Service. https://validator.w3.org/#validate_by_input. Luettu 2025-02-02.
+[^7]: [World Wide Web Consortium. W3C®. Markup Validation Service.](https://validator.w3.org/#validate_by_input) Luettu 2025-02-02.
 
-[8] Stenberg, D. et al. curl man page. https://curl.se/docs/manpage.html. Luettu 2025-02-02.
+[^8]: [Stenberg, D. et al. curl man page.](https://curl.se/docs/manpage.html) Luettu 2025-02-02.
 
-[9] Mozilla Corporation. Response header. https://developer.mozilla.org/en-US/docs/Glossary/Response_header. Luettu 2025-02-02.
+[^9]: [Mozilla Corporation. Response header.](https://developer.mozilla.org/en-US/docs/Glossary/Response_header) Luettu 2025-02-02.
