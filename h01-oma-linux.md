@@ -1,10 +1,10 @@
 # h01 Oma Linux - raportti
 
-Tein tämän raportin Linux-palvelimet -kurssin tehtävään h01 liittyen. Tehtävien tekopäivämäärä oli 19.1.2025. Tehtävänanto löytyi osoitteesta https://terokarvinen.com/linux-palvelimet/. [1]
+Tein tämän raportin Linux-palvelimet -kurssin tehtävään h01 liittyen. Tehtävien tekopäivämäärä oli 19.1.2025. Tehtävänanto löytyi osoitteesta https://terokarvinen.com/linux-palvelimet/. [^1]
 
 ## Raportin kirjoittaminen
 
-Raportin kirjoittamisessa on tärkeää kuvata **täsmällisesti** mitä tehtiin ja mitä sitten tapahtui. Raportin perusteella raportin lukijan tulisi olla mahdollista **toistaa** tehdyt toimenpiteet samanlaisin tuloksin. Tämän vuoksi on oleellista raportoida myös esimerkiksi käytetyt laitteet ja ohjelmistot sekä tehtyjen toimenpiteiden kellonajat. Raportin tulisi olla **helppolukuinen**, joten raportissa kannattaa käyttää väliotsikoita ja oikeaoppista kieltä. Raportissa on myös oltava asianmukaiset **lähdeviitteet**. Asioiden sepittäminen tai plagiointi ei luonnollisestikaan ole sallittua. [2]
+Raportin kirjoittamisessa on tärkeää kuvata **täsmällisesti** mitä tehtiin ja mitä sitten tapahtui. Raportin perusteella raportin lukijan tulisi olla mahdollista **toistaa** tehdyt toimenpiteet samanlaisin tuloksin. Tämän vuoksi on oleellista raportoida myös esimerkiksi käytetyt laitteet ja ohjelmistot sekä tehtyjen toimenpiteiden kellonajat. Raportin tulisi olla **helppolukuinen**, joten raportissa kannattaa käyttää väliotsikoita ja oikeaoppista kieltä. Raportissa on myös oltava asianmukaiset **lähdeviitteet**. Asioiden sepittäminen tai plagiointi ei luonnollisestikaan ole sallittua. [^2]
 
 ## Mitä ovat vapaat ohjelmistot?
 
@@ -14,13 +14,13 @@ Free Software Foundation asettaa vapaan ohjelmiston määritelmälle neljä kesk
 * Vapaus 2: Vapaus levittää kopioita ohjelmistosta.
 * Vapaus 3: Vapaus levittää kopioita omasta muunnellusta ohjelmiston versiosta.
 
-Vapaudet 1 ja 3 edellyttävät, että ohjelmiston lähdekoodi on vapaasti nähtävillä ja muunneltavissa. Englannin kielessä sana "free software" voisi tarkoittaa sekä vapaata ohjelmistoa että ilmaista ohjelmistoa. Vapaa ohjelmisto ei kuitenkaan tarkoita ilmaista ohjelmistoa, ja vapaa ohjelmisto voi hyvinkin olla kaupallinen ohjelmisto. [3]
+Vapaudet 1 ja 3 edellyttävät, että ohjelmiston lähdekoodi on vapaasti nähtävillä ja muunneltavissa. Englannin kielessä sana "free software" voisi tarkoittaa sekä vapaata ohjelmistoa että ilmaista ohjelmistoa. Vapaa ohjelmisto ei kuitenkaan tarkoita ilmaista ohjelmistoa, ja vapaa ohjelmisto voi hyvinkin olla kaupallinen ohjelmisto. [^3]
 
 ## Linux-virtuaalikoneen asentaminen
 
 ### Lähtötilanne
 
-Käytin tehtävän tekemiseen Lenovo Yoga Slim 7 Pro 14 kannettavaa tietokonetta, jonka isäntäkäyttöjärjestelmänä oli Windows 10 Home versio 22H2. Oracle VM VirtualBox -ohjelmiston versio 7.0.6 oli jo asennettuna koneelle. Linux-virtuaalikoneen asentamisessa seurasin Tero Karvisen "Install Debian on Virtualbox - Updated 2024" -ohjetta soveltuvin osin [4].
+Käytin tehtävän tekemiseen Lenovo Yoga Slim 7 Pro 14 kannettavaa tietokonetta, jonka isäntäkäyttöjärjestelmänä oli Windows 10 Home versio 22H2. Oracle VM VirtualBox -ohjelmiston versio 7.0.6 oli jo asennettuna koneelle. Linux-virtuaalikoneen asentamisessa seurasin Tero Karvisen "Install Debian on Virtualbox - Updated 2024" -ohjetta soveltuvin osin [^4].
 
 ### VirtualBoxin Päivittäminen
 
@@ -129,10 +129,10 @@ Katselin läpi Debianin mukana asennettuja ohelmistoja. Näistä minulle tutuin 
 
 ## Lähteet
 
-[1] Karvinen, Tero. Linux Palvelimet 2025 alkukevät. https://terokarvinen.com/linux-palvelimet/. Katsottu 2025-01-19.
+[^1]: [Karvinen, Tero. Linux Palvelimet 2025 alkukevät.](https://terokarvinen.com/linux-palvelimet/) Katsottu 2025-01-19.
 
-[2] Karvinen, Tero. Raportin kirjoittaminen. https://terokarvinen.com/2006/raportin-kirjoittaminen-4/. Katsottu 2025-01-16.
+[^2]: [Karvinen, Tero. Raportin kirjoittaminen.](https://terokarvinen.com/2006/raportin-kirjoittaminen-4/) Katsottu 2025-01-16.
 
-[3] Free Software Foundation, Inc. What is Free Software? https://www.gnu.org/philosophy/free-sw.html. Katsottu 2025-01-16.
+[^3]: [Free Software Foundation, Inc. What is Free Software?](https://www.gnu.org/philosophy/free-sw.html) Katsottu 2025-01-16.
 
-[4] Karvinen, Tero. Install Debian on Virtualbox - Updated 2024. https://terokarvinen.com/2021/install-debian-on-virtualbox/. Katsottu 2025-01-19.
+[^4]: [Karvinen, Tero. Install Debian on Virtualbox - Updated 2024.](https://terokarvinen.com/2021/install-debian-on-virtualbox/) Katsottu 2025-01-19.
