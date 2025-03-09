@@ -75,123 +75,80 @@ Huomasin kirjoitusvirheen komennon tulostuksessa, joten korjasin tiedostoa ensin
 
 Tein kevään 2024 kurssin harjoitusta, joka löytyi osoitteesta https://terokarvinen.com/2024/arvioitava-laboratorioharjoitus-2024-linux-palvelimet/.
 
-Aluksi loin tyhjän virtuaalikoneen 
-* Luo tyhjä virtuaalikone
-* Käytin tässä apuna raporttiani h1
-* päivitin koneen, asensin palomuurin ja kytkin sen päälle
+Aluksi loin tyhjän virtuaalikoneen. Käytin tässä apuna aiempaa raporttiani h1 (https://github.com/toniblom/linux-course/blob/main/h01-oma-linux.md). Päivitin myös virtuaalikoneen, asensin ufw-palomuurin ja kytkin sen päälle. 
 
-* Kotihakemistoon report/index.md => tänne myös jpg tai png
+Loin lotihakemistoon `report/index.md` -tiedoston.
 
 ![image](https://github.com/user-attachments/assets/bfee9953-ee01-40b0-b5e1-9893624bfc3b)
 
+### Kohta a)
 
-
-a)
-- Oma nimi
-- Opiskelijanumero
-- Linkki omaan kotitehtäväpakettiin
+Kirjoitin `index.md` -tiedostoon pyydetyt tiedot.
 
 ![image](https://github.com/user-attachments/assets/74892eee-25dc-4168-af87-344080687059)
 
+### Kohta b)
 
-b) Tiivistelmä
-- Mikä toimii: toimivien palveluiden osoitteet tai polut komentoihin
-- Mikä ei toimi: luettelo kohdista, joita ei ratkaistu
+Tein onnistuneesti kohdat a, b, c ja d.
 
-![image](https://github.com/user-attachments/assets/b3461655-b9ff-4d86-a4bc-195626f73b71)
+Kohtia e ja g en saanut ratkaistua.
 
+Kohta h käsitteli Djangoa, jota ei kurssilla käyty läpi, joten jätin tämän tekemättä.
 
-c) Ei kolmea sekoseiskaa
-- suojaa raportti Linux-oikeuksilla niin, että vain oma käyttäjäsi pystyy katselemaan raporttia
-- // chmod go-rwx /report/index.md
+### Kohta c)
+
+Muokkasin raportin pääsyoikeuksia komennolla `chmod go-rwx /report/index.md`, jonka jälkeen vain toni-käyttäjä pystyi kirjoittamaan ja lukemaan tiedostoa.
 
 ![image](https://github.com/user-attachments/assets/5e113a08-c748-415d-a7f8-b9279cf9fff0)
 
 
-d) 'howdy'
-- Tee kaikkien käyttäjien käyttöön komento 'howdy'
-- Tulostaa päivämäärän, koneen osoitteen
-- testaa toisella käyttäjällä => sudo useradd user => sudo passwd user => su user => howdy
+### Kohta d)
+
+Tein komennon `howdy`, joka oli kaikkien käyttäjien käytettävissä. Käytin tässä apuna tämän raportin aiemmin kirjoittamaani kohtaa c).
 
 ![image](https://github.com/user-attachments/assets/ba3b9072-26a3-41cf-913f-a1fdb7958f4d)
 
+Testasin komentoa toisella käyttäjällä. Komento toimi myös toisella käyttäjällä.
+
 ![image](https://github.com/user-attachments/assets/eb2b8d42-0a00-4746-b01c-2a23c183ba16)
 
+### Kohta e)
 
+Asensin apache-web-palvelimen komennolla `sudo apt-get install apache2`
 
-e) etusivu uusiksi
-- asenna apache-weppipalvelin => sudo apt-get install apache2
-- tee sivu, joka näkyy koneen IP-osoitteella suoraan etusivulla
-- sivua pitää päästä muokkaamaan ilman sudoa
-
-sudoedit /etc/apache2/sites-available/example.com.conf
+Loin uuden konfiguraatiotiedoston Apacheen tulevaa sivuani varten komennolla `sudoedit /etc/apache2/sites-available/harjoitus7d.com.conf`.
 
 ![image](https://github.com/user-attachments/assets/ce4d1b47-cc99-4dbc-b37b-8308fe8d1b3e)
 
-
-
-
-<VirtualHost *:80>
- ServerName pyora.example.com
- ServerAlias www.pyora.example.com
- DocumentRoot /home/xubuntu/publicsites/pyora.example.com
- <Directory /home/xubuntu/publicsites/pyora.example.com>
-   Require all granted
- </Directory>
-</VirtualHost>
-
-$ sudo a2ensite pyora.example.com.conf
-sudo a2dissite whatever.com.conf
+Käynnistin sivuni komennolla `sudo a2ensite harjoitus7d.com.conf` ja otin pois käytöstä default-sivun konfiguraatiotiedoston. sites-enabled-kansiossa oli nyt vain uusi konfiguraatiotiedosto.
 
 ![image](https://github.com/user-attachments/assets/3fe30176-a939-408e-acef-f2bdfcfed328)
 
-
-$ mkdir -p /home/xubuntu/publicsites/pyora.example.com/
+Tein kotihakemistooni kansioon `/home/toni/publicsites/harjoitus7d.com/` tiedoston `index.html`.
 
 ![image](https://github.com/user-attachments/assets/084bf431-992f-4114-baab-48482fe4dd33)
 
-sudo systemctl restart apache2
-=> näkyi vain Default-sivu
+Käynnistin Apachen uudelleen komennolla `sudo systemctl restart apache2`.
+
+Avasin internetselaimen osoitteesta http://localhost ja 127.0.0.1. Näistä molemmista tuli näkyviin Default-tekstillä korvaamani oletussivu eikä kotikansiossani sijaitsevaa index.html -tiedostoa. Toiminta ei siis ollut sellaista mihin olin pyrkinyt.
+
+Katsoin lokeja, josko näissä olisi jotain, joka auttaisi asiaa eteenpäin. error.log -tiedostossa oli lähinnä Apachen normaaliin toimintaan ja uudelleenkäynnistykseen liittyviä rivejä. Muitakaan lokeja tarkastellen en päässyt asiassa eteenpäin.
 
 ![image](https://github.com/user-attachments/assets/b50bf701-2cfd-467b-96ad-acfe2534ab89)
 
-Asia ei selvinnyt.
+### Kohta g)
 
-g) salattua hallintaa
-- asenna ssh-palvelin
-- Tee uusi käyttäjä omalla nimelläsi: "Tero Karvinen test", login name: "terote01"
-- Automatisoi ssh-kirjautuminen julkisen avaimen menetelmällä niin, että et tarvitse salasanoja, voit käyttää kirjautumiseen localhost-osoitetta
+Yritin ottaa yhteyttä ssh:lla localhost-osoitteeseen. ssh-komentoa ei kuitenkaan löytynyt.
 
 ![image](https://github.com/user-attachments/assets/835998d5-9d61-48b7-8e63-6d918ebe8fda)
 
-sudo apt-get install ssh
+Ajoin komennon `sudo apt-get install ssh` asentaakseni ssh:n.
+
+Kokeilin uudelleen ottaa yhteyttä ssh:lla local-host osoitteeseen.
 
 ![image](https://github.com/user-attachments/assets/404df4e6-ed3a-4e93-b1e8-66eb2bff8a3e)
 
-
-
-$ ssh root@10.0.0.1
-
-$ sudo ufw allow 22/tcp
-$ sudo ufw enable
-
-$ sudo adduser tero
-$ sudo adduser tero sudo
-$ sudo adduser tero adm
-$ sudo adduser tero admin
-
-root# sudo cp -rvn /root/.ssh/ /home/jurpo/
-root# sudo chown -R jurpo:jurpo /home/jurpo/
-
-root# exit
-local$ ssh jurpo@10.0.0.1
-
-jurpo$ sudo usermod --lock root
-jurpo$ sudo mv -nv /root/.ssh /root/DISABLED-ssh/
-
-
-
-h) Djangoasioita ei tehty
+Tehtävässä pyydettiin asentamaan ssh-palvelin ja että ssh-kirjautumiseen voi käyttää julkisen avaimen menetelmää localhost-osoitteella. En täysin ymmärtänyt tehtävänantoa, joten jätin tehtävän kesken.
 
 ## Lähteet
 
