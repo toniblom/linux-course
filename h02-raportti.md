@@ -8,6 +8,7 @@ Tein tehtävän seuraavalla kone- ja ohjelmistokokoonpanolla:
 * Prosessori: AMD Ryzen 7 5800H with Radeon Graphics 3.20 GHz
 * Isäntäkäyttöjärjestelmä: Windows 10 Home, versio versio 22H2, OS build 19045.5131
 * Oracle VM VirtualBox versio 7.1.4.
+* Virtuaalikoneen käyttöjärjestelmä: Debian 12.9.0
 
 ## x) Komentokehotteen perusteita
 
