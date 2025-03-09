@@ -1,5 +1,5 @@
 # h7 Maalisuora -raportti
-_Tekijä: Toni Blom_
+_Tekijä: Toni Blom, 2025-03-09_
 
 Tein tämän raportin Linux-palvelimet -kurssin tehtävään h7 liittyen. Tehtävänanto löytyi osoitteesta https://terokarvinen.com/linux-palvelimet/ [1].
 
