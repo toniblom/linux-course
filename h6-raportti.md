@@ -1,8 +1,8 @@
 # h6 Salataampa -raportti
 
-_Tekijä: Toni Blom, 2025-03-02_
+_Tekijä: Toni Blom, 2025-03-02 (päivitetty 2025-03-09)_
 
-Tein tämän raportin Linux-palvelimet -kurssin tehtävään h6 liittyen. Tehtävänanto löytyi osoitteesta https://terokarvinen.com/linux-palvelimet/ [1].
+Tein tämän raportin Linux-palvelimet -kurssin tehtävään h6 liittyen. Tehtävänanto löytyi osoitteesta https://terokarvinen.com/linux-palvelimet/ [^1].
 
 Tein tehtävän seuraavalla kone- ja ohjelmistokokoonpanolla:
 
@@ -25,15 +25,15 @@ Tein tehtävän seuraavalla kone- ja ohjelmistokokoonpanolla:
     * Kun domain on validoitu, CA:lta voi pyytää uusia sertifikaatteja sekä sertifikaattien uusimista tai mitätöintiä.
     * CA jakaa tiedot uusista sertifikaateista tai mitätöinneistä julkisesti, jolloin viime kädessä selaimet saavat näistä tiedon.
 
-(https://letsencrypt.org/how-it-works/) [2]
+(https://letsencrypt.org/how-it-works/) [^2]
 
 ### lego: Käyttö olemassa olevan web-serverin kanssa
 
-* lego on Let's Encrypt client, jota voi käyttää Linuxin komentokehotteessa [5].
+* lego on Let's Encrypt client, jota voi käyttää Linuxin komentokehotteessa [^5].
 * Jos olemassa oleva web-palvelin toimii jo portissa 80, lego-komennolle voi antaa --http-webroot -argumentin sekä web-palvelimen tiedostopolun.
 * Tällöin lego ei aloita uutta palvelinta, vaan kirjoittaa CA:n antaman http-01-haasteen tiedot annettuun tiedostopolkuun.
 
-(https://go-acme.github.io/lego/usage/cli/obtain-a-certificate/index.html#using-an-existing-running-web-server) [3]
+(https://go-acme.github.io/lego/usage/cli/obtain-a-certificate/index.html#using-an-existing-running-web-server) [^3]
 
 ### Apache: Minimaalisen SSL/TLS-salauksen konfiguraatio
 
@@ -51,7 +51,7 @@ Listen 443
 </VirtualHost>
 ```
 
-(https://httpd.apache.org/docs/2.4/ssl/ssl_howto.html#configexample) [4]
+(https://httpd.apache.org/docs/2.4/ssl/ssl_howto.html#configexample) [^4]
 
 ## a) TLS-sertifikaatin hankkiminen Let's Encryptiltä
 
@@ -63,11 +63,11 @@ Aluksi kokeilin, että aiemmin tekemäni webbisivu toimii. Menin osoitteeseen ht
 
 ![image](https://github.com/user-attachments/assets/484b37f5-6db5-450c-ab20-f5cc60750df6)
 
-Kirjauduin virtuaalipalvelimelleni `ssh`-komennolla, päivitin paketinhallinnan `sudo apt-get update` -komennolla ja käynnistin Apache-webserverin uudelleen `sudo systemctl restart apache2` -komennolla. Asensin lego-ohjelman, joka on terminaalissa toimiva Let's Encrypt -klientti (https://go-acme.github.io/lego/ [5]), `sudo apt-get install lego` -komennolla. Nämä komennot suorittuivat ilman virheilmoituksia onnistuneesti.
+Kirjauduin virtuaalipalvelimelleni `ssh`-komennolla, päivitin paketinhallinnan `sudo apt-get update` -komennolla ja käynnistin Apache-webserverin uudelleen `sudo systemctl restart apache2` -komennolla. Asensin lego-ohjelman, joka on terminaalissa toimiva Let's Encrypt -klientti (https://go-acme.github.io/lego/ [^5]), `sudo apt-get install lego` -komennolla. Nämä komennot suorittuivat ilman virheilmoituksia onnistuneesti.
 
 ### Sertifikaatin hankkiminen Staging Environmentissa
 
-Seuraavaksi ajoin lego-komennon Let's Encryptin Staging Environmentissa terminaalissa luennolla käydyn ja kurssin sivulla olleiden ohjeiden mukaisesti [1][6]. Staging Environmentia voi käyttää Let's Encryptin palvelun testaamiseen. Tämä on hyödyllistä, koska Let's Encrypt rajoittaa tehtävien sertifikaattipyyntöjen ja auktorisointiyritysten määrää, ja rajojen ylittyessä seuraa karenssia uusien pyyntöjen tekemiseen (https://letsencrypt.org/docs/rate-limits/) [7]. Tarkistin vielä Let's Encryptin sivuilta Staging Environmentin palvelimen osoitteen (https://letsencrypt.org/docs/staging-environment/ [8]), jota tarvitaan lego-komennossa.
+Seuraavaksi ajoin lego-komennon Let's Encryptin Staging Environmentissa terminaalissa luennolla käydyn ja kurssin sivulla olleiden ohjeiden mukaisesti [^1][^6]. Staging Environmentia voi käyttää Let's Encryptin palvelun testaamiseen. Tämä on hyödyllistä, koska Let's Encrypt rajoittaa tehtävien sertifikaattipyyntöjen ja auktorisointiyritysten määrää, ja rajojen ylittyessä seuraa karenssia uusien pyyntöjen tekemiseen (https://letsencrypt.org/docs/rate-limits/) [^7]. Tarkistin vielä Let's Encryptin sivuilta Staging Environmentin palvelimen osoitteen (https://letsencrypt.org/docs/staging-environment/ [^8]), jota tarvitaan lego-komennossa.
 
 ```
 lego
@@ -81,9 +81,9 @@ lego
 run
 ```
 
-Komennon lippujen selitykset: (https://go-acme.github.io/lego/usage/cli/options/index.html) [9]
+Komennon lippujen selitykset: (https://go-acme.github.io/lego/usage/cli/options/index.html) [^9]
 
-Komennossa on hyvä huomata, että `--http.webroot` ja `--path` tiedostopolkujen ei tulisi olla samoja, koska webroot on julkisesti näkyvä sijainti ja sertifikaatit tulisi pitää salassa (Karvinen T., oppitunti) [6].
+Komennossa on hyvä huomata, että `--http.webroot` ja `--path` tiedostopolkujen ei tulisi olla samoja, koska webroot on julkisesti näkyvä sijainti ja sertifikaatit tulisi pitää salassa (Karvinen T., oppitunti) [^6].
 
 Suoritin komennon ja sain ilmoituksen "Server responded with a certificate."
 
@@ -117,7 +117,7 @@ Tarkistin, että saamani sertifikaattitiedostot olivat olemassa ja katsoin samal
 
 ![image](https://github.com/user-attachments/assets/d0ecac2f-d6f2-4017-897a-0cb077f873ac)
 
-Muokkasin name-based virtual hostin konfiguraatiotiedostoa komennolla `sudoedit /etc/apache2/sites-available/toniblom.me.conf` oppitunnin ja kurssin sivujen mukaisesti [1][6]. Tiedostoon lisättiin name-based virtual host porttiin 443. Erona portin 80 konfiguraatioihin oli, että konfiguraatioon lisättiin kohdat SSL:n päälle kytkemisestä ja tiedostopolut sertifikaatin ja sertifikaattiavaimen tiedostoihin.
+Muokkasin name-based virtual hostin konfiguraatiotiedostoa komennolla `sudoedit /etc/apache2/sites-available/toniblom.me.conf` oppitunnin ja kurssin sivujen mukaisesti [^1][^6]. Tiedostoon lisättiin name-based virtual host porttiin 443. Erona portin 80 konfiguraatioihin oli, että konfiguraatioon lisättiin kohdat SSL:n päälle kytkemisestä ja tiedostopolut sertifikaatin ja sertifikaattiavaimen tiedostoihin.
 
 ![image](https://github.com/user-attachments/assets/2fdfdf60-2115-416e-9e73-36a44bf3ac45)
 
@@ -158,12 +158,12 @@ Hetken kuluttua sain tuloksia palvelimeni SSL-tiedoista. Kokonaisluokitus sivust
 
 Raportissa oli eritelty varsin kattavasti palvelimeni tietoja ja tehtyjä testejä. Muutamia poimintoja tästä:
 * Sertifikaattini on voimassa 30.5.2025 asti eli noin kolme kuukautta.
-* DNS CAA -kohta oli oranssina, joten painoin "more info" tekstiä. Tämä vei minut blogitekstiin (https://blog.qualys.com/product-tech/2017/03/13/caa-mandated-by-cabrowser-forum) [10], jossa selitettiin CAA:sta. CAA on mekanismi, jolla domainnimen omistaja voi valita mitkä Certificate Authorityt saavat myöntää sertifikaatteja domainnimelle. [10] En ollut tehnyt tällaista valintaa eli ilmeisesti mikä tahansa CA voi myöntää domainnimelleni sertifikaatteja.
+* DNS CAA -kohta oli oranssina, joten painoin "more info" tekstiä. Tämä vei minut blogitekstiin (https://blog.qualys.com/product-tech/2017/03/13/caa-mandated-by-cabrowser-forum) [^10], jossa selitettiin CAA:sta. CAA on mekanismi, jolla domainnimen omistaja voi valita mitkä Certificate Authorityt saavat myöntää sertifikaatteja domainnimelle. [10] En ollut tehnyt tällaista valintaa eli ilmeisesti mikä tahansa CA voi myöntää domainnimelleni sertifikaatteja.
 
 ![image](https://github.com/user-attachments/assets/f537e42a-88cd-4fe0-9e2c-103f0ce28582)
 
 * Virtuaalipalvelimeni käyttää protokollia TLS 1.2 ja TLS 1.3.
-* Cipher Suites -kohdassa oli oransseja rivejä. Etsin asiasta lisää tietoa. Cipher suitet ovat algoritmikokoelmia, jotka osallistuvat TLS-handshake-prosessiin serverin ja clientin yhteyden muodostamisessa. Cipher suiteja on erilaisia ja palvelimelle voi tehdä asetuksia, jotka suosivat tiettyjä versioita. (https://www.namecheap.com/blog/beginners-guide-to-tls-cipher-suites/) [11] Ilmeisesti virtuaalipalvelimeni TLS 1.2 -protokolla käyttää joitakin cipher suiteja, jotka SSLLabsin testi luokitteli heikkolaatuisiksi.
+* Cipher Suites -kohdassa oli oransseja rivejä. Etsin asiasta lisää tietoa. Cipher suitet ovat algoritmikokoelmia, jotka osallistuvat TLS-handshake-prosessiin serverin ja clientin yhteyden muodostamisessa. Cipher suiteja on erilaisia ja palvelimelle voi tehdä asetuksia, jotka suosivat tiettyjä versioita. (https://www.namecheap.com/blog/beginners-guide-to-tls-cipher-suites/) [^11] Ilmeisesti virtuaalipalvelimeni TLS 1.2 -protokolla käyttää joitakin cipher suiteja, jotka SSLLabsin testi luokitteli heikkolaatuisiksi.
 
 ![image](https://github.com/user-attachments/assets/e2eeeed4-4592-42d2-abfd-38363a52672b)
 
@@ -172,7 +172,7 @@ Raportissa oli eritelty varsin kattavasti palvelimeni tietoja ja tehtyjä testej
 ![image](https://github.com/user-attachments/assets/750cf97a-980b-44e6-916e-3940b1fefab9)
 
 * Protocol Details kohdassa oli paljon tietoa ilmeisesti erilaisista haavoittuvuuksista. Näitä ei näyttänyt testeissä ilmenneen.
-* Kiinnostuin Zombie POODLE -haavoittuvuudesta ja etsin siitä lisää tietoa. Löytämäni kuvaus haavoittuvuudesta oli kuitenkin erittäin tekninen, mutta ymmärsin että haavoittuvuus liittyy TLS versio 1.2:n tukemiin cipher suiteihin, jotka ovat kryptografisesti vanhanaikaisia.  Haavoittuvuus ei koske TLS versio 1.3:a. (https://www.tripwire.com/state-of-security/zombie-poodle-goldendoodle) [12]
+* Kiinnostuin Zombie POODLE -haavoittuvuudesta ja etsin siitä lisää tietoa. Löytämäni kuvaus haavoittuvuudesta oli kuitenkin erittäin tekninen, mutta ymmärsin että haavoittuvuus liittyy TLS versio 1.2:n tukemiin cipher suiteihin, jotka ovat kryptografisesti vanhanaikaisia.  Haavoittuvuus ei koske TLS versio 1.3:a. (https://www.tripwire.com/state-of-security/zombie-poodle-goldendoodle) [^12]
 
 ![image](https://github.com/user-attachments/assets/618f5d92-e6f5-41ea-8450-b271d61c8ff7)
 
@@ -186,26 +186,26 @@ Hankin onnistuneesti TLS-sertifikaatin webbisivulleni Let's Encryptiltä käytt�
 
 ## Lähteet
 
-[1] Karvinen, T. Linux Palvelimet 2025 alkukevät. https://terokarvinen.com/linux-palvelimet/. Luettu 2025-03-01.
+[^1]: [Karvinen, T. Linux Palvelimet 2025 alkukevät.](https://terokarvinen.com/linux-palvelimet/) Luettu 2025-03-01.
 
-[2] Internet Security Research Group. 2024-06-26. How It Works. https://letsencrypt.org/how-it-works/. Luettu 2025-03-01.
+[^2]: [Internet Security Research Group. 2024-06-26. How It Works.](https://letsencrypt.org/how-it-works/) Luettu 2025-03-01.
 
-[3] Lange, Nick J. 2024-11-29. Obtain a Certificate. https://go-acme.github.io/lego/usage/cli/obtain-a-certificate/index.html#using-an-existing-running-web-server. Luettu 2025-03-01.
+[^3]: [Lange, Nick J. 2024-11-29. Obtain a Certificate.](https://go-acme.github.io/lego/usage/cli/obtain-a-certificate/index.html#using-an-existing-running-web-server) Luettu 2025-03-01.
 
-[4] The Apache Software Foundation. 2025. SSL/TLS Strong Encryption: How-To. https://httpd.apache.org/docs/2.4/ssl/ssl_howto.html#configexample. Luettu 2025-03-01.
+[^4]: [The Apache Software Foundation. 2025. SSL/TLS Strong Encryption: How-To.](https://httpd.apache.org/docs/2.4/ssl/ssl_howto.html#configexample) Luettu 2025-03-01.
 
-[5] Fernandez, Ludovic. 2025-02-16. https://go-acme.github.io/lego/. Luettu 2025-03-02.
+[^5]: [Fernandez, Ludovic. 2025-02-16.](https://go-acme.github.io/lego/) Luettu 2025-03-02.
 
-[6] Karvinen, T: Oppitunnit 2015-02-25, Linux palvelimet -kurssi (https://terokarvinen.com/linux-palvelimet/).
+[^6]: [Karvinen, T: Oppitunnit 2015-02-25, Linux palvelimet -kurssi.](https://terokarvinen.com/linux-palvelimet/)
 
-[7] Internet Security Research Group. 2024-12-17. Rate Limits. https://letsencrypt.org/docs/rate-limits/. Luettu 2025-03-02.
+[^7]: [Internet Security Research Group. 2024-12-17. Rate Limits.](https://letsencrypt.org/docs/rate-limits/) Luettu 2025-03-02.
 
-[8] Internet Security Research Group. 2024-06-11. Staging Environment. https://letsencrypt.org/docs/staging-environment/. Luettu 2025-03-02.
+[^8]: [Internet Security Research Group. 2024-06-11. Staging Environment.](https://letsencrypt.org/docs/staging-environment/) Luettu 2025-03-02.
 
-[9] Fernandez, Ludovic. 2025-02-04. Usage. https://go-acme.github.io/lego/usage/cli/options/index.html. Luettu 2025-03-02.
+[^9]: [Fernandez, Ludovic. 2025-02-04. Usage.](https://go-acme.github.io/lego/usage/cli/options/index.html) Luettu 2025-03-02.
 
-[10] Ristic, Ivan. 2017-03-13. CAA Mandated by CA/Browser Forum. https://blog.qualys.com/product-tech/2017/03/13/caa-mandated-by-cabrowser-forum. Luettu 2025-03-02.
+[^10]: [Ristic, Ivan. 2017-03-13. CAA Mandated by CA/Browser Forum.](https://blog.qualys.com/product-tech/2017/03/13/caa-mandated-by-cabrowser-forum) Luettu 2025-03-02.
 
-[11] Quigley, Cora. 2020-12-22. A Beginner’s Guide to TLS Cipher Suites. https://www.namecheap.com/blog/beginners-guide-to-tls-cipher-suites/. Luettu 2025-03-02.
+[^11]: [Quigley, Cora. 2020-12-22. A Beginner’s Guide to TLS Cipher Suites.](https://www.namecheap.com/blog/beginners-guide-to-tls-cipher-suites/) Luettu 2025-03-02.
 
-[12] Fortra, LLC. 2019-02-04. Introducing Zombie POODLE and GOLDENDOODLE. https://www.tripwire.com/state-of-security/zombie-poodle-goldendoodle. Luettu 2025-03-02.
+[^12]: [Fortra, LLC. 2019-02-04. Introducing Zombie POODLE and GOLDENDOODLE.](https://www.tripwire.com/state-of-security/zombie-poodle-goldendoodle) Luettu 2025-03-02.
